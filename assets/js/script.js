@@ -25,6 +25,8 @@ const overlay = document.querySelector("[data-overlay]");
 const modalImg = document.querySelector("[data-modal-img]");
 const modalTitle = document.querySelector("[data-modal-title]");
 const modalText = document.querySelector("[data-modal-text]");
+// const sectionText = document.querySelector("[data-section-text]");
+const sectionBtn = document.querySelector("[data-modal-section-btn]");
 
 
 // modal toggle function
@@ -41,6 +43,8 @@ for (let i = 0; i < testimonialsItem.length; i++) {
     modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
     modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
     modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
+    // sectionText.innerHTML = this.querySelector("[data-testimonials-section]").innerHTML;
+    // sectionBtn.innerHTML = this.querySelector("[data-testimonials-sectionBtn]").innerHTML;
     testimonialsModalFunc();
   });
 }
@@ -53,31 +57,31 @@ overlay.addEventListener("click", testimonialsModalFunc);
 //---------------------------------
 
 const filterItems = document.querySelectorAll("[data-filter-item]");
-const projectmodalTitle = document.querySelector("[project-data-modal-title]");
-const projectmodalContainer = document.querySelector("[project-data-modal-container]");
-const projectmodalCloseBtn = document.querySelector("[project-data-modal-close-btn]");
-const projectoverlay = document.querySelector("[project-data-overlay]");
+// const projectmodalTitle = document.querySelector("[project-data-modal-title]");
+// const projectmodalContainer = document.querySelector("[project-data-modal-container]");
+// const projectmodalCloseBtn = document.querySelector("[project-data-modal-close-btn]");
+// const projectoverlay = document.querySelector("[project-data-overlay]");
 
-const projectModalFunc = function () {
-  projectmodalContainer.classList.toggle("active");
-  projectoverlay.classList.toggle("active");
-  console.log("hiee");
-}
+// const projectModalFunc = function () {
+//   projectmodalContainer.classList.toggle("active");
+//   projectoverlay.classList.toggle("active");
+//   console.log("hiee");
+// }
 
 
 //add click event to all the projects
-for (let j = 0; j < filterItems.length; j++) {
-  filterItems[j].addEventListener("click", function(){
-    projectmodalTitle.innerHTML = this.querySelector("[data-project-title]").innerHTML;
-    projectModalFunc();
-  });
+// for (let j = 0; j < filterItems.length; j++) {
+//   filterItems[j].addEventListener("click", function(){
+//     // projectmodalTitle.innerHTML = this.querySelector("[data-project-title]").innerHTML;
+//     projectModalFunc();
+//   });
 
-}
+// }
 
 
 // add click event to modal close button
-projectmodalCloseBtn.addEventListener("click", projectModalFunc);
-projectoverlay.addEventListener("click", projectModalFunc);
+// projectmodalCloseBtn.addEventListener("click", projectModalFunc);
+// projectoverlay.addEventListener("click", projectModalFunc);
 
 
 
