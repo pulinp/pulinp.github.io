@@ -200,7 +200,9 @@ for (let i = 0; i < navigationLinks.length; i++) {
 const logoBtn = document.querySelectorAll("[data-nav-logo]");
 console.log(logoBtn);
 
-logoBtn[0].addEventListener('click',function(){
+for (let i = 0; i < logoBtn.length; i++) {
+
+  logoBtn[i].addEventListener('click',function(){
   pages[0].classList.remove("active");
   pages[1].classList.add("active");
   navigationLinks[0].classList.remove("active");
@@ -208,13 +210,8 @@ logoBtn[0].addEventListener('click',function(){
   window.scrollTo(0, 0);
 })
 
-logoBtn[1].addEventListener('click',function(){
-  pages[0].classList.remove("active");
-  pages[1].classList.add("active");
-  navigationLinks[0].classList.remove("active");
-  navigationLinks[1].classList.add("active");
-  window.scrollTo(0, 0);
-})
+}
+
 
 var acc = document.getElementsByClassName("accordion");
 var i;
