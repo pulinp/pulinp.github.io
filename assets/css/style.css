@@ -676,10 +676,16 @@ main {
   z-index: 2;
 }
 
-.modal-container.active .testimonials-modal , .project-modal{
+.modal-container.active .testimonials-modal {
   transform: scale(1);
   opacity: 1;
 }
+
+.modal-container.active .project-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
 
 .modal-close-btn {
   position: absolute;
@@ -733,21 +739,23 @@ main {
  * #clients 
  */
 
-.clients { margin-bottom: 15px; }
+.clients { margin-bottom: 15px; overflow: hidden; width: 100%; padding: 20px; margin-top: -50px; box-sizing: border-box;}
 
 .clients-list {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 15px;
-  margin: 0 -15px;
-  padding: 25px;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  /* gap: 15px; */
+  /* margin: -15px; */
+  /* padding: 25px; */
   padding-bottom: 25px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 25px;
+  scroll-padding-inline: 20px;
+  box-sizing: border-box; /* Include padding and border in the total width */
+  
 }
 
 .clients-item {
@@ -756,11 +764,23 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* flex: 0 0 auto; /* Ensure items don't shrink 
+  width: auto; /* Adjust width to fit the content 
+  margin: 0 10px; /* Add space between items 
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; Include padding and border in the total width */
+
 }
 
 .clients-item img {
   width: 100%;
+  max-width: 150px; /*Limit the maximum width of the images */
   transition: var(--transition-1);
+
 }
 
 .certification-link {
@@ -769,9 +789,17 @@ main {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  /* color: var(--white-1);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px; /* Add space between the image and the link
+  text-decoration: none; */
 }
 
-.clients-item img:hover { filter: grayscale(0); }
+/* .clients-item img:hover { filter: grayscale(0); } */
 
 
 
@@ -991,6 +1019,10 @@ main {
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 15px;
+}
+
+.project-border-radius-2 {
+  border-radius: 8px !important;
 }
 
 .project-img::before {
@@ -1509,8 +1541,8 @@ textarea.form-input::-webkit-resizer { display: none; }
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 75px;
-    margin: 0 -30px;
+    gap: 50px;
+    margin: 0-30px;
     padding: 45px;
     scroll-padding-inline: 45px;
   }
@@ -1961,4 +1993,15 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .accordion.active:after {
   content: "\2212";
+}
+
+
+.modal-panel-project-list {
+  position: absolute;
+  top: 10%;
+  max-height: 80%; /* Adjust the height as needed */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  padding: 10px;     /* Optional: Adjust padding as needed */
+  margin: 0;         /* Remove default margin */
+  list-style-type: none; /* Remove default list styling */
 }
