@@ -742,7 +742,7 @@ main {
 .clients { margin-bottom: 15px; overflow: hidden; width: 100%; padding: 20px; margin-top: -50px; box-sizing: border-box;}
 
 .clients-list {
-  /* display: flex; */
+  display: flex;
   /* justify-content: flex-start; */
   /* align-items: flex-start; */
   /* gap: 15px; */
@@ -754,7 +754,7 @@ main {
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
   scroll-padding-inline: 20px;
-  box-sizing: border-box; /* Include padding and border in the total width */
+  box-sizing: border-box; 
   
 }
 
@@ -1298,8 +1298,27 @@ textarea.form-input::-webkit-resizer { display: none; }
    * client
    */
 
-   .clients-item {
+   /* .clients-item {
     min-width: calc(33.33% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
+
+   /* clients */
+
+   .clients-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+    margin: 0-30px;
+    padding: 45px;
+    scroll-padding-inline: 45px;
+  }
+
+  .clients-item {
+    min-width: calc(33.33% - 35px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1665,6 +1684,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
   .project-modal {
+    max-width: 1080px;
     gap: 35px;
   }
 
