@@ -749,6 +749,7 @@ main {
   /* margin: -15px; */
   /* padding: 25px; */
   padding-bottom: 25px;
+  gap: 50px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
@@ -1309,7 +1310,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
    /* clients */
 
-   .clients{
+   /* .clients{
     margin-top: -50px;
    }
 
@@ -1327,7 +1328,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 
 
 
@@ -1561,7 +1562,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* clients */
 
-  .clients{
+  /* .clients{
     margin-top: -50px;
   }
 
@@ -1569,7 +1570,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* gap: 50px; */
+    gap: 50px;
     margin: 0-30px;
     padding: 45px;
     scroll-padding-inline: 45px;
@@ -1581,7 +1582,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 
 
 
