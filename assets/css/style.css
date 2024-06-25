@@ -1310,25 +1310,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
    /* clients */
 
-   /* .clients{
-    margin-top: -50px;
-   }
 
-   .clients-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0-30px;
-    padding: 45px;
-    scroll-padding-inline: 45px;
-  }
-
-  .clients-item {
-    min-width: calc(33.33% - 10px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
 
 
 
