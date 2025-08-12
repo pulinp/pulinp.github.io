@@ -24,6 +24,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- React and Chakra UI -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@chakra-ui/react@2.8.2/dist/chakra-ui-react.umd.js"></script>
+  <script src="https://unpkg.com/@emotion/react@11.11.1/dist/emotion-react.umd.js"></script>
+  <script src="https://unpkg.com/@emotion/styled@11.11.0/dist/emotion-styled.umd.js"></script>
+  <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.23.6/babel.min.js"></script>
 </head>
 
 <body>
@@ -91,7 +100,7 @@
             <div class="contact-info">
               <p class="contact-title">Email</p>
 
-              <a href="mailto:pulin.prabhu@tamu.edu" class="contact-link">pulin.prabhu@tamu.edu</a>
+              <a href="mailto:pulinpprabhu@gmail.com" class="contact-link">pulinpprabhu@gmail.com</a>
             </div>
 
           </li>
@@ -133,7 +142,7 @@
             <div class="contact-info">
               <p class="contact-title">Location</p>
 
-              <address>College Station, Texas, USA</address>
+              <address>Sunnyvale, CA</address>
             </div>
 
           </li>
@@ -416,6 +425,49 @@
 
         </section>
 
+        <!-- <h3 class="h3 clients-title">Featured Projects</h3>
+
+        <section class="clients">
+
+          <ul class="clients-list has-scrollbar">
+
+            <li class="clients-item">
+              <a href="#portfolio">
+                <img src="./assets/images/eventvol-1.png" alt="EventVol - An easy volunteering solution" title="View Project">
+              </a>
+              <a class="certification-link project-title" href="#portfolio">
+                EventVol – An easy volunteering solution<i class="fas fa-external-link-alt external-link-icon"></i>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#portfolio">
+                <img src="./assets/images/hertz-1.png" alt="Hertz App Redesign" title="View Project">
+              </a>
+              <a class="certification-link project-title" href="#portfolio">
+                Hertz App Redesign<i class="fas fa-external-link-alt external-link-icon"></i>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="#portfolio">
+                <img src="./assets/images/project-11.png" alt="Easy Bryan - Product Canvas" title="View Project">
+              </a>
+              <a class="certification-link project-title" href="#portfolio">
+                Easy Bryan - Product Canvas<i class="fas fa-external-link-alt external-link-icon"></i>
+              </a>
+            </li>
+
+          </ul>
+
+          <div style="text-align: center; margin-top: 2rem;">
+            <a href="#portfolio" class="read-more-link" style="font-size: 16px; font-weight: 500; color: var(--light-gray); text-decoration: none; padding: 12px 24px; border: 2px solid var(--light-gray); border-radius: 8px; transition: all 0.3s ease;">
+              See More Projects <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+          </div>
+
+        </section> -->
+
       </article>
 
 
@@ -446,6 +498,49 @@
 
             <li class="timeline-item">
 
+                              <div class="subtitle-wrapper">
+                  <img class="company-logo icon-box"  src="./assets/images/bulk.png" alt="StableCoupons_logo">
+                  <div>
+                  <h4 class="h5 timeline-item-title">StableCoupons, Inc.</h4>
+                  <h6 class="h6 timeline-item-title location">Mountain View, CA</h6>
+                </div>
+              </div>
+
+              <h4 class="h4 timeline-item-title">Product Strategy Manager – Founders Office</h4>
+
+              <span>July 2024 – Present</span>
+
+              <ol class="timeline-list">
+                <li class="timeline-item">
+                  <p class="timeline-text">
+                    Defined and documented end-to-end payment API integration workflows with Stripe, Adyen, and Shopify, optimizing multi-seller marketplace onboarding through scalable fintech infrastructure and automated validation processes
+                  </p>
+                </li>
+              
+                <li class="timeline-item">
+                  <p class="timeline-text">
+                    Authored comprehensive product requirements and UX flows for AI-powered e-commerce features including group buying and dynamic discounts, driving 15% revenue growth while streamlining complex purchase workflows through intelligent automation
+                  </p>
+                </li>
+
+                <li class="timeline-item">
+                  <p class="timeline-text">
+                    Built autonomous agent orchestration systems that coordinated multi-step workflows across buyer and seller platforms, improving developer productivity by 40% through automated testing, validation, and deployment processes
+                  </p>
+                </li>
+
+                <li class="timeline-item">
+                  <p class="timeline-text">
+                    Designed and shipped smart recommendation infrastructure utilizing GPT-based prompts and behavioral analytics, enhancing user engagement and conversion rates through personalized content delivery
+                  </p>
+                </li>
+
+              </ol>
+
+            </li>
+
+            <li class="timeline-item">
+
               <div class="subtitle-wrapper">
                 <img class="company-logo icon-box"  src="./assets/images/logo-1-color.png" alt="Carrier_logo">
                 <div>
@@ -456,28 +551,24 @@
 
               <h4 class="h4 timeline-item-title">Product Management Intern - Data & Analytics</h4>
 
-              <span>May 2023 — Aug 2023</span>
+              <span>May 2023 – August 2023</span>
 
               <ol class="timeline-list">
                 <li class="timeline-item">
                   <p class="timeline-text">
-                    Collaborated with 80+ Business Leads & Internal Stakeholders to capture the digital footprints of 45+ business units. Designed and delivered an auditing dashboard increasing visibility into performance metrics, reducing average part supply time by 18%
+                    Developed OCR-based AI chatbot platform using Azure Cognitive Search, automating customer support workflows and improving developer tool adoption by 30% across internal engineering teams
                   </p>
                 </li>
               
-
-             
                 <li class="timeline-item">
                   <p class="timeline-text">
-                    Led Agile adoption and continuous improvement development strategy in global teams, increasing delivery efficiency from 10 to 25 story points per sprint, boosting efficiency by 18% over multiple sprint planning sessions
+                    Conducted comprehensive stakeholder research with 85+ interviews across engineering, sales, and customer success teams, identifying critical pain points in developer experience and competitive gaps in automation tooling
                   </p>
                 </li>
 
-              
-
                 <li class="timeline-item">
                   <p class="timeline-text">
-                    Launched 7 features and identified key Gen AI applications, gathering functional and non functional requirements, conducting stakeholder interviews and competitor analysis to develop product strategy and project plans for smart building hardware platforms
+                    Created B2B SaaS product roadmap in partnership with AWS, focusing on cold chain monitoring infrastructure that reduced operational overhead by 20% through enhanced automation and real-time visibility systems
                   </p>
                 </li>
 
@@ -515,42 +606,33 @@
 
               <h4 class="h4 timeline-item-title">Technical Product Manager</h4>
 
-              <span>Feb 2021 – July 2022</span>
+              <span>January 2021 - July 2022</span>
 
               <ol class="timeline-list">
                 <li class="timeline-item">
                   <p class="timeline-text">
-                  Conceptualized and led a nine-member cross-functional team in an agile environment for developing a zero-one customer facing product, resulting in over 50,000 downloads in 3 months, demonstrating strong market adoption
+                    Orchestrated zero-to-one mobile platform launch integrating claims, policy, and payments systems through microservices architecture, onboarding 1M+ users while maintaining 99.9% uptime and establishing scalable developer framework
                   </p>
                 </li>
               
-
-             
                 <li class="timeline-item">
                   <p class="timeline-text">
-                  Conducted vendor analysis for financial budgets and integration of behavioral analytics, journey tracking, and push notifications, increasing revenue to $1.2 million, showcasing data driven influence for agent based insurance product 
-                  </p>
-                </li>
-
-              
-
-                <li class="timeline-item">
-                  <p class="timeline-text">
-                  Led the transition of flagship mobile development from Native to Cross-Platform, incorporating customer feedback and industry best practices, leading to a 40% decrease in app abandonment rate and expanding user base to 2 million users
+                    Implemented CI/CD pipeline automation using AWS and Bitbucket, reducing deployment cycle time by 85% and saving 120 engineering hours weekly through automated testing, validation, and rollback mechanisms
                   </p>
                 </li>
 
                 <li class="timeline-item">
                   <p class="timeline-text">
-                  Coordination of a fast-paced software engineers, resulted in 30% decreased bounce rate and 12% increased session time
+                    Executed GTM strategy for three core platform features achieving 30% developer adoption rate and improving system reliability metrics, resulting in 3-point Net Promoter Score increase within 12 months
                   </p>
                 </li>
 
-
                 <li class="timeline-item">
                   <p class="timeline-text">
-                  Created and executed comprehensive A/B testing strategy with UI/UX design specifications that resulted in a 20% increase in click-through rate and a 15% increase in conversion rate for the e-commerce platform, generating $0.5 million in additional revenue
+                    Optimized mobile payment gateway architecture through data-driven UX/UI improvements, reducing transaction failure rates by 18% and improving processing efficiency by 28% via enhanced error handling and retry logic
                   </p>
+                </li>
+
               </ol>
             </li>
 
@@ -614,7 +696,7 @@
 
 
 
-        <section class="skill">
+        <!-- <section class="skill">
 
           <h3 class="h3 skills-title">My skills</h3>
 
@@ -674,7 +756,153 @@
 
           </ul>
 
+        </section> -->
+
+        <!-- ADDITIONAL TECHNICAL SKILLS SECTION -->
+        <section class="skill">
+
+          <div id="chakra-skills-root" class="content-card"></div>
+
         </section>
+
+        <script type="text/babel">
+          console.log('Script starting...');
+          
+                       try {
+               const { ChakraProvider, Box, VStack, Text, Code, Stack } = ChakraUI;
+               console.log('ChakraUI components loaded:', { ChakraProvider, Box, VStack, Text, Code, Stack });
+       
+               function SkillsSection() {
+                 console.log('SkillsSection component rendering...');
+                 
+                 const skillCategories = [
+                   {
+                     title: 'Product Management',
+                     skills: ['Agile / Scrum Methodologies', 'Product Roadmaps', 'API Integrations', 'B2B SaaS Strategy', 'GTM & Feature Launches', 'AI/Agent Design (LLMs, GPT, RAG, Conversational UX)', 'Outcome Measurement & Customer Insights']
+                   },
+                   {
+                     title: 'Tools & Platforms',
+                     skills: ['Jira', 'Confluence', 'Asana', 'Slack', 'Miro', 'Figma', 'Photoshop', 'Tableau', 'Power BI', 'Amplitude', 'Postman', 'Bitbucket']
+                   },
+                   {
+                     title: 'Programming & Technology',
+                     skills: ['Python', 'Java', 'JavaScript', 'JSON', 'CI/CD Pipelines', 'Azure', 'OpenAI', 'AWS', 'SQL', 'ETL Pipelines', 'OCR', 'LangChain']
+                   }
+                 ];
+       
+                 // Color schemes for Code components
+                 const colorSchemes = ['blue', 'green', 'purple', 'orange', 'red', 'teal', 'pink', 'yellow', 'cyan', 'gray'];
+                 const getColorScheme = (skillIndex) => colorSchemes[skillIndex % colorSchemes.length];
+       
+                 return (
+                   <ChakraProvider>
+                     <Text fontSize="2xl" fontWeight="bold" color="white" mb={6}>
+                       Technical & Professional Skills
+                     </Text>
+                     
+                     <Box bg="#2d2d2d" p={6} borderRadius="lg" minH="auto" overflow="visible">
+                       <VStack spacing={8} align="stretch">
+                           {skillCategories.map((category, categoryIndex) => (
+                             <Box key={categoryIndex} mb={4}>
+                               <Text fontSize="lg" fontWeight="semibold" color="white" mb={4} textDecoration="underline">
+                                 {category.title}
+                               </Text>
+                               
+                               <Stack direction="row" spacing={3} flexWrap="wrap" mb={2}>
+                                 {category.skills.map((skill, skillIndex) => (
+                                   <Code
+                                     key={`${categoryIndex}-${skillIndex}`}
+                                     colorScheme={getColorScheme(skillIndex)}
+                                     px={3}
+                                     py={2}
+                                     borderRadius="md"
+                                     fontSize="md"
+                                     fontWeight="medium"
+                                     mb={2}
+                                     whiteSpace="nowrap"
+                                   >
+                                     {skill}
+                                   </Code>
+                                 ))}
+                               </Stack>
+                             </Box>
+                           ))}
+                         </VStack>
+                       </Box>
+                   </ChakraProvider>
+                 );
+               }
+    
+            console.log('About to render component...');
+            const rootElement = document.getElementById('chakra-skills-root');
+            console.log('Root element found:', rootElement);
+            
+            if (rootElement) {
+              ReactDOM.render(<SkillsSection />, rootElement);
+              console.log('Component rendered successfully');
+            } else {
+              console.error('Root element not found');
+            }
+          } catch (error) {
+            console.error('Error in skills section:', error);
+            
+            // Fallback: render a simple HTML version if React fails
+            const rootElement = document.getElementById('chakra-skills-root');
+            if (rootElement) {
+              rootElement.innerHTML = `
+                <h2 style="color: white; font-size: 24px; margin-bottom: 24px;">Technical & Professional Skills</h2>
+                <div style="background: #2d2d2d; padding: 24px; border-radius: 8px; min-height: auto; overflow: visible;">
+                  <div style="margin-bottom: 32px;">
+                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Product Management</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
+                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Agile / Scrum Methodologies</code>
+                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Product Roadmaps</code>
+                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">API Integrations</code>
+                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">B2B SaaS Strategy</code>
+                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">GTM & Feature Launches</code>
+                      <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">AI/Agent Design (LLMs, GPT, RAG, Conversational UX)</code>
+                      <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Outcome Measurement & Customer Insights</code>
+                    </div>
+                  </div>
+                  <div style="margin-bottom: 32px;">
+                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Tools & Platforms</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
+                      <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Jira</code>
+                      <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Confluence</code>
+                      <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Asana</code>
+                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Slack</code>
+                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Miro</code>
+                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Figma</code>
+                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Photoshop</code>
+                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Tableau</code>
+                      <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Power BI</code>
+                      <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Amplitude</code>
+                      <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Postman</code>
+                      <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Bitbucket</code>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Programming & Technology</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
+                      <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Python</code>
+                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Java</code>
+                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">JavaScript</code>
+                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">JSON</code>
+                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">CI/CD Pipelines</code>
+                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Azure</code>
+                                              <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">OpenAI</code>
+                        <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">AWS</code>
+                        <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">SQL</code>
+                        <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">ETL Pipelines</code>
+                        <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">OCR</code>
+                        <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">LangChain</code>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }
+          }
+        </script>
 
       </article>
 
@@ -2291,7 +2519,11 @@
 
         <section class="mapbox" data-mapbox>
           <figure>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d438549.5297924913!2d-96.85170144288509!3d30.82595274985959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8645d4a1c2a7f783%3A0x6f116862d4dfd3fb!2sCollege%20Station-Bryan%2C%20TX%2C%20TX!5e0!3m2!1sen!2sus!4v1689209806584!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d438549.5297924913!2d-96.85170144288509!3d30.82595274985959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8645d4a1c2a7f783%3A0x6f116862d4dfd3fb!2sCollege%20Station-Bryan%2C%20TX%2C%20TX!5e0!3m2!1sen!2sus!4v1689209806584!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8360856758134!2d-122.03126292414253!3d37.37805217209073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb65dbf80d257%3A0x86e2c7c71f36e4b8!2sDowntown%20Sunnyvale%2C%20Sunnyvale%2C%20CA%2094086!5e0!3m2!1sen!2sus!4v1691787851110!5m2!1sen!2sus" 
+width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+referrerpolicy="no-referrer-when-downgrade"></iframe>
+
           </figure>
         </section>
 
