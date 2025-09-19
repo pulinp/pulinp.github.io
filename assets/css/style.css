@@ -109,6 +109,20 @@
   --transition-1: 0.25s ease;
   --transition-2: 0.5s ease-in-out;
 
+  /**
+   * glassmorphism theme variables
+   */
+  
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  --c-content: #224;
+  --c-action: #0052f5;
+  --c-bg: #e8e8e8;
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  --saturation: 150%;
+
 }
 
 
@@ -155,7 +169,12 @@ input, textarea {
 
 html { font-family: var(--ff-poppins); }
 
-body { background: var(--smoky-black); }
+body { 
+  background: var(--smoky-black);
+  color: var(--white-1);
+  transition: background 400ms cubic-bezier(1, 0, 0.4, 1),
+              color 400ms cubic-bezier(1, 0, 0.4, 1);
+}
 
 
 
@@ -175,12 +194,14 @@ article {
   z-index: 1;
 }
 
+
 .separator {
   width: 100%;
   height: 1px;
   background: var(--jet);
   margin: 16px 0;
 }
+
 
 .icon-box {
   position: relative;
@@ -207,6 +228,88 @@ article {
 }
 
 .icon-box ion-icon { --ionicon-stroke-width: 35px; }
+
+/* Aerolab-style liquid glass icon boxes for contacts list */
+.contacts-list .icon-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0.6rem;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  /* Simplified clean light border */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contacts-list .icon-box::before {
+  /* liquidGlass-effect equivalent */
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.contacts-list .icon-box::after {
+  /* liquidGlass-tint equivalent with refined light border effect */
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+  /* Subtle inner light glow - simplified */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.contacts-list .icon-box ion-icon {
+  position: relative;
+  z-index: 3;
+  font-size: 18px;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  /* Add subtle drop shadow to make icon pop */
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Aerolab hover behavior for contact icons */
+.contacts-list .icon-box:hover {
+  padding: 0.8rem;
+  width: 48px;
+  height: 48px;
+  /* Enhanced but clean border on hover */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 
+              0 0 25px rgba(0, 0, 0, 0.15),
+              0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.contacts-list .icon-box:hover::after {
+  border-radius: 60%;
+  /* Enhanced but subtle light effect on hover */
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.contacts-list .icon-box:hover ion-icon {
+  transform: scale(0.95);
+}
 
 .location {
   color: var(--white-1) !important;
@@ -329,9 +432,16 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
+  max-height: 180px;
   overflow: hidden;
   transition: var(--transition-2);
+  /* background image for sidebar with fallback color */
+  background-image: url('../images/sidebar-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--eerie-black-2); /* fallback */
+  position: relative;
 }
 
 .sidebar.active { max-height: 405px; }
@@ -344,9 +454,35 @@ main {
   gap: 15px;
 }
 
+/* dark overlay to keep text legible over the background image */
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* lighter overlay so the image shows through more clearly */
+  background: linear-gradient(rgba(3,6,10,0.36), rgba(3,6,10,0.32));
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ensure inner content sits above overlay */
+.sidebar > * { position: relative; z-index: 1; }
+
 .avatar-box {
-  background: var(--bg-gradient-onyx);
+  /* background: var(--bg-gradient-onyx); */
   border-radius: 20px;
+  overflow: visible;
+  padding: 20px;
+  margin: -20px;
+}
+
+.avatar-box iframe {
+  width: 140px;
+  height: 140px;
+  border: none;
+  border-radius: 20px;
+  background: transparent;
 }
 
 .info-content .name {
@@ -399,6 +535,92 @@ main {
 
 .info_more-btn span { display: none; }
 
+/* Liquid Glass Hamburger Menu Button */
+.info_more-btn.liquidGlass-wrapper {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.info_more-btn.liquidGlass-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.info_more-btn.liquidGlass-wrapper .liquidGlass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.info_more-btn.liquidGlass-wrapper .liquidGlass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.info_more-btn.liquidGlass-wrapper .liquidGlass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.info_more-btn.liquidGlass-wrapper .liquidGlass-text {
+  z-index: 3;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.info_more-btn.liquidGlass-wrapper ion-icon {
+  font-size: 24px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  --ionicon-stroke-width: 40px;
+}
+
+.info_more-btn.liquidGlass-wrapper:hover ion-icon {
+  color: #ffffff;
+  transform: scale(1.1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Animation when sidebar is active - change to close icon */
+.sidebar.active .info_more-btn.liquidGlass-wrapper ion-icon {
+  transform: rotate(90deg);
+}
+
 .sidebar-info_more {
   opacity: 0;
   visibility: hidden;
@@ -437,7 +659,7 @@ main {
 
 .contact-info :is(.contact-link, time, address) {
   color: var(--white-2);
-  font-size: var(--fs-7);
+  font-size: var(--fs-8);
 }
 
 .contact-info address { font-style: normal; }
@@ -453,52 +675,286 @@ main {
 
 .social-item .social-link {
   color: var(--light-gray-70);
-  font-size: 18px;
+  font-size: 24px;
 }
 
 
 .social-item .social-link:hover { color: var(--light-gray); }
+
+/* Social Media Brand Colors on Hover */
+.social-item .social-link:hover ion-icon[name="logo-facebook"] {
+  color: #1877F2; /* Facebook Blue */
+}
+
+.social-item .social-link:hover ion-icon[name="logo-instagram"] {
+  color: #E4405F; /* Instagram Pink/Red */
+}
+
+.social-item .social-link:hover ion-icon[name="logo-linkedin"] {
+  color: #0A66C2; /* LinkedIn Blue */
+}
 
 
 
 
 
 /*-----------------------------------*\
-  #NAVBAR
+  #SWITCHER (GLASSMORPHISM NAVBAR)
 \*-----------------------------------*/
 
-.navbar {
+.switcher {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: hsla(240, 1%, 17%, 0.75);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--jet);
-  border-radius: 12px 12px 0 0;
-  box-shadow: var(--shadow-2);
-  z-index: 5;
+  z-index: 10;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: auto;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 8px;
+  border: none;
+  border-radius: 99em;
+  font-size: 1rem;
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  backdrop-filter: blur(8px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 5%), transparent),
+              inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
+              inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 50%), transparent),
+              inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 40%), transparent),
+              inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent),
+              inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 15%), transparent),
+              inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 15%), transparent),
+              inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent),
+              0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent),
+              0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 6%), transparent);
+  transition: background-color 400ms cubic-bezier(1, 0, 0.4, 1), box-shadow 400ms cubic-bezier(1, 0, 0.4, 1);
 }
 
-.navbar-list {
+.switcher__legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.switcher__input {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.switcher__option {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 0 10px;
+  width: 98px;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 99em;
+  opacity: 1;
+  font-weight: 500;
+  color: #FFFFFF; /* Inactive items are white */
+  transition: all 160ms;
 }
 
-.navbar-link {
-  color: var(--light-gray);
-  font-size: var(--fs-8);
-  padding: 20px 7px;
-  transition: color var(--transition-1);
+.switcher__option:hover {
+  cursor: pointer;
 }
 
-.navbar-link:hover,
-.navbar-link:focus { color: var(--light-gray-70); }
+.switcher__icon {
+  display: none; /* Hide icons on desktop by default */
+  font-size: 1.5rem;
+  transition: all 160ms;
+  color: inherit; /* Inherit color from parent option */
+}
 
-.navbar-link.active { color: var(--orange-yellow-crayola); }
+.switcher__text {
+  display: inline; /* Show text on desktop by default */
+  transition: all 160ms;
+  color: inherit; /* Inherit color from parent option */
+}
+
+/* Specific active colors for each navigation item */
+.switcher__option:has(input[value="about"]:checked) {
+  color: #007AFF; /* About - Blue */
+}
+
+.switcher__option:has(input[value="experience"]:checked) {
+  color: #FF9500; /* Experience - Orange */
+}
+
+.switcher__option:has(input[value="education"]:checked) {
+  color: #34C759; /* Education - Green */
+}
+
+.switcher__option:has(input[value="portfolio"]:checked) {
+  color: #AF52DE; /* Portfolio - Purple */
+}
+
+.switcher__option:has(input[value="contact"]:checked) {
+  color: #FF3B30; /* Contact - Red */
+}
+
+/* Hover effects with specific colors at reduced opacity */
+.switcher__option:has(input[value="about"]):hover:not(:has(input:checked)) {
+  color: rgba(0, 122, 255, 0.7); /* About - Blue with opacity */
+}
+
+.switcher__option:has(input[value="experience"]):hover:not(:has(input:checked)) {
+  color: rgba(255, 149, 0, 0.7); /* Experience - Orange with opacity */
+}
+
+.switcher__option:has(input[value="education"]):hover:not(:has(input:checked)) {
+  color: rgba(52, 199, 89, 0.7); /* Education - Green with opacity */
+}
+
+.switcher__option:has(input[value="portfolio"]):hover:not(:has(input:checked)) {
+  color: rgba(175, 82, 222, 0.7); /* Portfolio - Purple with opacity */
+}
+
+.switcher__option:has(input[value="contact"]):hover:not(:has(input:checked)) {
+  color: rgba(255, 59, 48, 0.7); /* Contact - Red with opacity */
+}
+
+.switcher::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  display: block;
+  width: 98px;
+  height: calc(100% - 16px);
+  border-radius: 99em;
+  background-color: color-mix(in srgb, var(--c-glass) 36%, transparent);
+  z-index: -1;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+              inset 2px 1px 0px -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
+              inset -1.5px -1px 0px -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
+              inset -2px -6px 1px -5px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
+              inset -1px 2px 3px -1px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
+              inset 0px -4px 1px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
+              0px 3px 6px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  transition: background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+              box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+              transform 400ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switcher:has(input[c-option="1"]:checked)::after { transform: translateX(0px); }
+.switcher:has(input[c-option="2"]:checked)::after { transform: translateX(102px); }
+.switcher:has(input[c-option="3"]:checked)::after { transform: translateX(204px); }
+.switcher:has(input[c-option="4"]:checked)::after { transform: translateX(306px); }
+.switcher:has(input[c-option="5"]:checked)::after { transform: translateX(408px); }
+
+/* Mobile responsive positioning */
+@media (max-width: 1249px) {
+  .switcher {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%);
+    gap: 2px; /* Reduce gap for mobile */
+  }
+  
+  .switcher__option {
+    width: 60px; /* Smaller width for icons */
+  }
+  
+  .switcher__icon {
+    display: block; /* Show icons on mobile */
+    font-size: 1.4rem; /* Slightly smaller for mobile */
+  }
+  
+  .switcher__text {
+    display: none; /* Hide text on mobile */
+  }
+  
+  .switcher::after {
+    width: 60px; /* Match the smaller option width */
+  }
+  
+  .switcher:has(input[c-option="1"]:checked)::after { transform: translateX(0px); }
+  .switcher:has(input[c-option="2"]:checked)::after { transform: translateX(62px); }
+  .switcher:has(input[c-option="3"]:checked)::after { transform: translateX(124px); }
+  .switcher:has(input[c-option="4"]:checked)::after { transform: translateX(186px); }
+  .switcher:has(input[c-option="5"]:checked)::after { transform: translateX(248px); }
+  
+  main {
+    padding-bottom: 100px; /* Add bottom padding for mobile bottom nav */
+  }
+}
+
+/* Page visibility based on radio selection */
+:root:has(input[value="about"]:checked) .about,
+:root:has(input[value="experience"]:checked) .experience,
+:root:has(input[value="education"]:checked) .education,
+:root:has(input[value="portfolio"]:checked) .portfolio,
+:root:has(input[value="contact"]:checked) .contact {
+  display: block;
+}
+
+/* Hide all sections by default when using radio navigation */
+.about, .experience, .education, .portfolio, .contact {
+  display: none;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 80px; /* Add top padding for desktop navbar spacing */
+}
+
+/* Reset padding on mobile since navbar is at bottom */
+@media (max-width: 1249px) {
+  .about, .experience, .education, .portfolio, .contact {
+    padding-top: 0;
+  }
+}
+
+/* Desktop positioning - align with main content area */
+@media (min-width: 1250px) {
+  .switcher {
+        position: fixed;
+        top: calc(60px + 25px - 10px);
+        right: calc((100vw - 1200px) / 2 + 25px - 20px);
+        transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.98);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Show the default active section */
+.about.active {
+  display: block;
+  padding-top: 80px; /* Add top padding for desktop navbar spacing */
+}
+
+/* Reset padding on mobile for active section */
+@media (max-width: 1249px) {
+  .about.active {
+    padding-top: 0;
+  }
+}
 
 
 
@@ -1216,8 +1672,27 @@ main {
 .input-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 25px;
-  margin-bottom: 25px;
+  gap: 18px;
+  margin-bottom: 18px;
+  width: 100%;
+  max-width: 720px; /* constrain form width for better readability */
+  margin-left: 0;
+}
+
+.contact-form .form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.form-field { display: block; }
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: var(--light-gray-70);
+  margin-bottom: 8px;
+  font-weight: var(--fw-500);
 }
 
 .form-input {
@@ -1230,6 +1705,8 @@ main {
   outline: none;
 }
 
+.form-input:focus { box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
+
 .form-input::placeholder { font-weight: var(--fw-500); }
 
 .form-input:focus { border-color: var(--orange-yellow-crayola); }
@@ -1239,26 +1716,27 @@ textarea.form-input {
   height: 120px;
   max-height: 200px;
   resize: vertical;
-  margin-bottom: 25px;
+  margin-bottom: 0;
 }
 
 textarea.form-input::-webkit-resizer { display: none; }
 
 .form-input:focus:invalid { border-color: var(--bittersweet-shimmer); }
 
+.form-actions { display: flex; justify-content: center; margin-top: 16px; }
+
 .form-btn {
   position: relative;
-  width: 100%;
   background: var(--border-gradient-onyx);
   color: var(--orange-yellow-crayola);
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 13px 20px;
-  border-radius: 14px;
-  font-size: var(--fs-6);
-  text-transform: capitalize;
+  padding: 10px 18px;
+  border-radius: 3rem;
+  font-size: 14px;
+  text-transform: none;
   box-shadow: var(--shadow-3);
   z-index: 1;
   transition: var(--transition-1);
@@ -1297,6 +1775,148 @@ textarea.form-input::-webkit-resizer { display: none; }
   #RESPONSIVE
 \*-----------------------------------*/
 
+/* Mobile-first responsive optimizations for sidebar */
+@media (max-width: 449px) {
+  
+  .sidebar {
+    max-height: 180px;
+    overflow: hidden;
+  }
+  
+  .sidebar.active {
+    max-height: 550px; /* Increased to accommodate all elements */
+  }
+  
+  .sidebar-info_more {
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-2);
+  }
+  
+  .sidebar.active .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .info_more-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper {
+    top: -8px;
+    right: -8px;
+    width: 42px;
+    height: 42px;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper ion-icon {
+    font-size: 20px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .avatar-box iframe {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Smaller title button for mobile */
+  .liquidGlass-wrapper.title {
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .liquidGlass-wrapper.title:hover {
+    padding: 0.7rem 1.3rem;
+  }
+  
+  .liquidGlass-wrapper.title .title {
+    font-size: var(--fs-9);
+  }
+  
+  /* Center align name for mobile */
+  .info-content .name {
+    text-align: center;
+  }
+  
+  /* Mobile contact form fixes */
+  .mapbox {
+    height: 500px; /* Increased from 400px */
+    margin-bottom: 20px;
+  }
+  
+  .glass-form.liquidGlass-wrapper {
+    max-width: 240px; /* Reduced from 280px */
+    padding: 0.6rem 0.8rem; /* Reduced padding */
+    font-size: 13px; /* Reduced font size */
+  }
+  
+  .glass-form.liquidGlass-wrapper:hover {
+    padding: 0.7rem 0.9rem; /* Reduced hover padding */
+  }
+  
+  .glass-form .form-group input,
+  .glass-form .form-group textarea {
+    font-size: 13px; /* Reduced from 14px */
+    padding: 6px 8px; /* Reduced padding */
+  }
+  
+  .glass-form .form-group textarea {
+    min-height: 60px; /* Reduced from 80px */
+  }
+  
+  .glass-form .form-group ion-icon {
+    font-size: 16px; /* Smaller icons */
+  }
+  
+  .contacts-list {
+    gap: 8px;
+  }
+  
+  .contact-item {
+    gap: 10px;
+    padding: 8px 0;
+  }
+  
+  .contacts-list .icon-box {
+    width: 36px;
+    height: 36px;
+    padding: 0.6rem;
+  }
+  
+  .contacts-list .icon-box ion-icon {
+    font-size: 16px;
+  }
+  
+  .contact-info {
+    max-width: calc(100% - 46px);
+    width: calc(100% - 46px);
+  }
+  
+  .contact-title {
+    font-size: 10px;
+    margin-bottom: 1px;
+    letter-spacing: 0.5px;
+  }
+  
+  .contact-info :is(.contact-link, time, address) {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  
+  .separator {
+    margin: 16px 0;
+  }
+  
+  .social-list {
+    gap: 12px;
+    padding-bottom: 2px;
+  }
+}
+
 /**
  * responsive larger than 450px screen
  */
@@ -1316,9 +1936,125 @@ textarea.form-input::-webkit-resizer { display: none; }
 
    /* clients */
 
-
-
-
+  /**
+   * SIDEBAR - Mobile optimizations
+   */
+  
+  .sidebar {
+    max-height: 180px;
+  }
+  
+  .sidebar.active {
+    max-height: 580px; /* Increased to accommodate all elements */
+  }
+  
+  .sidebar-info_more {
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-2);
+  }
+  
+  .sidebar.active .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .avatar-box iframe {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Medium mobile title button sizing */
+  .liquidGlass-wrapper.title {
+    padding: 0.7rem 1.4rem;
+  }
+  
+  .liquidGlass-wrapper.title:hover {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .liquidGlass-wrapper.title .title {
+    font-size: var(--fs-8);
+  }
+  
+  /* Center align name for medium mobile */
+  .info-content .name {
+    text-align: center;
+  }
+  
+  /* Medium mobile contact form fixes */
+  .mapbox {
+    height: 550px; /* Increased from 450px */
+    margin-bottom: 25px;
+  }
+  
+  .glass-form.liquidGlass-wrapper {
+    max-width: 260px; /* Reduced from 300px */
+    padding: 0.7rem 0.9rem; /* Reduced padding */
+  }
+  
+  .glass-form.liquidGlass-wrapper:hover {
+    padding: 0.8rem 1rem; /* Reduced hover padding */
+  }
+  
+  .glass-form .form-group input,
+  .glass-form .form-group textarea {
+    font-size: 14px; /* Kept at 15px but reduced padding */
+    padding: 8px 10px; /* Reduced padding */
+  }
+  
+  .glass-form .form-group textarea {
+    min-height: 70px; /* Reduced from 90px */
+  }
+  
+  .glass-form .form-group ion-icon {
+    font-size: 18px; /* Slightly smaller icons */
+  }
+  
+  .info_more-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper {
+    top: -8px;
+    right: -8px;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper ion-icon {
+    font-size: 22px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .contacts-list {
+    gap: 12px;
+  }
+  
+  .contact-item {
+    gap: 12px;
+    min-height: auto;
+  }
+  
+  .contact-info {
+    max-width: calc(100% - 50px);
+    width: calc(100% - 50px);
+  }
+  
+  .contact-title {
+    margin-bottom: 1px;
+    font-size: var(--fs-9);
+  }
+  
+  .contact-info :is(.contact-link, time, address) {
+    font-size: var(--fs-8);
+    line-height: 1.2;
+  }
 
   /**
    * #PORTFOLIO, BLOG 
@@ -1327,6 +2063,14 @@ textarea.form-input::-webkit-resizer { display: none; }
   .project-img,
   .blog-banner-box { height: auto; }
 
+}
+
+/* Two-column layout on larger screens */
+@media (min-width: 780px) {
+  .input-wrapper { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .input-wrapper .form-field:nth-child(3) { grid-column: 1 / -1; }
+  .contact-form .form { align-items: center; }
+  .form-actions { justify-content: center; }
 }
 
 
@@ -1366,7 +2110,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar, article {
-    width: 520px;
+    width: 523px;
     margin-inline: auto;
     padding: 30px;
   }
@@ -1406,19 +2150,55 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: 200px;
     margin-bottom: 30px;
   }
 
-  .sidebar.active { max-height: 584px; }
+  .sidebar.active { max-height: 650px; } /* Increased to accommodate larger iframe and all elements */
 
   .sidebar-info { gap: 25px; }
 
   .avatar-box { border-radius: 30px; }
 
   .avatar-box img { width: 120px; }
+  
+  .avatar-box iframe { 
+    width: 160px; 
+    height: 160px; 
+    border-radius: 30px;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
 
-  .info-content .name { margin-bottom: 15px; }
+  .info-content .name { 
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  /* iPad title button - slightly smaller than desktop */
+  .liquidGlass-wrapper.title {
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .liquidGlass-wrapper.title:hover {
+    padding: 0.9rem 1.6rem;
+  }
+  
+  /* iPad contact form fixes */
+  .mapbox {
+    height: 500px;
+    margin-bottom: 30px;
+  }
+  
+  .glass-form.liquidGlass-wrapper {
+    max-width: 350px;
+    padding: 1rem 1.3rem;
+  }
+  
+  .glass-form.liquidGlass-wrapper:hover {
+    padding: 1.1rem 1.4rem;
+  }
 
   .info-content .title { padding: 5px 18px; }
 
@@ -1429,11 +2209,15 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .info_more-btn span {
-    display: block;
+    display: none;
     font-size: var(--fs-8);
   }
 
-  .info_more-btn ion-icon { display: none; }
+  .info_more-btn ion-icon { 
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 
   .separator { margin: 32px 0; }
 
@@ -1443,18 +2227,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     max-width: calc(100% - 64px);
     width: calc(100% - 64px);
   }
-
-
-
-  /**
-   * #NAVBAR
-   */
-
-  .navbar { border-radius: 20px 20px 0 0; }
-
-  .navbar-list { gap: 20px; }
-
-  .navbar-link { --fs-8: 14px; }
 
 
 
@@ -1609,7 +2381,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .mapbox {
-    height: 380px;
+    height: 650px;
     border-radius: 18px;
   }
 
@@ -1645,7 +2417,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    * REUSED STYLE
    */
 
-  .sidebar, article { width: 700px; }
+  .sidebar, article { width: 703px; }
 
   .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
 
@@ -1654,19 +2426,31 @@ textarea.form-input::-webkit-resizer { display: none; }
   /**
    * SIDEBAR
    */
+   
+  .info_more-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper {
+    top: -8px;
+    right: -8px;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper ion-icon {
+    font-size: 24px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 
   .contacts-list {
     grid-template-columns: 1fr 1fr;
     gap: 30px 15px;
   }
-
-
-
-  /**
-   * NAVBAR
-   */
-
-  .navbar-link { --fs-8: 15px; }
 
 
 
@@ -1770,8 +2554,32 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar, article {
-    width: 950px;
+    width: 953px;
     box-shadow: var(--shadow-5);
+  }
+  
+  /**
+   * SIDEBAR
+   */
+   
+  .info_more-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper {
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .info_more-btn.liquidGlass-wrapper ion-icon {
+    font-size: 24px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
 
@@ -1780,38 +2588,15 @@ textarea.form-input::-webkit-resizer { display: none; }
    * MAIN 
    */
 
-  main { margin-bottom: 60px; }
+  main { 
+    margin-bottom: 60px;
+  }
 
   .main-content {
     position: relative;
     width: max-content;
     margin: auto;
   }
-
-
-
-  /**
-   * NAVBAR
-   */
-
-  .navbar {
-    position: absolute;
-    bottom: auto;
-    top: 0;
-    left: auto;
-    right: 0;
-    width: max-content;
-    border-radius: 0 20px;
-    padding: 0 20px;
-    box-shadow: none;
-  }
-
-  .navbar-list {
-    gap: 30px;
-    padding: 0 20px;
-  }
-
-  .navbar-link { font-weight: var(--fw-500); }
 
 
 
@@ -1932,6 +2717,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar-info { flex-direction: column; }
 
   .avatar-box img { width: 150px; }
+  
+  .avatar-box iframe { 
+    width: 210px; 
+    height: 210px; 
+  }
 
   .info-content .name {
     white-space: nowrap;
@@ -1941,6 +2731,8 @@ textarea.form-input::-webkit-resizer { display: none; }
   .info-content .title { margin: auto; }
 
   .info_more-btn { display: none; }
+  
+  .info_more-btn.liquidGlass-wrapper { display: none !important; }
 
   .sidebar-info_more {
     opacity: 1;
@@ -2127,5 +2919,486 @@ textarea.form-input::-webkit-resizer { display: none; }
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+}
+
+/*-----------------------------------*\
+  #LIQUID GLASS EFFECT
+\*-----------------------------------*/
+
+/* Liquid Glass Wrapper Styles */
+.liquidGlass-wrapper {
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquidGlass-effect {
+  /* Base optical layer: stronger blur + vibrancy for Apple-like Liquid Glass */
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background: transparent;
+}
+
+
+.liquidGlass-tint {
+  /* Subtle tint that allows content to shine through; gentle gradient for depth */
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+
+.liquidGlass-shine {
+  /* Specular and soft inner shadow to simulate gloss and depth */
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.liquidGlass-text {
+  z-index: 3;
+  font-size: 2rem;
+  color: black;
+  width: 100%;
+  border-radius: inherit;
+}
+
+/* Slight translucent border and backdrop clipping for a cleaner glass edge */
+.liquidGlass-wrapper.title,
+.form-btn.liquidGlass-wrapper {
+  background-clip: padding-box;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Title Specific Liquid Glass Styles - Exact Aerolab Button Style */
+.liquidGlass-wrapper.title {
+  padding: 1rem 1.8rem;
+  border-radius: 3rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: inline-flex;
+  margin: 0;
+  overflow: hidden;
+}
+
+.liquidGlass-wrapper.title:hover {
+  padding: 1.2rem 2rem;
+}
+
+.liquidGlass-wrapper.title:hover .liquidGlass-text {
+  border-radius: 4rem;
+}
+
+.liquidGlass-wrapper.title .liquidGlass-text {
+  font-size: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 3rem;
+}
+
+.liquidGlass-wrapper.title .title {
+  margin: 0;
+  padding: 0;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  color: var(--white-1);
+  background: transparent;
+  border-radius: 0;
+  position: relative;
+  z-index: 4;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquidGlass-wrapper.title:hover .title {
+  transform: scale(0.95);
+}
+
+/* Button hover behavior: match Aerolab interaction exactly */
+.form-btn.liquidGlass-wrapper {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.form-btn.liquidGlass-wrapper:not(:disabled):hover,
+.form-btn.liquidGlass-wrapper:not(:disabled):focus {
+  padding: 12px 20px; /* slight padding increase like Aerolab */
+}
+
+.form-btn.liquidGlass-wrapper:not(:disabled):hover .liquidGlass-text {
+  transform: scale(0.95);
+}
+
+.form-btn.liquidGlass-wrapper:not(:disabled):hover {
+  border-radius: 4rem; /* increase border-radius on hover */
+}
+
+/* Contact icon box hover: subtle lift and glow - REMOVED for Aerolab consistency */
+/* .contacts-list .icon-box {
+  transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 2.2), box-shadow 0.28s ease;
+}
+
+.contacts-list .icon-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 46px rgba(0,0,0,0.38);
+} */
+
+/* Ensure disabled button doesn't animate */
+.form-btn.liquidGlass-wrapper:disabled { transform: none; box-shadow: var(--shadow-3); }
+
+/* When using liquidGlass on form buttons keep original form layout */
+.form-btn.liquidGlass-wrapper {
+  /* smaller pill style to match sidebar title liquid glass */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: auto; /* make intrinsic width so it can be smaller */
+  max-width: 100%;
+  padding: 10px 18px; /* slightly smaller padding */
+  border-radius: 3rem; /* match .liquidGlass-wrapper.title */
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none; /* sidebar title has no extra shadow */
+}
+
+.form-btn.liquidGlass-wrapper .liquidGlass-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white-1); /* sidebar title text is white */
+  z-index: 4;
+  font-weight: var(--fw-300);
+}
+
+/* Ensure the decorative layers sit below the text/icon */
+.form-btn.liquidGlass-wrapper .liquidGlass-effect,
+.form-btn.liquidGlass-wrapper .liquidGlass-tint,
+.form-btn.liquidGlass-wrapper .liquidGlass-shine {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+}
+
+/* Disabled state should still show muted look */
+.form-btn.liquidGlass-wrapper:disabled { opacity: 0.7; cursor: not-allowed; }
+
+/* Keep the button reasonably sized on larger screens and centered */
+@media (min-width: 600px) {
+  .contact-form .form { display: flex; justify-content: center; }
+  .contact-form .form .form-btn.liquidGlass-wrapper { width: auto; }
+}
+
+/*-----------------------------------*\
+  #LIQUID GLASS CONTACT FORM
+\*-----------------------------------*/
+
+.glass-form.liquidGlass-wrapper {
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  
+  /* Form specific properties */
+  width: 100%;
+  max-width: 320px;
+  min-height: auto;
+  padding: 1rem 1.4rem;
+  border-radius: 20px;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-form.liquidGlass-wrapper:hover {
+  padding: 1.2rem 1.6rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.liquidGlass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
+.liquidGlass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: inherit;
+}
+
+.liquidGlass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: inherit;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.liquidGlass-text.glass-content {
+  z-index: 3;
+  position: relative;
+  color: black;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  transition: color var(--transition-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.liquidGlass-text.glass-content:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Keep form elements normal on glass-content hover */
+.liquidGlass-text.glass-content:hover .form-group input,
+.liquidGlass-text.glass-content:hover .form-group textarea,
+.liquidGlass-text.glass-content:hover .form-group ion-icon,
+.liquidGlass-text.glass-content:hover .form-container h3,
+.liquidGlass-text.glass-content:hover label {
+  color: #333333;
+}
+
+.form-container {
+  display: none;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  /* padding: 20px; */
+  box-sizing: border-box;
+}
+
+.form-container.active {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.form-container h3 {
+  margin: 0 0 15px 0;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: #333333;
+}
+
+.glass-form form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.glass-form .form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.glass-form .form-group ion-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #333333;
+  opacity: 0.8;
+  z-index: 2;
+  font-size: 18px;
+}
+
+.glass-form .form-group input,
+.glass-form .form-group textarea {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  color: #333333;
+  font-size: 16px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.glass-form .form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+  vertical-align: top;
+  padding-top: 12px;
+}
+
+.glass-form .form-group input:focus,
+.glass-form .form-group textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.glass-form .form-group input::placeholder,
+.glass-form .form-group textarea::placeholder {
+  color: rgba(51, 51, 51, 0.6);
+}
+
+.glass-form button[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  color: #333333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.3),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.glass-form button[type="submit"]:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.4),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.glass-form button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.glass-form button[type="submit"] ion-icon {
+  font-size: 14px;
+}
+
+/* Input validation styles */
+.glass-form input.error,
+.glass-form textarea.error {
+  border-color: rgba(255, 0, 0, 0.5);
+  background: rgba(255, 0, 0, 0.1);
+}
+
+/* Success state */
+.glass-form button.success {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: rgba(0, 255, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .glass-form {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .form-container {
+    padding: 15px;
+  }
+  
+  .form-container h3 {
+    font-size: 20px;
+  }
+}
+
+/*-----------------------------------*\
+  #GLASS FORM OVERLAY
+\*-----------------------------------*/
+
+.mapbox {
+  position: relative;
+}
+
+.glass-form-overlay {
+  position: absolute;
+  bottom: 5px; /* Reset to original position - form will be behind navbar */
+  left: 5px;
+  z-index: 3; /* Lower than navbar z-index (5) so form appears behind */
+  pointer-events: auto;
+}
+
+.glass-form-overlay .glass-form {
+  max-width: 320px;
+  width: 320px;
+}
+
+/*-----------------------------------*\
+  #RESPONSIVE SWITCHER UPDATES
+\*-----------------------------------*/
+
+/* Extra small mobile devices */
+@media (max-width: 449px) {
+  .switcher__option {
+    width: 50px; /* Even smaller for very small screens */
+  }
+
+  .switcher::after {
+    width: 50px;
+  }
+
+  .switcher:has(input[c-option="1"]:checked)::after {
+    transform: translateX(0px);
+  }
+
+  .switcher:has(input[c-option="2"]:checked)::after {
+    transform: translateX(52px); /* 50px width + 2px gap */
+  }
+
+  .switcher:has(input[c-option="3"]:checked)::after {
+    transform: translateX(104px);
+  }
+
+  .switcher:has(input[c-option="4"]:checked)::after {
+    transform: translateX(156px);
+  }
+
+  .switcher:has(input[c-option="5"]:checked)::after {
+    transform: translateX(208px);
   }
 }

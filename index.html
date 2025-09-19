@@ -37,6 +37,24 @@
 
 <body>
 
+  <!-- SVG Filters for Glass Effects -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;">
+    <defs>
+      <filter id="glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+        <feGaussianBlur stdDeviation="0.5"/>
+      </filter>
+      <filter id="glass-glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
+
   <!--
     - #MAIN
   -->
@@ -52,21 +70,36 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Pulin Prabhu" width="80">
+          <iframe src="./animated-avatar.html" 
+                  width="140" 
+                  height="140" 
+                  style="border: none; border-radius: 20px; background: transparent;"
+                  title="Animated Avatar">
+          </iframe>
         </figure>
 
         <div class="info-content">
-          <h1 class="name" title="Pulin Pramod Prabhu">Pulin Prabhu</h1>
+          <h1 class="name" title="Pulin P Prabhu">Pulin P Prabhu</h1>
 
-          <p class="title">Product Manager</p>
+          <div class="liquidGlass-wrapper title">
+            <div class="liquidGlass-effect"></div>
+            <div class="liquidGlass-tint"></div>
+            <div class="liquidGlass-shine"></div>
+            <div class="liquidGlass-text">
+              <p class="title">Product Manager</p>
+            </div>
+          </div>
 
           <!-- <a href="https://drive.google.com/file/d/1U7kA3PyOwb2UtfBHv0qyjMtIbHGRa5r0/view?usp=sharing" target="_blank"><button style="margin-top: 1rem;" type="button" class="title">Resume</button></a> -->
         </div>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-
-          <ion-icon name="chevron-down"></ion-icon>
+        <button class="info_more-btn liquidGlass-wrapper" data-sidebar-btn>
+          <div class="liquidGlass-effect"></div>
+          <div class="liquidGlass-tint"></div>
+          <div class="liquidGlass-shine"></div>
+          <div class="liquidGlass-text">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
         </button>
 
       </div>
@@ -79,44 +112,46 @@
 
           <li class="contact-item">
 
-            <div class="icon-box">
-              <ion-icon name="download-outline"></ion-icon>
-            </div>
+            <a href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank">
+              <div class="icon-box">
+                <ion-icon name="download-outline"></ion-icon>
+              </div>
+            </a>
 
             <div class="contact-info">
               <p class="contact-title">Resume</p>
-
-              <a href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" class="contact-link" target="_blank">Download Resume</a>
+              <a href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank">
+              <button type="button" class="contact-link">Download Resume</button></a>
             </div>
 
           </li>
           
           <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
+            <a href="mailto:p@pulinpprabhu.com" class="contact-link">
+              <div class="icon-box">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+            </a>
 
             <div class="contact-info">
               <p class="contact-title">Email</p>
 
-              <a href="mailto:pulinpprabhu@gmail.com" class="contact-link">pulinpprabhu@gmail.com</a>
+              <a href="mailto:p@pulinpprabhu.com" class="contact-link">p@pulinpprabhu.com</a>
             </div>
 
           </li>
 
           <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
+            <a href="tel:+19793448376" class="contact-link">
+              <div class="icon-box">
+                <ion-icon name="phone-portrait-outline"></ion-icon>
+              </div>
+            </a>
 
             <div class="contact-info">
               <p class="contact-title">Phone</p>
-
               <a href="tel:+19793448376" class="contact-link">+1 (979) 344-8376</a>
             </div>
-
           </li>
 
           <!-- <li class="contact-item">
@@ -191,37 +226,39 @@
         - #NAVBAR
       -->
 
-      <nav class="navbar">
+      <fieldset class="switcher">
+        <legend class="switcher__legend">Main Navigation</legend>
 
-        <ul class="navbar-list">
+        <label class="switcher__option">
+          <input class="switcher__input" type="radio" name="section" value="about" c-option="1" checked />
+          <ion-icon name="person-circle-outline" class="switcher__icon"></ion-icon>
+          <span class="switcher__text">About</span>
+        </label>
 
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
+        <label class="switcher__option">
+          <input class="switcher__input" type="radio" name="section" value="experience" c-option="2" />
+          <ion-icon name="briefcase-outline" class="switcher__icon"></ion-icon>
+          <span class="switcher__text">Experience</span>
+        </label>
 
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Experience</button>
-          </li>
+        <label class="switcher__option">
+          <input class="switcher__input" type="radio" name="section" value="education" c-option="3" />
+          <ion-icon name="school-outline" class="switcher__icon"></ion-icon>
+          <span class="switcher__text">Education</span>
+        </label>
 
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Education</button>
-          </li>
+        <label class="switcher__option">
+          <input class="switcher__input" type="radio" name="section" value="portfolio" c-option="4" />
+          <ion-icon name="grid-outline" class="switcher__icon"></ion-icon>
+          <span class="switcher__text">Portfolio</span>
+        </label>
 
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
-          </li>
-
-<!--           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li> -->
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-
-        </ul>
-
-      </nav>
+        <label class="switcher__option">
+          <input class="switcher__input" type="radio" name="section" value="contact" c-option="5" />
+          <ion-icon name="mail-outline" class="switcher__icon"></ion-icon>
+          <span class="switcher__text">Contact</span>
+        </label>
+      </fieldset>
 
 
 
@@ -2521,34 +2558,99 @@
           <figure>
             <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d438549.5297924913!2d-96.85170144288509!3d30.82595274985959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8645d4a1c2a7f783%3A0x6f116862d4dfd3fb!2sCollege%20Station-Bryan%2C%20TX%2C%20TX!5e0!3m2!1sen!2sus!4v1689209806584!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.8360856758134!2d-122.03126292414253!3d37.37805217209073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb65dbf80d257%3A0x86e2c7c71f36e4b8!2sDowntown%20Sunnyvale%2C%20Sunnyvale%2C%20CA%2094086!5e0!3m2!1sen!2sus!4v1691787851110!5m2!1sen!2sus" 
-width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
-referrerpolicy="no-referrer-when-downgrade"></iframe>
+            width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
 
           </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="https://formspree.io/f/mwkggyaz" method="POST" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+          
+          <!-- Glass Form Overlay -->
+          <div class="glass-form-overlay">
+            <div class="glass-form liquidGlass-wrapper">
+              <div class="liquidGlass-effect"></div>
+              <div class="liquidGlass-tint"></div>
+              <div class="liquidGlass-shine"></div>
+              <div class="liquidGlass-text glass-content">
+                <div class="form-container contact-form-container active">
+                  <form action="https://formspree.io/f/mwkggyaz" method="POST" data-form>
+                    <div class="form-group">
+                      <ion-icon name="person-outline"></ion-icon>
+                      <input type="text" name="fullname" placeholder="Your full name" required data-form-input>
+                    </div>
+                    <div class="form-group">
+                      <ion-icon name="mail-outline"></ion-icon>
+                      <input type="email" name="email" placeholder="Your email address" required data-form-input>
+                    </div>
+                    <div class="form-group">
+                      <ion-icon name="chatbubbles-outline"></ion-icon>
+                      <textarea name="message" placeholder="Write your message here" required data-form-input></textarea>
+                    </div>
+                    <button type="submit" disabled data-form-btn>
+                      <ion-icon name="send-outline"></ion-icon>
+                      Send Message
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
-
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-          </form>
-
+          </div>
         </section>
+
+        <!-- SVG Filter for Glass Distortion -->
+        <svg style="display: none">
+          <filter
+            id="glass-distortion"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            filterUnits="objectBoundingBox"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.01 0.01"
+              numOctaves="1"
+              seed="5"
+              result="turbulence"
+            />
+
+            <feComponentTransfer in="turbulence" result="mapped">
+              <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+              <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+              <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+            </feComponentTransfer>
+
+            <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+
+            <feSpecularLighting
+              in="softMap"
+              surfaceScale="5"
+              specularConstant="1"
+              specularExponent="100"
+              lighting-color="white"
+              result="specLight"
+            >
+              <fePointLight x="-200" y="-200" z="300" />
+            </feSpecularLighting>
+
+            <feComposite
+              in="specLight"
+              operator="arithmetic"
+              k1="0"
+              k2="1"
+              k3="1"
+              k4="0"
+              result="litImage"
+            />
+
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="softMap"
+              scale="150"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </svg>
 
       </article>
 
@@ -2571,6 +2673,198 @@ referrerpolicy="no-referrer-when-downgrade"></iframe>
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Glass Form JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all glass form elements
+      const glassElements = document.querySelectorAll('.glass-form');
+      
+      // Add mouseleave effect for each glass element (keeping only mouseleave)
+      glassElements.forEach(element => {
+        element.addEventListener('mouseleave', handleMouseLeave);
+      });
+      
+      // Reset effects when mouse leaves
+      function handleMouseLeave() {
+        const filter = document.querySelector('#glass-distortion feDisplacementMap');
+        if (filter) {
+          filter.setAttribute('scale', '77');
+        }
+        
+        const specular = this.querySelector('.glass-specular');
+        if (specular) {
+          specular.style.background = 'none';
+        }
+      }
+      
+      // Form validation and submission handling
+      const forms = document.querySelectorAll('.glass-form form');
+      forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, textarea');
+        
+        // Add input validation styles
+        inputs.forEach(input => {
+          input.addEventListener('invalid', function() {
+            this.classList.add('error');
+          });
+          
+          input.addEventListener('input', function() {
+            if (this.validity.valid) {
+              this.classList.remove('error');
+            }
+          });
+        });
+        
+        // Handle form submission
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          // Get form data
+          const formData = new FormData(form);
+          
+          // Show success state
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalHTML = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+          submitBtn.classList.add('success');
+          
+          // Submit to Formspree
+          fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              setTimeout(() => {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.classList.remove('success');
+                form.reset();
+                // Re-enable form validation
+                setTimeout(() => {
+                  submitBtn.disabled = false;
+                }, 100);
+              }, 2000);
+            } else {
+              throw new Error('Form submission failed');
+            }
+          }).catch(error => {
+            console.error('Error:', error);
+            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error! Try again';
+            submitBtn.style.background = 'rgba(255, 0, 0, 0.2)';
+            setTimeout(() => {
+              submitBtn.innerHTML = originalHTML;
+              submitBtn.style.background = '';
+              submitBtn.classList.remove('success');
+            }, 3000);
+          });
+        });
+      });
+    });
+  </script>
+
+  <!-- Liquid Glass SVG Filter -->
+  <svg style="display: none">
+    <filter
+      id="glass-distortion"
+      x="0%"
+      y="0%"
+      width="100%"
+      height="100%"
+      filterUnits="objectBoundingBox"
+    >
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.01 0.01"
+        numOctaves="1"
+        seed="5"
+        result="turbulence"
+      />
+
+      <feComponentTransfer in="turbulence" result="mapped">
+        <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+        <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+        <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+      </feComponentTransfer>
+
+      <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+
+      <feSpecularLighting
+        in="softMap"
+        surfaceScale="5"
+        specularConstant="1"
+        specularExponent="100"
+        lighting-color="white"
+        result="specLight"
+      >
+        <fePointLight x="-200" y="-200" z="300" />
+      </feSpecularLighting>
+
+      <feComposite
+        in="specLight"
+        operator="arithmetic"
+        k1="0"
+        k2="1"
+        k3="1"
+        k4="0"
+        result="litImage"
+      />
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="softMap"
+        scale="150"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </svg>
+
+  <!-- Enhanced Switcher Navigation Script -->
+  <script>
+    // Enhanced navigation with previous state tracking (from reference code)
+    const switcher = document.querySelector(".switcher");
+
+    const trackPrevious = (el) => {
+      const radios = el.querySelectorAll('input[type="radio"]');
+      let previousValue = null;
+
+      // init first select
+      const initiallyChecked = el.querySelector('input[type="radio"]:checked');
+      if (initiallyChecked) {
+        previousValue = initiallyChecked.getAttribute("c-option");
+        el.setAttribute("c-previous", previousValue);
+      }
+
+      radios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          if (radio.checked) {
+            el.setAttribute("c-previous", previousValue ?? "");
+            previousValue = radio.getAttribute("c-option");
+            
+            // Update the active article based on the selected radio
+            const sections = document.querySelectorAll('.about, .experience, .education, .portfolio, .contact');
+            sections.forEach(section => {
+              section.classList.remove('active');
+              section.style.display = 'none';
+            });
+            
+            const targetSection = document.querySelector(`.${radio.value}`);
+            if (targetSection) {
+              targetSection.classList.add('active');
+              targetSection.style.display = 'block';
+            }
+          }
+        });
+      });
+    };
+
+    if (switcher) {
+      trackPrevious(switcher);
+    }
+  </script>
 
 </body>
 
