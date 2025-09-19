@@ -436,7 +436,7 @@ main {
   overflow: hidden;
   transition: var(--transition-2);
   /* background image for sidebar with fallback color */
-  background-image: url('../images/sidebar-bg.jpg');
+  background-image: url('../images/IMG_8174.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
