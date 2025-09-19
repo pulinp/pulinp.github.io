@@ -144,10 +144,7 @@
     <div class="animation-container">
         <div class="center-circle" id="center-element">
             <video id="center-video" muted loop playsinline preload="metadata" webkit-playsinline>
-                <source src="./assets/images/imageMovie/EmojiMovie779932665.mp4" type="video/quicktime">
                 <source src="./assets/images/imageMovie/EmojiMovie779932665.mp4" type="video/mp4">
-                <!-- Fallback to static image if video fails -->
-                <img src="./assets/images/my-avatar.png" alt="Pulin Prabhu" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: none;">
             </video>
         </div>
         <div class="orbit-container" id="orbit-container"></div>
@@ -368,45 +365,50 @@
         document.addEventListener('DOMContentLoaded', () => {
             const firstUser = usersData[0];
             setupOrbitingIcons(firstUser.apps);
-            
             // Set initial video source and start playing with error handling
             try {
                 const sources = centerVideo.querySelectorAll('source');
                 sources.forEach(source => {
                     source.src = firstUser.memoji;
                 });
-                
                 centerVideo.load();
-                
                 // Add event listeners for video loading
                 centerVideo.addEventListener('loadeddata', () => {
-                    console.log('Video loaded successfully');
                     startVideo();
                 });
-                
                 centerVideo.addEventListener('canplaythrough', () => {
-                    console.log('Video can play through');
                     startVideo();
                 });
-                
-                centerVideo.addEventListener('error', (e) => {
-                    console.error('Video error:', e);
-                    console.error('Error details:', centerVideo.error);
-                    // Fallback to static image if video fails
-                    const fallbackImg = centerVideo.querySelector('img');
-                    if (fallbackImg) {
-                        fallbackImg.style.display = 'block';
-                        centerVideo.style.display = 'none';
+                // Fallback: show backup image if video fails
+                centerVideo.addEventListener('error', function() {
+                    centerVideo.style.display = 'none';
+                    if (!centerElement.querySelector('img')) {
+                        const fallbackImg = document.createElement('img');
+                        fallbackImg.src = './assets/images/my-avatar.png';
+                        fallbackImg.alt = 'Pulin Prabhu';
+                        fallbackImg.style.width = '100%';
+                        fallbackImg.style.height = '100%';
+                        fallbackImg.style.borderRadius = '50%';
+                        fallbackImg.style.objectFit = 'cover';
+                        centerElement.appendChild(fallbackImg);
                     }
                 });
-                
-                // Try to start video immediately if already loaded
                 if (centerVideo.readyState >= 3) {
                     startVideo();
                 }
-                
             } catch (error) {
-                console.error('Error initializing video:', error);
+                // Fallback: show backup image if video fails
+                centerVideo.style.display = 'none';
+                if (!centerElement.querySelector('img')) {
+                    const fallbackImg = document.createElement('img');
+                    fallbackImg.src = './assets/images/my-avatar.png';
+                    fallbackImg.alt = 'Pulin Prabhu';
+                    fallbackImg.style.width = '100%';
+                    fallbackImg.style.height = '100%';
+                    fallbackImg.style.borderRadius = '50%';
+                    fallbackImg.style.objectFit = 'cover';
+                    centerElement.appendChild(fallbackImg);
+                }
             }
             
             setInterval(switchUser, 6000); // Change every 6 seconds
