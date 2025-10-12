@@ -795,151 +795,148 @@
 
         </section> -->
 
-        <!-- ADDITIONAL TECHNICAL SKILLS SECTION -->
+
+        <!-- MODERN LIQUID GLASS SKILLS SECTION -->
         <section class="skill">
-
-          <div id="chakra-skills-root" class="content-card"></div>
-
+          <h2 class="skills-title" style="color: white; font-size: 2rem; margin-bottom: 1.5rem;">Technical & Professional Skills</h2>
+          <div class="liquid-glass-skills-card">
+            <div class="skills-category">
+              <h3>Product Management</h3>
+              <div class="skills-pills-row">
+                <span class="liquid-glass-pill pill-blue">Agile / Scrum Methodologies</span>
+                <span class="liquid-glass-pill pill-green">Product Roadmaps</span>
+                <span class="liquid-glass-pill pill-purple">API Integrations</span>
+                <span class="liquid-glass-pill pill-orange">B2B SaaS Strategy</span>
+                <span class="liquid-glass-pill pill-red">GTM & Feature Launches</span>
+                <span class="liquid-glass-pill pill-teal">AI/Agent Design (LLMs, GPT, RAG, Conversational UX)</span>
+                <span class="liquid-glass-pill pill-pink">Outcome Measurement & Customer Insights</span>
+              </div>
+            </div>
+            <div class="skills-category">
+              <h3>Tools & Platforms</h3>
+              <div class="skills-pills-row">
+                <span class="liquid-glass-pill pill-yellow">Jira</span>
+                <span class="liquid-glass-pill pill-cyan">Confluence</span>
+                <span class="liquid-glass-pill pill-gray">Asana</span>
+                <span class="liquid-glass-pill pill-blue">Slack</span>
+                <span class="liquid-glass-pill pill-green">Miro</span>
+                <span class="liquid-glass-pill pill-purple">Figma</span>
+                <span class="liquid-glass-pill pill-orange">Photoshop</span>
+                <span class="liquid-glass-pill pill-red">Tableau</span>
+                <span class="liquid-glass-pill pill-teal">Power BI</span>
+                <span class="liquid-glass-pill pill-pink">Amplitude</span>
+                <span class="liquid-glass-pill pill-yellow">Postman</span>
+                <span class="liquid-glass-pill pill-cyan">Bitbucket</span>
+              </div>
+            </div>
+            <div class="skills-category">
+              <h3>Programming & Technology</h3>
+              <div class="skills-pills-row">
+                <span class="liquid-glass-pill pill-gray">Python</span>
+                <span class="liquid-glass-pill pill-blue">Java</span>
+                <span class="liquid-glass-pill pill-green">JavaScript</span>
+                <span class="liquid-glass-pill pill-purple">JSON</span>
+                <span class="liquid-glass-pill pill-orange">CI/CD Pipelines</span>
+                <span class="liquid-glass-pill pill-red">Azure</span>
+                <span class="liquid-glass-pill pill-teal">OpenAI</span>
+                <span class="liquid-glass-pill pill-pink">AWS</span>
+                <span class="liquid-glass-pill pill-yellow">SQL</span>
+                <span class="liquid-glass-pill pill-cyan">ETL Pipelines</span>
+                <span class="liquid-glass-pill pill-gray">OCR</span>
+                <span class="liquid-glass-pill pill-blue">LangChain</span>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <script type="text/babel">
-          console.log('Script starting...');
+        <style>
+          .liquid-glass-skills-card {
+            background: rgba(40, 40, 50, 0.65);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem 2rem 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(18px) saturate(1.7);
+            -webkit-backdrop-filter: blur(18px) saturate(1.7);
+            border: 1.5px solid rgba(255,255,255,0.18);
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .skills-category {
+            margin-bottom: 2.2rem;
+          }
+          .skills-category h3 {
+            color: #fff;
+            font-size: 1.18rem;
+            font-weight: 600;
+            margin-bottom: 1.1rem;
+            text-decoration: underline;
+            letter-spacing: 0.01em;
+          }
+          .skills-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+          }
+          .liquid-glass-pill {
+            display: inline-block;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fff;
+            background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(80,180,255,0.10) 100%);
+            border-radius: 1.8em;
+            box-shadow: 0 1.5px 6px 0 rgba(31, 38, 135, 0.08), 0 1px 4px 0 rgba(80,180,255,0.06);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(6px) saturate(1.3);
+            -webkit-backdrop-filter: blur(6px) saturate(1.3);
+            margin-bottom: 0.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+          }
+          .liquid-glass-pill::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(80,180,255,0.08) 100%);
+            opacity: 0.35;
+            pointer-events: none;
+            border-radius: 1.8em;
+            filter: blur(2px);
+          }
           
-                       try {
-               const { ChakraProvider, Box, VStack, Text, Code, Stack } = ChakraUI;
-               console.log('ChakraUI components loaded:', { ChakraProvider, Box, VStack, Text, Code, Stack });
-       
-               function SkillsSection() {
-                 console.log('SkillsSection component rendering...');
-                 
-                 const skillCategories = [
-                   {
-                     title: 'Product Management',
-                     skills: ['Agile / Scrum Methodologies', 'Product Roadmaps', 'API Integrations', 'B2B SaaS Strategy', 'GTM & Feature Launches', 'AI/Agent Design (LLMs, GPT, RAG, Conversational UX)', 'Outcome Measurement & Customer Insights']
-                   },
-                   {
-                     title: 'Tools & Platforms',
-                     skills: ['Jira', 'Confluence', 'Asana', 'Slack', 'Miro', 'Figma', 'Photoshop', 'Tableau', 'Power BI', 'Amplitude', 'Postman', 'Bitbucket']
-                   },
-                   {
-                     title: 'Programming & Technology',
-                     skills: ['Python', 'Java', 'JavaScript', 'JSON', 'CI/CD Pipelines', 'Azure', 'OpenAI', 'AWS', 'SQL', 'ETL Pipelines', 'OCR', 'LangChain']
-                   }
-                 ];
-       
-                 // Color schemes for Code components
-                 const colorSchemes = ['blue', 'green', 'purple', 'orange', 'red', 'teal', 'pink', 'yellow', 'cyan', 'gray'];
-                 const getColorScheme = (skillIndex) => colorSchemes[skillIndex % colorSchemes.length];
-       
-                 return (
-                   <ChakraProvider>
-                     <Text fontSize="2xl" fontWeight="bold" color="white" mb={6}>
-                       Technical & Professional Skills
-                     </Text>
-                     
-                     <Box bg="#2d2d2d" p={6} borderRadius="lg" minH="auto" overflow="visible">
-                       <VStack spacing={8} align="stretch">
-                           {skillCategories.map((category, categoryIndex) => (
-                             <Box key={categoryIndex} mb={4}>
-                               <Text fontSize="lg" fontWeight="semibold" color="white" mb={4} textDecoration="underline">
-                                 {category.title}
-                               </Text>
-                               
-                               <Stack direction="row" spacing={3} flexWrap="wrap" mb={2}>
-                                 {category.skills.map((skill, skillIndex) => (
-                                   <Code
-                                     key={`${categoryIndex}-${skillIndex}`}
-                                     colorScheme={getColorScheme(skillIndex)}
-                                     px={3}
-                                     py={2}
-                                     borderRadius="md"
-                                     fontSize="md"
-                                     fontWeight="medium"
-                                     mb={2}
-                                     whiteSpace="nowrap"
-                                   >
-                                     {skill}
-                                   </Code>
-                                 ))}
-                               </Stack>
-                             </Box>
-                           ))}
-                         </VStack>
-                       </Box>
-                   </ChakraProvider>
-                 );
-               }
-    
-            console.log('About to render component...');
-            const rootElement = document.getElementById('chakra-skills-root');
-            console.log('Root element found:', rootElement);
-            
-            if (rootElement) {
-              ReactDOM.render(<SkillsSection />, rootElement);
-              console.log('Component rendered successfully');
-            } else {
-              console.error('Root element not found');
+          /* Color variations with liquid glass effect */
+          .pill-blue { background: linear-gradient(120deg, rgba(49, 130, 206, 0.25) 0%, rgba(49, 130, 206, 0.15) 100%); }
+          .pill-green { background: linear-gradient(120deg, rgba(56, 161, 105, 0.25) 0%, rgba(56, 161, 105, 0.15) 100%); }
+          .pill-purple { background: linear-gradient(120deg, rgba(128, 90, 213, 0.25) 0%, rgba(128, 90, 213, 0.15) 100%); }
+          .pill-orange { background: linear-gradient(120deg, rgba(221, 107, 32, 0.25) 0%, rgba(221, 107, 32, 0.15) 100%); }
+          .pill-red { background: linear-gradient(120deg, rgba(229, 62, 62, 0.25) 0%, rgba(229, 62, 62, 0.15) 100%); }
+          .pill-teal { background: linear-gradient(120deg, rgba(49, 151, 149, 0.25) 0%, rgba(49, 151, 149, 0.15) 100%); }
+          .pill-pink { background: linear-gradient(120deg, rgba(213, 63, 140, 0.25) 0%, rgba(213, 63, 140, 0.15) 100%); }
+          .pill-yellow { background: linear-gradient(120deg, rgba(236, 201, 75, 0.25) 0%, rgba(236, 201, 75, 0.15) 100%); }
+          .pill-cyan { background: linear-gradient(120deg, rgba(11, 197, 234, 0.25) 0%, rgba(11, 197, 234, 0.15) 100%); }
+          .pill-gray { background: linear-gradient(120deg, rgba(160, 174, 192, 0.25) 0%, rgba(160, 174, 192, 0.15) 100%); }
+          
+          .liquid-glass-pill:hover, .liquid-glass-pill:focus {
+            box-shadow: inset 0 2px 8px 0 rgba(80,180,255,0.25), inset 0 1px 4px 0 rgba(255,255,255,0.15);
+            border: 1.2px solid rgba(255,255,255,0.28);
+            transform: translateY(-1px);
+          }
+          @media (max-width: 700px) {
+            .liquid-glass-skills-card {
+              padding: 1.2rem 0.5rem 1.2rem 0.5rem;
             }
-          } catch (error) {
-            console.error('Error in skills section:', error);
-            
-            // Fallback: render a simple HTML version if React fails
-            const rootElement = document.getElementById('chakra-skills-root');
-            if (rootElement) {
-              rootElement.innerHTML = `
-                <h2 style="color: white; font-size: 24px; margin-bottom: 24px;">Technical & Professional Skills</h2>
-                <div style="background: #2d2d2d; padding: 24px; border-radius: 8px; min-height: auto; overflow: visible;">
-                  <div style="margin-bottom: 32px;">
-                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Product Management</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
-                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Agile / Scrum Methodologies</code>
-                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Product Roadmaps</code>
-                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">API Integrations</code>
-                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">B2B SaaS Strategy</code>
-                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">GTM & Feature Launches</code>
-                      <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">AI/Agent Design (LLMs, GPT, RAG, Conversational UX)</code>
-                      <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Outcome Measurement & Customer Insights</code>
-                    </div>
-                  </div>
-                  <div style="margin-bottom: 32px;">
-                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Tools & Platforms</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
-                      <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Jira</code>
-                      <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Confluence</code>
-                      <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Asana</code>
-                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Slack</code>
-                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Miro</code>
-                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Figma</code>
-                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Photoshop</code>
-                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Tableau</code>
-                      <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Power BI</code>
-                      <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Amplitude</code>
-                      <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Postman</code>
-                      <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Bitbucket</code>
-                    </div>
-                  </div>
-                  <div>
-                    <h3 style="color: white; font-size: 18px; margin-bottom: 16px; text-decoration: underline;">Programming & Technology</h3>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
-                      <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Python</code>
-                      <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Java</code>
-                      <code style="background: #38a169; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">JavaScript</code>
-                      <code style="background: #805ad5; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">JSON</code>
-                      <code style="background: #dd6b20; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">CI/CD Pipelines</code>
-                      <code style="background: #e53e3e; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">Azure</code>
-                                              <code style="background: #319795; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">OpenAI</code>
-                        <code style="background: #d53f8c; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">AWS</code>
-                        <code style="background: #ecc94b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">SQL</code>
-                        <code style="background: #0bc5ea; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">ETL Pipelines</code>
-                        <code style="background: #a0aec0; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">OCR</code>
-                        <code style="background: #3182ce; color: white; padding: 6px 12px; border-radius: 6px; font-size: 16px; margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;">LangChain</code>
-                    </div>
-                  </div>
-                </div>
-              `;
+            .skills-pills-row {
+              gap: 0.4rem 0.6rem;
+            }
+            .liquid-glass-pill {
+              font-size: 0.8rem;
+              padding: 0.3rem 0.6rem;
             }
           }
-        </script>
+        </style>
 
       </article>
 

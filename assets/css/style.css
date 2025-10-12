@@ -493,6 +493,11 @@ main {
   margin-bottom: 10px;
 }
 
+/* Center the Product Manager title */
+.info-content {
+  text-align: center;
+}
+
 .title {
   color: var(--white-1);
   background: var(--onyx);
@@ -929,6 +934,7 @@ main {
         top: calc(60px + 25px - 10px);
         right: calc((100vw - 1200px) / 2 + 25px - 20px);
         transform: translateX(0);
+        width: 865px
   }
 }
 
