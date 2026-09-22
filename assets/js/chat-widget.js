@@ -145,3 +145,16 @@
   window.ask = ask;
   window.flashSection = flashSection;
 })();
+
+// Suggestion chips in empty state
+document.addEventListener('click', function(e){
+  var btn = e.target.closest && e.target.closest('.chat-suggestions button[data-q]');
+  if (!btn) return;
+  var input = document.getElementById('chatInput');
+  if (input){ input.value = btn.getAttribute('data-q'); input.focus(); }
+  if (typeof window.sendChat === 'function') window.sendChat();
+  else {
+    var form = document.getElementById('chatForm');
+    if (form) form.dispatchEvent(new Event('submit', { cancelable:true, bubbles:true }));
+  }
+});

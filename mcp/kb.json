@@ -1,0 +1,755 @@
+{
+  "generatedAt": "2026-09-22T08:49:41.501Z",
+  "count": 73,
+  "entries": [
+    {
+      "id": "about",
+      "type": "text",
+      "tag": "About",
+      "title": "About Pulin",
+      "body": "Product manager who started as an engineer — a CS degree from Mumbai, three peer-reviewed machine learning papers, and an MS in Management Information Systems from Texas A&M sit underneath every roadmap. Equally comfortable in Postman and a Bitbucket pipeline as in Figma. Over the last four years: launched a cross-platform insurance app to 500K+ users, architected a multi-agent commerce platform as a founding product manager, and is now rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ."
+    },
+    {
+      "id": "stat-hireez-screening",
+      "type": "stat",
+      "tag": "HireEZ",
+      "title": "80% faster recruiter screening",
+      "big": "80%",
+      "body": "Rebuilt dynamic voice-agent prompting for real-time persona, question & evaluation generation from job and candidate context, scaling to thousands of automated interviews."
+    },
+    {
+      "id": "stat-hireez-turnaround",
+      "type": "stat",
+      "tag": "HireEZ",
+      "title": "93% faster feature-support turnaround",
+      "big": "93%",
+      "body": "A custom MCP server surfaces live feature-support data natively inside Claude for Sales GTM & Account Management."
+    },
+    {
+      "id": "stat-icici-users",
+      "type": "stat",
+      "tag": "ICICI Lombard",
+      "title": "500K+ users onboarded",
+      "big": "500K+",
+      "body": "Cross-platform digital insurance app for Health, Motor & Travel, onboarded in 6 months, lifting policy conversion 22% (~$4.2M+ new premium)."
+    },
+    {
+      "id": "stat-vybd-vendor",
+      "type": "stat",
+      "tag": "VYBD.AI",
+      "title": "60% faster vendor onboarding",
+      "big": "60%",
+      "body": "Micro-warehousing platform with supplier onboarding, KYC and shipment tracking, built as founding PM."
+    },
+    {
+      "id": "exp-hireez",
+      "type": "experience",
+      "tag": "v5.0 · Jul 2026 – Present",
+      "title": "HireEZ — Senior Product Manager",
+      "meta": "Mountain View, CA",
+      "body": [
+        "Rebuilt dynamic voice-agent prompting for real-time persona/question/evaluation generation, cutting recruiter screening time 80% and scaling to thousands of automated interviews",
+        "Built a custom MCP server surfacing feature-support data natively inside Claude for Sales GTM & Account Management, cutting turnaround time 93%",
+        "Delivered enterprise integrations spanning SSO (SAML 2.0, OIDC), calendar, SendGrid, SMS, AI interview scheduling, Zapier & 40+ ATS partners",
+        "Manages 3–4 enterprise ATS implementations monthly across a $100K+ MRR portfolio, delivering within a 12-week TAT"
+      ]
+    },
+    {
+      "id": "exp-vybd",
+      "type": "experience",
+      "tag": "v4.0 · Mar 2025 – Jul 2026",
+      "title": "VYBD.AI (formerly BulkMagic) — Founding Product Manager",
+      "meta": "Sunnyvale, CA",
+      "body": [
+        "Led delivery of an enterprise AI Market Research Agent on a multi-agent architecture, cutting decision timelines from 6 months to 8 weeks at 85% accuracy",
+        "Orchestrated a micro-warehousing platform — supplier onboarding, KYC, shipment tracking — cutting vendor onboarding time 60%",
+        "Governed the AI roadmap for catalog automation and connected agent workflows, cutting manual operational gaps 40% across seller processes"
+      ]
+    },
+    {
+      "id": "exp-carrier",
+      "type": "experience",
+      "tag": "v3.0 · May – Aug 2023",
+      "title": "Carrier Corporation — Product Manager, Data Science Center of Excellence",
+      "meta": "Atlanta, GA",
+      "body": [
+        "Coordinated requirements across 85+ stakeholders to ship ML-powered global sales & orders reporting, cutting manual effort 23% with 100% adoption in 8 weeks",
+        "Partnered with AWS on architecture and delivery sequence for a Connected Cold Chain platform, cutting operational overhead 20%",
+        "Ran Agile ceremonies for four reporting teams, lifting delivery velocity 20%"
+      ]
+    },
+    {
+      "id": "exp-icici",
+      "type": "experience",
+      "tag": "v2.0 · Jan 2021 – Jul 2022",
+      "title": "ICICI Lombard — Technical Product Manager",
+      "meta": "Mumbai, India",
+      "body": [
+        "Launched a cross-platform digital insurance app for Health, Motor & Travel, onboarding 500K+ users in 6 months and lifting policy conversion 22% (~$4.2M+ new premium)",
+        "Rebuilt the payment gateway into a centralized, policy-linked system with automated reconciliation, cutting issuance time 40% and transaction failures 18%",
+        "Launched digital insurance cards and behavior-based push notifications via A/B testing, adding $100K+ in quarterly revenue",
+        "Ran GTM for three new features, lifting customer adoption 30% and NPS by 3 points"
+      ]
+    },
+    {
+      "id": "exp-snapon",
+      "type": "experience",
+      "tag": "v1.0 · Jan 2020 – Jan 2021",
+      "title": "Snap-On Tools India — Data Analysis Intern",
+      "meta": "Mumbai, India",
+      "body": [
+        "Forecast demand and pricing via SQL + Power BI, contributing to a 1.89% YoY revenue increase",
+        "Built an ETL pipeline unifying eight customer databases into one warehouse — a 92% performance gain"
+      ]
+    },
+    {
+      "id": "case-mcp",
+      "type": "case",
+      "tag": "Developer platforms · AI",
+      "title": "A developer surface out of a fragmented internal wiki",
+      "dl": {
+        "Problem": "Sales GTM and Account Management at HireEZ had no fast way to answer \"does the product support X\" — every question routed through Product and Engineering.",
+        "Approach": "Built a custom MCP server on the internal integration dashboard, querying the master database and the markdown docs engineering keeps current, to surface live feature-support answers natively inside Claude.",
+        "Impact": "Turnaround on feature-support questions cut 93%, removing Product/Engineering as a bottleneck for GTM."
+      },
+      "link": {
+        "label": "Read the case study",
+        "href": "https://pulinpprabhu.com/work/post.html?p=work-mcp-developer-surface"
+      }
+    },
+    {
+      "id": "case-agents",
+      "type": "case",
+      "tag": "AI · Agent systems",
+      "title": "Teaching agents to run a marketplace",
+      "dl": {
+        "Problem": "As founding PM at VYBD.AI (formerly BulkMagic), slow human research and manual seller operations needed to become automated systems — with no dedicated infra team.",
+        "Approach": "Architected a multi-agent AI Market Research Agent, orchestrated a micro-warehousing platform (supplier onboarding, KYC, shipment tracking), and connected agent workflows for catalog automation.",
+        "Impact": "Decision cycles cut from 6 months to 8 weeks at 85% accuracy; vendor onboarding 60% faster; manual operational gaps down 40%."
+      },
+      "link": {
+        "label": "Read the case study",
+        "href": "https://pulinpprabhu.com/work/post.html?p=work-ai-agent-marketplace"
+      }
+    },
+    {
+      "id": "case-insurance",
+      "type": "case",
+      "tag": "Zero-to-one · Fintech",
+      "title": "Zero to one, at insurance scale",
+      "dl": {
+        "Problem": "Health, motor and travel insurance lived in disconnected legacy flows at ICICI Lombard — needed one cross-platform digital app without risking trust on live policies and claims.",
+        "Approach": "Rebuilt the payment gateway into a centralized, policy-linked system with automated reconciliation, phased the GTM per feature, and ran behavior-based A/B tests on cards and notifications.",
+        "Impact": "500K+ users onboarded in 6 months, policy conversion up 22% (~$4.2M+ new premium), transaction failures down 18%."
+      },
+      "link": {
+        "label": "Read the case study",
+        "href": "https://pulinpprabhu.com/work/post.html?p=work-icici-zero-to-one"
+      }
+    },
+    {
+      "id": "case-eventvol",
+      "type": "case",
+      "tag": "Craft · HCI research",
+      "title": "Designing for students who want to help, not search",
+      "dl": {
+        "Problem": "College students at Texas A&M wanted to volunteer but couldn’t find opportunities fitting their schedule or transportation — EventVol, a full HCI research project.",
+        "Approach": "Ran user interviews and affinity mapping, built personas and a journey map, then iterated mid-fidelity wireframes into a working Figma prototype with a full style guide.",
+        "Impact": "Shipped a validated end-to-end prototype covering discovery, transportation coordination and feedback."
+      },
+      "link": {
+        "label": "Read the case study",
+        "href": "https://pulinpprabhu.com/work/post.html?p=work-eventvol-overview"
+      }
+    },
+    {
+      "id": "pub-irrigation",
+      "type": "text",
+      "tag": "Springer · 2022",
+      "title": "A Machine Learning Approach for Automated Irrigation Management System",
+      "body": "Prabhu, P. et al. — Machine Intelligence and Smart Systems, Algorithms for Intelligent Systems, Springer Singapore. First-author chapter, 673+ chapter accesses.",
+      "link": {
+        "label": "doi.org/10.1007/978-981-16-9650-3_38",
+        "href": "https://doi.org/10.1007/978-981-16-9650-3_38"
+      }
+    },
+    {
+      "id": "pub-fraud",
+      "type": "text",
+      "tag": "IEEE ICCNT ’21",
+      "title": "A Fraud Detection System Using Machine Learning",
+      "body": "Kalbande, D., Prabhu, P., Gharat, A., Rajabally, T. — XGBoost & TensorFlow fraud engine reaching 94% precision, <6% false positives.",
+      "link": {
+        "label": "ieeexplore.ieee.org",
+        "href": "https://ieeexplore.ieee.org/abstract/document/9580102"
+      }
+    },
+    {
+      "id": "pub-detox",
+      "type": "text",
+      "tag": "IEEE ICCNT ’21",
+      "title": "Detox: NLP Based Classification & Euphemistic Text Substitution for Toxic Comments",
+      "body": "Jain, S., Kaushik, G., Prabhu, P., Godbole, A. — LSTM & Word2Vec model scoring 91% F1, with a real-time euphemism engine.",
+      "link": {
+        "label": "ieeexplore.ieee.org",
+        "href": "https://ieeexplore.ieee.org/abstract/document/9579846"
+      }
+    },
+    {
+      "id": "post-instacart",
+      "type": "text",
+      "tag": "Medium · Mar 2025",
+      "title": "Instacart APM Program — My Journey & Learnings",
+      "body": "On the Instacart Associate Product Manager program, one of the most competitive early-career PM opportunities.",
+      "link": {
+        "label": "Read on Medium",
+        "href": "https://medium.com/@pulinprabhu02/instacart-apm-program-my-journey-learnings-de9f1d27be9f"
+      }
+    },
+    {
+      "id": "post-ucd",
+      "type": "text",
+      "tag": "Medium · Feb 2025",
+      "title": "The Power of User-Centered Product Management: Lessons from Steve Jobs and Beyond",
+      "body": "On building products by starting from customer experience and working backwards to the technology.",
+      "link": {
+        "label": "Read on Medium",
+        "href": "https://medium.com/@pulinprabhu02/the-power-of-user-centered-product-management-lessons-from-steve-jobs-and-beyond-fab45a41a58b"
+      }
+    },
+    {
+      "id": "post-codetoproduct",
+      "type": "text",
+      "tag": "Medium · Feb 2025",
+      "title": "From Code to Product: My Journey in Tech and Why I’m Finally Writing About It",
+      "body": "On moving from engineering into product and starting to write about it.",
+      "link": {
+        "label": "Read on Medium",
+        "href": "https://medium.com/@pulinprabhu02/from-code-to-product-my-journey-in-tech-and-why-im-finally-writing-about-it-1cc41c00af86"
+      }
+    },
+    {
+      "id": "toolkit-product",
+      "type": "text",
+      "tag": "Toolkit · Product",
+      "title": "Product skills",
+      "body": "Agile/Scrum, Roadmaps, APIs, SaaS, Go-to-Market, Feature Prioritization, Metrics, Customer Insights."
+    },
+    {
+      "id": "toolkit-ai",
+      "type": "text",
+      "tag": "Toolkit · AI & Agents",
+      "title": "AI & agent skills",
+      "body": "LLMs, RAG, Agent Design, OpenAI, LangChain."
+    },
+    {
+      "id": "toolkit-technical",
+      "type": "text",
+      "tag": "Toolkit · Technical",
+      "title": "Technical skills",
+      "body": "Python, Java, Swift, JavaScript, SQL, JSON, ETL, CI/CD, OCR, AWS, Azure."
+    },
+    {
+      "id": "toolkit-tools",
+      "type": "text",
+      "tag": "Toolkit · Tools & Platforms",
+      "title": "Tools & platforms",
+      "body": "Jira, Confluence, Notion, Asana, Slack, Salesforce, Snowflake, Figma, Miro, Lucid Charts, Photoshop, Tableau, Power BI, Amplitude, Postman, Bitbucket."
+    },
+    {
+      "id": "bag-macbook",
+      "type": "text",
+      "tag": "Bag · Daily driver",
+      "title": "MacBook",
+      "body": "Where roadmaps, prompts, and architecture notes get written before they become tickets."
+    },
+    {
+      "id": "bag-claude",
+      "type": "text",
+      "tag": "Bag · AI bench",
+      "title": "Claude / LLM tabs",
+      "body": "Agent workbench for drafting evals, tool schemas, and edge-case prompts."
+    },
+    {
+      "id": "bag-figma",
+      "type": "text",
+      "tag": "Bag · Surface",
+      "title": "Figma",
+      "body": "When the surface has to be felt, not just specified — especially developer and agent UX."
+    },
+    {
+      "id": "bag-notion",
+      "type": "text",
+      "tag": "Bag · Ops",
+      "title": "Notion + Jira",
+      "body": "Operating system for shipping: decisions, specs, and the trail of why we chose them."
+    },
+    {
+      "id": "bag-postman",
+      "type": "text",
+      "tag": "Bag · APIs",
+      "title": "Postman / traces",
+      "body": "Engineer-first habit — trust an API response more than a slide about an API."
+    },
+    {
+      "id": "bag-headphones",
+      "type": "text",
+      "tag": "Bag · Focus",
+      "title": "Headphones",
+      "body": "Deep-work armor for prompt loops, PRDs, and hours where context has to stay loaded."
+    },
+    {
+      "id": "bag-notebook",
+      "type": "text",
+      "tag": "Bag · Research",
+      "title": "Field notebook",
+      "body": "Interviews and messy systems thinking before anything becomes a deck."
+    },
+    {
+      "id": "bag-coffee",
+      "type": "text",
+      "tag": "Bag · Fuel",
+      "title": "Coffee",
+      "body": "Non-negotiable shipping fuel. Everything else is negotiable."
+    },
+    {
+      "id": "credentials",
+      "type": "text",
+      "tag": "Certifications",
+      "title": "Certifications",
+      "body": "Gen AI for Product Manager, Certified Scrum Master (CSM), Certified Scrum Product Owner (CSPO), Cybersecurity Specialization."
+    },
+    {
+      "id": "education",
+      "type": "text",
+      "tag": "Education",
+      "title": "Education",
+      "body": "MS, Management Information Systems, Texas A&M University, GPA 3.9 (2022–2024) — coursework: Human-Computer Interaction, Project Management, Advanced System Analysis & Design, Design & Development Project, Advanced Database Management. B.Tech, Computer Science & Engineering, Sardar Patel Institute of Technology, Mumbai, GPA 3.4 (2017–2021) — coursework: Object Oriented Programming, Technology Entrepreneurship, Design Thinking, Computer Vision."
+    },
+    {
+      "id": "archive",
+      "type": "text",
+      "tag": "Archive",
+      "title": "Archive — earlier work",
+      "body": "37 files from undergrad and grad school, filed rather than deleted — each one now a short write-up of what it actually is, not just a link out: 11 product write-ups, one case study each for Hertz App Redesign, Apollo Urgent Care and EventVol, 13 presentations, and 10 Design Diary UX-teardown essays. The 37 individual entries immediately follow this one in the machine index below.",
+      "link": {
+        "label": "View archive",
+        "href": "https://pulinpprabhu.com/#archive"
+      }
+    },
+    {
+      "id": "arc-easy-bryan",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "A product canvas for a downtown that had outgrown its website",
+      "body": "Easy Bryan — three personas, ten features, two sprints of story-pointed user stories, built to replace a booking process that couldn’t show real-time availability",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=easy-bryan"
+      }
+    },
+    {
+      "id": "arc-ecommerce-tech-strategy",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Making the case for the unglamorous chapter in a report full of metaverse pitches",
+      "body": "My chapter — cloud computing and industry cloud platforms — in an eight-person IT strategy report where everyone else picked something off the Gartner hype curve",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=ecommerce-tech-strategy"
+      }
+    },
+    {
+      "id": "arc-thompson-discount-mover",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "What a progress report actually has to answer, artifact by artifact",
+      "body": "A project-management coursework exercise — costing, scheduling, and risk-managing a moving company’s relocation project in Microsoft Project, one required deliverable at a time",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=thompson-discount-mover"
+      }
+    },
+    {
+      "id": "arc-understanding-use-cases",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Writing three use cases before writing a line of code",
+      "body": "A systems-analysis exercise in formal use-case writing — actors, triggers, and alternate courses — for a box-office ticketing system",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=understanding-use-cases"
+      }
+    },
+    {
+      "id": "arc-usability-accessibility",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "What AXE and WAVE catch that a first glance misses",
+      "body": "Running four live websites through automated accessibility audits, and finding that visual minimalism and actual accessibility aren’t the same thing",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=usability-accessibility"
+      }
+    },
+    {
+      "id": "arc-understanding-wireframes",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Wireframing a robot-parts retailer, page by page, before any pixels",
+      "body": "A wireframe assignment for a fictional robotics e-commerce site — working out login, browsing, cart, and order tracking before any visual design begins",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=understanding-wireframes"
+      }
+    },
+    {
+      "id": "arc-personas-user-stories",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Four personas, four epics: writing user stories for a box-office system",
+      "body": "Breaking a ticketed-show booking platform into epics and story-pointed user stories for a manager, a telephone sales rep, a performance-booking rep, and a customer",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=personas-user-stories"
+      }
+    },
+    {
+      "id": "arc-smart-toilet",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Designing a smarter toilet, one design-thinking framework at a time",
+      "body": "Applying the AEIOU observation framework — and a genuinely thought-through feature set — to the unglamorous problem of water waste in the bathroom",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=smart-toilet"
+      }
+    },
+    {
+      "id": "arc-face-mask-detection",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Building a face mask detector with OpenCV, during the year everyone needed one",
+      "body": "A computer-vision coursework project — training a Keras/TensorFlow classifier on facial landmarks and running it live over OpenCV video",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=face-mask-detection"
+      }
+    },
+    {
+      "id": "arc-tata-neu",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Getting India’s first super app into Tier 2 cities",
+      "body": "A go-to-market case study for Tata Neu — user personas, feature prioritization, and a 30% growth target",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=tata-neu"
+      }
+    },
+    {
+      "id": "arc-apm-instacart",
+      "type": "text",
+      "tag": "Archive · Product",
+      "title": "Designing Instacart for business customers, not just households",
+      "body": "An APM case study on prioritization, go-to-market, and measuring a feature nobody had built yet",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=apm-instacart"
+      }
+    },
+    {
+      "id": "arc-hertz-case-study",
+      "type": "text",
+      "tag": "Archive · Case Studies",
+      "title": "Redesigning Hertz for the moment a rental actually goes wrong",
+      "body": "A full cognitive, affective, and ethical design audit — then a working Figma prototype to prove it",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=hertz-case-study"
+      }
+    },
+    {
+      "id": "arc-apollo-case-study",
+      "type": "text",
+      "tag": "Archive · Case Studies",
+      "title": "Designing a check-in kiosk with a two-day deadline and one load-bearing decision",
+      "body": "Apollo Urgent Care’s patient check-in flow — built to guarantee an emergency never waits behind a form",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=apollo-case-study"
+      }
+    },
+    {
+      "id": "arc-work-eventvol-overview",
+      "type": "text",
+      "tag": "Archive · Case Studies",
+      "title": "Designing for students who want to help, not search",
+      "body": "How EventVol’s user research turned into a working volunteer-matching prototype — the full process, start to finish",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=work-eventvol-overview"
+      }
+    },
+    {
+      "id": "arc-build-my-bot",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Wireframing Build My Bot, an e-commerce storefront for robot kits",
+      "body": "A System Analysis and Design assignment — use cases, user flow, and seven full-screen mockups for a fictional robot-kit retailer.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=build-my-bot"
+      }
+    },
+    {
+      "id": "arc-oculus",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Pitching the 2020 vision for Oculus, our college fest",
+      "body": "A fest-committee proposal for S.P.I.T.’s annual techno-cultural festival — theme, team structure, sponsorship plays, and three finance scenarios.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=oculus"
+      }
+    },
+    {
+      "id": "arc-vw-emission-scandal",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Unpacking the Volkswagen emissions scandal as a corporate ethics case",
+      "body": "A group case study on Dieselgate — how the fraud worked, what it cost, and what regulators changed afterward.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=vw-emission-scandal"
+      }
+    },
+    {
+      "id": "arc-carrier-case-study",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Reading Carrier Corporation as two businesses in one",
+      "body": "A case study on Carrier’s residential HVAC tiers and its fire & security division, mapped onto a single Business Model Canvas.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=carrier-case-study"
+      }
+    },
+    {
+      "id": "arc-couchdb",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "How CouchDB commits — ACID, MVCC, and a two-step write",
+      "body": "A technical walkthrough of CouchDB’s document model, its two-step commit process, and how it resolves conflicts without giving up availability.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=couchdb"
+      }
+    },
+    {
+      "id": "arc-buddy-connect",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Serving as VP of Operations for Buddy Connect",
+      "body": "The team behind Buddy Connect 2023-24, a Texas A&M program pairing new students with returning ones.",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=buddy-connect"
+      }
+    },
+    {
+      "id": "arc-two-phase-locking",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Making concurrent database transactions behave like serial ones",
+      "body": "A walkthrough of the Two-Phase Locking protocol, its failure modes, and how multiple-granularity locking scales it to real databases",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=two-phase-locking"
+      }
+    },
+    {
+      "id": "arc-software-change-management",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Why \"no matter where you are in the life cycle, the system will change\"",
+      "body": "A group presentation on software configuration management — the discipline of controlling change instead of just reacting to it",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=software-change-management"
+      }
+    },
+    {
+      "id": "arc-fake-news-twitter",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "What three different papers on Twitter fake-news detection actually agree on",
+      "body": "A comparative literature review of structural, content, and network-based approaches to flagging misinformation in Twitter threads",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=fake-news-twitter"
+      }
+    },
+    {
+      "id": "arc-employee-churn-prediction",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Three studies, three winning algorithms — what predicting employee churn actually depends on",
+      "body": "A comparative review of data mining approaches to attrition prediction, and why \"best algorithm\" turned out to be the wrong question",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=employee-churn-prediction"
+      }
+    },
+    {
+      "id": "arc-cast-128",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Inside CAST-128 — the block cipher quietly running inside PGP",
+      "body": "How CAST-128’s Feistel structure and three rotating round functions work, and what three research papers found when they tried to attack, speed up, and stress-test it",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=cast-128"
+      }
+    },
+    {
+      "id": "arc-agro-tech-program",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Reading the fine print on India’s agro-technology development scheme",
+      "body": "A breakdown of how the Department of Science & Technology structures funding for agricultural innovation — who qualifies, how proposals are judged, and what \"telegraphic language\" actually means in a government application",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=agro-tech-program"
+      }
+    },
+    {
+      "id": "arc-financial-fraud-ml",
+      "type": "text",
+      "tag": "Archive · Presentations",
+      "title": "Presenting a fraud detection system at ICCCNT 2021",
+      "body": "Conference slides for a machine learning approach to catching fraud across two very different transaction datasets",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=financial-fraud-ml"
+      }
+    },
+    {
+      "id": "arc-design-diary-credit-karma",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "What Credit Karma gets right about getting out of your way",
+      "body": "A cognitive-design teardown of the app that turned credit anxiety into a habit loop",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-credit-karma"
+      }
+    },
+    {
+      "id": "arc-design-diary-shein",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "How SHEIN designs for a brain that’s trying to remember its own cart",
+      "body": "A cognitive-design teardown focused on attention and memory",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-shein"
+      }
+    },
+    {
+      "id": "arc-design-diary-doordash",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Running DoorDash through Aaron Walter’s hierarchy of user needs",
+      "body": "Functional, reliable, usable, pleasurable — how one delivery app clears all four bars",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-doordash"
+      }
+    },
+    {
+      "id": "arc-design-diary-shazam",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Shazam’s one button, and everything built to protect it",
+      "body": "A cognitive-design teardown of an app with exactly one job — and no excuse for making it hard to find",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-shazam"
+      }
+    },
+    {
+      "id": "arc-design-diary-myntra",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Myntra, a year later, and what actually changed",
+      "body": "Revisiting a familiar app with a cognitive-design lens instead of a shopper’s eye",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-myntra"
+      }
+    },
+    {
+      "id": "arc-design-diary-airbnb",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Airbnb covers five cognitive-design principles well, and quietly skips a sixth",
+      "body": "Affordance, signifiers, constraints, mapping and feedback are all there — conceptual models mostly aren’t",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-airbnb"
+      }
+    },
+    {
+      "id": "arc-design-diary-back-market",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Back Market borrows its playbook from fast fashion — for refurbished electronics",
+      "body": "A memory-and-recall teardown of the app that sells trust as much as it sells hardware",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-back-market"
+      }
+    },
+    {
+      "id": "arc-design-diary-duolingo",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Duolingo, read through Aaron Walter’s hierarchy of user needs",
+      "body": "How a language app turns four abstract levels — functional, reliable, usable, pleasurable — into a habit",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-duolingo"
+      }
+    },
+    {
+      "id": "arc-design-diary-goodnotes",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "GoodNotes and the hierarchy of needs behind a note-taking app",
+      "body": "Why Apple Pencil support was the feature that converted me, and what holds the app up underneath it",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-goodnotes"
+      }
+    },
+    {
+      "id": "arc-design-diary-headspace",
+      "type": "text",
+      "tag": "Archive · Design Diary",
+      "title": "Headspace and the case for designing an emotion on purpose",
+      "body": "A teardown through reflective, behavioral, and visceral emotional design — not just usability",
+      "link": {
+        "label": "Read →",
+        "href": "https://pulinpprabhu.com/work/post.html?p=design-diary-headspace"
+      }
+    },
+    {
+      "id": "contact",
+      "type": "text",
+      "tag": "Contact",
+      "title": "Get in touch",
+      "body": "pulinpprabhu@gmail.com · +1 (979) 344-8376 · Sunnyvale, CA."
+    }
+  ]
+}
