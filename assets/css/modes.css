@@ -1,0 +1,164 @@
+/* Shared Human / Machine / Chat mode styling — used by index-new.html and work/post.html.
+   Assumes the host page already defines the site's design-token custom properties
+   (--paper, --surface, --ink, --accent, --line, etc.) on :root. */
+
+/* ---------- bottom-bar mode switcher ---------- */
+.bottom-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  display:flex; justify-content:center;
+  padding:2.2rem 1rem 1.4rem;
+  pointer-events:none;
+  background:linear-gradient(to top, var(--paper) 15%, color-mix(in srgb, var(--paper) 65%, transparent) 65%, transparent 100%);
+}
+.bottom-bar-inner{ pointer-events:auto; display:flex; align-items:center; gap:1.3rem; }
+.bb-mode{
+  display:flex; align-items:center; gap:.45rem;
+  font-family:"IBM Plex Mono",monospace; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+  background:none; border:none; color:var(--ink-faint); padding:.2rem 0; cursor:pointer;
+  transition:color .2s ease;
+}
+.bb-mode .dot{
+  width:7px; height:7px; border-radius:50%; flex:none;
+  border:1.5px solid var(--ink-faint);
+  transition:background .2s ease, border-color .2s ease;
+}
+.bb-mode.active{ color:var(--ink); }
+.bb-mode.active .dot{ background:var(--accent); border-color:var(--accent); }
+.bb-mode:not(.active):hover{ color:var(--ink-soft); }
+.bb-mode:not(.active):hover .dot{ border-color:var(--ink-soft); }
+.bb-sep{ width:1px; height:13px; background:var(--line); flex:none; }
+.bb-cmdk{
+  display:flex; align-items:center; gap:.55rem; flex:none;
+  font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink-faint);
+  background:none; border:none; padding:0; cursor:pointer;
+  transition:color .2s ease;
+}
+.bb-cmdk:hover{ color:var(--ink); }
+.bb-cmdk kbd{
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; border:1px solid var(--line); border-radius:2px;
+  padding:.06rem .32rem; color:var(--ink-faint); background:var(--surface-2);
+}
+@media (max-width:520px){ .bottom-bar-inner{ gap:.9rem; } }
+
+/* ---------- machine view: raw, monochrome, literal markdown — no UI chrome ---------- */
+.machine-view{ padding-top:clamp(1.5rem,4vw,2rem); padding-bottom:clamp(6rem,10vw,8rem); }
+.machine-doc{
+  margin-top:.75rem; font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace; font-size:.82rem; line-height:1.7;
+  color:var(--ink-soft); white-space:pre-wrap; word-break:break-word; max-width:82ch;
+}
+.machine-doc .h1{ color:var(--ink); font-weight:600; }
+.machine-doc .h2{ display:block; margin-top:1.6rem; color:var(--ink); font-weight:600; }
+.machine-doc .h3{ color:var(--ink); font-weight:600; }
+.machine-doc a{ color:inherit; text-decoration:none; }
+.machine-doc a:hover{ text-decoration:underline; text-decoration-color:var(--ink-faint); }
+.machine-doc .mm-url{ opacity:.5; }
+
+/* ---------- chat view (Claude-style: sidebar + centered pane) ---------- */
+.chat-view[hidden]{ display:none; }
+.chat-view{
+  display:flex; align-items:stretch;
+  height:calc(100dvh - 61px);
+  border-top:1px solid var(--line);
+}
+.chat-sidebar{
+  width:264px; flex:none; border-right:1px solid var(--line);
+  padding:1.4rem 1rem; display:flex; flex-direction:column; overflow-y:auto;
+  background:var(--surface);
+}
+.cs-top{ display:flex; align-items:center; gap:.55rem; padding:0 .4rem; margin-bottom:1.5rem; }
+.cs-top .mark-box{
+  width:26px; height:26px; border:1.5px solid var(--ink); flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.68rem;
+}
+.cs-name{ font-weight:600; font-size:.86rem; }
+.cs-new{
+  display:flex; align-items:center; gap:.55rem; width:100%;
+  font-family:"Archivo",sans-serif; font-size:.85rem; font-weight:600; color:var(--ink);
+  background:none; border:1px solid var(--line); padding:.6rem .8rem; cursor:pointer; margin-bottom:1.7rem;
+  transition:border-color .2s ease, background .2s ease;
+}
+.cs-new:hover{ border-color:var(--accent); background:var(--surface-2); }
+.cs-label{
+  font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-faint); padding:0 .4rem; margin-bottom:.5rem;
+}
+.cs-list{ display:flex; flex-direction:column; gap:.05rem; }
+.cs-item{
+  text-align:left; font-family:"Archivo",sans-serif; font-size:.85rem; color:var(--ink-soft);
+  background:none; border:none; padding:.5rem .4rem; cursor:pointer; border-radius:4px;
+  transition:background .15s ease, color .15s ease;
+}
+.cs-item:hover{ background:var(--surface-2); color:var(--ink); }
+
+.chat-main{ flex:1; min-width:0; display:flex; flex-direction:column; position:relative; }
+.chat-menu-btn{
+  display:none; position:absolute; top:1rem; left:1rem; z-index:5;
+  background:var(--paper); border:1px solid var(--line); width:34px; height:34px;
+  align-items:center; justify-content:center; cursor:pointer; color:var(--ink);
+}
+.chat-menu-btn svg{ width:15px; height:15px; }
+
+#chatThread{ flex:1; overflow-y:auto; padding:2rem clamp(1.25rem,4vw,3rem) 1rem; }
+.chat-empty{ max-width:620px; margin:8vh auto 0; text-align:center; }
+.chat-greeting{ font-family:"Fraunces",serif; font-weight:500; font-size:clamp(1.4rem,3vw,2rem); color:var(--ink); }
+.chat-greeting-sub{ margin-top:.8rem; color:var(--ink-soft); font-size:.92rem; max-width:44ch; margin-left:auto; margin-right:auto; }
+.chat-empty .chat-suggestions{ margin-top:2rem; display:flex; flex-wrap:wrap; gap:.55rem; justify-content:center; }
+.suggest-chip{
+  font-family:"IBM Plex Mono",monospace; font-size:.72rem; border:1px solid var(--line);
+  background:none; color:var(--ink-soft); padding:.5rem .8rem; cursor:pointer; text-align:left;
+  transition:border-color .2s ease, color .2s ease;
+}
+.suggest-chip:hover{ border-color:var(--accent); color:var(--accent-ink); }
+
+.msg-row{ width:100%; max-width:680px; margin:0 auto; }
+.msg-row + .msg-row{ margin-top:1.5rem; }
+.msg-row.user{ display:flex; justify-content:flex-end; }
+.msg{ font-size:.95rem; line-height:1.65; }
+.msg.user{
+  max-width:80%; background:var(--surface-2); color:var(--ink);
+  padding:.65rem 1rem; border-radius:16px 16px 4px 16px; font-family:"Archivo",sans-serif; font-size:.9rem;
+}
+.msg.assistant{ color:var(--ink); font-family:"Archivo",sans-serif; }
+.msg.assistant.thinking{ color:var(--ink-faint); font-style:italic; }
+.msg-refs{ display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.65rem; }
+.ref-chip{
+  font-family:"IBM Plex Mono",monospace; font-size:.66rem; border:1px solid var(--line); border-radius:10px;
+  background:none; color:var(--accent-ink); padding:.25rem .6rem; cursor:pointer;
+}
+.ref-chip:hover{ border-color:var(--accent); }
+
+.chat-input-wrap{ flex:none; padding:1rem clamp(1.25rem,4vw,3rem) 5.5rem; }
+.chat-input-row{
+  max-width:680px; margin:0 auto; display:flex; align-items:center; gap:.6rem;
+  border:1px solid var(--line); border-radius:22px; background:var(--surface); padding:.45rem .45rem .45rem 1.1rem;
+  transition:border-color .2s ease;
+}
+.chat-input-row:focus-within{ border-color:var(--accent); }
+.chat-input{ flex:1; min-width:0; border:none; background:none; outline:none; color:var(--ink); font-family:"Archivo",sans-serif; font-size:.93rem; }
+.chat-send{
+  width:32px; height:32px; border-radius:50%; flex:none;
+  background:var(--ink); color:var(--paper); border:none; cursor:pointer; font-size:1rem; line-height:1;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s ease, color .2s ease;
+}
+.chat-send:hover{ background:var(--accent); color:#181410; }
+.chat-send:disabled, .chat-input:disabled{ opacity:.5; cursor:not-allowed; }
+.chat-note{ max-width:680px; margin:.6rem auto 0; font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-faint); text-align:center; min-height:1.2em; }
+
+@keyframes sectionFlash{ 0%{ background:color-mix(in srgb, var(--accent) 14%, transparent); } 100%{ background:transparent; } }
+.flash{ animation:sectionFlash 1.6s ease; }
+
+@media (max-width:820px){
+  .chat-sidebar{
+    position:fixed; top:61px; left:0; bottom:0; right:auto; width:78vw; max-width:300px; z-index:40;
+    transform:translateX(-100%); transition:transform .25s ease; box-shadow:0 0 40px var(--shadow);
+  }
+  .chat-sidebar.open{ transform:none; }
+  .chat-menu-btn{ display:flex; }
+  #chatThread{ padding-top:3.6rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  .chat-sidebar{ transition:none !important; }
+  .flash{ animation:none !important; }
+}
