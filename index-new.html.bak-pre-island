@@ -9,7 +9,7 @@
 <link rel="alternate icon" href="assets/images/logo.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
     --paper:#F2F4EE;
@@ -532,14 +532,14 @@
 
   /* ========== HUMAN · designer theme (williamle.design language) ========== */
   body[data-mode="site"]{
-    background:#101010 !important;
-    --paper:#101010;
-    --surface:#141417;
-    --surface-2:#1e1d1c;
-    --ink:#f2f2f2;
-    --ink-soft:#979797;
+    background:#050505 !important;
+    --paper:#050505;
+    --surface:#101114;
+    --surface-2:#181A1F;
+    --ink:#F4F1EA;
+    --ink-soft:#A3A199;
     --ink-faint:#6E6D68;
-    --line:#272727;
+    --line:#26282E;
     --accent:#B6FF6A;
     --accent-ink:#DFFF9C;
     --accent-2:#6AE7FF;
@@ -774,17 +774,6 @@
   }
 
 
-
-  /* Space for floating island */
-  body{ padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
-  #siteView, #machineView{ padding-bottom: 1rem; }
-
-
-  /* Island owns in-page nav — slim the sticky top on Human */
-  body[data-mode="site"] .primary a:not(.nav-cta){ display:none; }
-  body[data-mode="site"] .primary{ gap:.25rem; }
-  body[data-mode="site"] .nav-clock{ display:inline-block; }
-
 </style>
 <link rel="stylesheet" href="assets/css/modes.css">
 </head>
@@ -817,37 +806,14 @@
   </div>
 </header>
 
-<div class="island" id="island" data-state="collapsed">
-  <div class="island-pill" id="islandPill">
-    <div class="island-modes" role="tablist" aria-label="View mode">
-      <button type="button" class="island-mode active" data-view="site" role="tab" aria-selected="true" title="Human">
-        <span class="dot"></span><span class="lbl">Human</span>
-      </button>
-      <button type="button" class="island-mode" data-view="machine" role="tab" aria-selected="false" title="Machine">
-        <span class="dot"></span><span class="lbl">Machine</span>
-      </button>
-      <button type="button" class="island-mode" data-view="chat" role="tab" aria-selected="false" title="Chat">
-        <span class="dot"></span><span class="lbl">Chat</span>
-      </button>
-    </div>
-    <span class="island-divider" aria-hidden="true"></span>
-    <nav class="island-nav" id="islandNav" aria-label="On this page">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#publications">Pubs</a>
-      <a href="#writing">Writing</a>
-      <a href="#toolkit">Toolkit</a>
-      <a href="#bag">Bag</a>
-      <a href="#archive">Archive</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <span class="island-divider island-divider-end" aria-hidden="true"></span>
-    <button type="button" class="island-cmdk" id="cmdkTrigger" aria-label="Open command menu">
-      <kbd id="cmdkKbd">⌘K</kbd>
-    </button>
-    <button type="button" class="island-toggle" id="islandToggle" aria-expanded="false" aria-label="Expand navigation">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="bottom-bar">
+  <div class="bottom-bar-inner">
+    <button type="button" class="bb-mode active" data-view="site" role="tab" aria-selected="true"><span class="dot"></span>Human</button>
+    <button type="button" class="bb-mode" data-view="machine" role="tab" aria-selected="false"><span class="dot"></span>Machine</button>
+    <button type="button" class="bb-mode" data-view="chat" role="tab" aria-selected="false"><span class="dot"></span>Chat</button>
+    <span class="bb-sep"></span>
+    <button type="button" class="bb-cmdk" id="cmdkTrigger" aria-label="Open command menu">
+      <span>/</span><span class="bb-sep"></span><kbd id="cmdkKbd">⌘K</kbd>
     </button>
   </div>
 </div>
@@ -1765,77 +1731,6 @@
       panel.style.transform = 'rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
     });
   }
-})();
-</script>
-
-
-<script>
-(function(){
-  var island = document.getElementById('island');
-  var toggle = document.getElementById('islandToggle');
-  var pill = document.getElementById('islandPill');
-  if (!island || !toggle) return;
-
-  function setExpanded(on){
-    island.setAttribute('data-state', on ? 'expanded' : 'collapsed');
-    toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
-    toggle.setAttribute('aria-label', on ? 'Collapse navigation' : 'Expand navigation');
-  }
-
-  toggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    setExpanded(island.getAttribute('data-state') !== 'expanded');
-  });
-
-  // Expand on hover (desktop), collapse when pointer leaves — unless pinned via toggle
-  var pinned = false;
-  toggle.addEventListener('click', function(){
-    pinned = island.getAttribute('data-state') === 'expanded';
-  });
-  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-    pill.addEventListener('mouseenter', function(){ if (!pinned) setExpanded(true); });
-    island.addEventListener('mouseleave', function(){ if (!pinned) setExpanded(false); });
-  }
-
-  // Clicking a nav link scrolls and collapses on mobile
-  document.querySelectorAll('#islandNav a').forEach(function(a){
-    a.addEventListener('click', function(){
-      if (window.matchMedia('(max-width:720px)').matches){
-        pinned = false; setExpanded(false);
-      }
-    });
-  });
-
-  // Highlight current section while scrolling (Human view)
-  var sectionIds = ['about','experience','work','publications','writing','toolkit','bag','archive','contact'];
-  var links = Array.prototype.slice.call(document.querySelectorAll('#islandNav a'));
-  function syncActive(){
-    if (document.body.getAttribute('data-mode') !== 'site') return;
-    var y = window.scrollY + window.innerHeight * 0.28;
-    var current = null;
-    sectionIds.forEach(function(id){
-      var el = document.getElementById(id);
-      if (el && el.offsetTop <= y) current = id;
-    });
-    links.forEach(function(a){
-      var href = a.getAttribute('href') || '';
-      a.classList.toggle('is-active', current && href === '#' + current);
-    });
-  }
-  window.addEventListener('scroll', syncActive, { passive:true });
-  syncActive();
-
-  // Wire mode buttons if mode-switch didn't catch island-mode
-  document.querySelectorAll('.island-mode').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      if (typeof window.setMode === 'function') window.setMode(btn.getAttribute('data-view'));
-      document.querySelectorAll('.island-mode').forEach(function(b){
-        var on = b === btn;
-        b.classList.toggle('active', on);
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-    });
-  });
 })();
 </script>
 

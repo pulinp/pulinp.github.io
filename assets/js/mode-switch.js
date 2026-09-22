@@ -4,7 +4,7 @@
 // responsible for populating all three with the same underlying content before this
 // runs; this file only owns the toggle.
 (function(){
-  var modeButtons = document.querySelectorAll('.bb-mode');
+  var modeButtons = document.querySelectorAll('.island-mode, .bb-mode');
   var siteView = document.getElementById('siteView');
   var machineView = document.getElementById('machineView');
   var chatViewEl = document.getElementById('chatView');
