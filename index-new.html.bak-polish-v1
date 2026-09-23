@@ -3,26 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-// Applied before first paint so there's no flash of the wrong theme: if the
-// visitor has an explicit saved preference, use it; otherwise the CSS below
-// falls back to prefers-color-scheme on its own (see :root/:root[data-theme]).
-(function(){
-  try {
-    var stored = localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark'){
-      document.documentElement.setAttribute('data-theme', stored);
-    }
-  } catch (e){}
-})();
-</script>
 <title>Pulin Prabhu</title>
 <meta name="description" content="Senior Product Manager building AI-native platforms — agent behavior, developer surfaces, and B2B SaaS growth.">
 <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
 <link rel="alternate icon" href="assets/images/logo.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
     --paper:#F2F4EE;
@@ -36,17 +23,6 @@
     --accent-ink:#7A5119;
     --accent-2:#3B7D6C;
     --shadow:rgba(20,26,20,0.10);
-    --shadow-lift:rgba(20,26,20,.18);
-    /* Derived "glass" tokens — self-adapt to whichever theme/skin is active
-       since they're mixed from --surface/--ink rather than hardcoded, so a
-       single definition here covers light mode, dark mode, and the bolder
-       Human-mode reskin below without needing separate per-theme copies. */
-    --glass-bg:color-mix(in srgb, var(--surface) 82%, transparent);
-    --glass-bg-soft:color-mix(in srgb, var(--surface) 68%, transparent);
-    --glass-border:color-mix(in srgb, var(--ink) 10%, transparent);
-    --glass-border-soft:color-mix(in srgb, var(--ink) 6%, transparent);
-    --tint:color-mix(in srgb, var(--ink) 4%, transparent);
-    --tint-strong:color-mix(in srgb, var(--ink) 8%, transparent);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -61,7 +37,6 @@
       --accent-ink:#F0C384;
       --accent-2:#5FB89C;
       --shadow:rgba(0,0,0,0.45);
-      --shadow-lift:rgba(0,0,0,.5);
     }
   }
   :root[data-theme="dark"]{
@@ -75,7 +50,6 @@
     --accent:#E3A455;
     --accent-ink:#F0C384;
     --accent-2:#5FB89C;
-    --shadow-lift:rgba(0,0,0,.5);
     --shadow:rgba(0,0,0,0.45);
   }
 
@@ -127,10 +101,10 @@
   }
 
   .wrap{
-    max-width:1200px;
+    max-width:1040px;
     margin:0 auto;
-    padding-left:clamp(1.5rem,5vw,4rem);
-    padding-right:clamp(1.5rem,5vw,4rem);
+    padding-left:clamp(1.25rem,4vw,2.5rem);
+    padding-right:clamp(1.25rem,4vw,2.5rem);
   }
   section{
     padding:clamp(3.5rem,7vw,6rem) 0;
@@ -159,8 +133,8 @@
     border-bottom:1px solid var(--line);
   }
   .top-inner{
-    max-width:1200px; margin:0 auto;
-    padding:1.05rem clamp(1.5rem,5vw,4rem);
+    max-width:1040px; margin:0 auto;
+    padding:.85rem clamp(1.25rem,4vw,2.5rem);
     display:flex; align-items:center; justify-content:space-between; gap:1rem;
   }
   .mark{ display:flex; align-items:center; gap:.6rem; text-decoration:none; flex:none; }
@@ -173,60 +147,6 @@
   }
   .mark-name{ font-weight:600; font-size:.95rem; letter-spacing:-.01em; white-space:nowrap; }
   .top-right{ display:flex; align-items:center; gap:1.2rem; min-width:0; flex-wrap:wrap; justify-content:flex-end; }
-
-  /* --- Animated nav avatar: plays a one-time orbit-icon intro over the "PP"
-     mark on load, then docks down into that exact slot and keeps orbiting
-     there. See the script near the end of <body>. --- */
-  .mark-box.avatar-active{ opacity:0; }
-  .nava-stage{
-    position:fixed; z-index:90; pointer-events:none; border-radius:50%;
-    transition:
-      width .7s cubic-bezier(.2,.8,.2,1), height .7s cubic-bezier(.2,.8,.2,1),
-      top .7s cubic-bezier(.2,.8,.2,1), left .7s cubic-bezier(.2,.8,.2,1),
-      opacity .3s ease;
-  }
-  /* It's a fixed-position element independent of the current view, so if the
-     visitor switches to Machine/Chat mid-intro (before it's docked into the
-     nav mark), hide it rather than let it float over that other view. */
-  body:not([data-mode="site"]) .nava-stage{ opacity:0; }
-  .nava-circle{
-    /* Sized well under 100% of the stage so the orbiting icons have visible
-       clearance around it, instead of overlapping the face (matches the
-       original animated-avatar.html proportions). */
-    position:absolute; left:22%; top:22%; width:56%; height:56%;
-    border-radius:50%; overflow:hidden;
-    background:var(--surface); box-shadow:0 10px 30px var(--shadow);
-  }
-  .nava-circle video{ width:100%; height:100%; object-fit:cover; display:block; }
-  .nava-orbit{ position:absolute; inset:0; animation:navaRotate 25s linear infinite; }
-  .nava-icon-wrapper{
-    position:absolute; top:50%; left:50%;
-    transform:translate(0,0) scale(.1); opacity:0;
-    transition:
-      transform .6s cubic-bezier(.68,-.55,.27,1.55), opacity .5s ease-out,
-      width .7s cubic-bezier(.2,.8,.2,1), height .7s cubic-bezier(.2,.8,.2,1),
-      margin .7s cubic-bezier(.2,.8,.2,1);
-  }
-  .nava-icon{
-    width:100%; height:100%; border-radius:50%; box-sizing:border-box;
-    /* Always a light chip, regardless of site theme: these are brand logo
-       marks (Figma, Slack, AWS, ...) drawn in their own brand colors against
-       transparency, designed to sit on a light backing — the same way they'd
-       appear in a light-mode app grid. Tying this to var(--surface) made them
-       nearly illegible in dark mode, since several are dark/monochrome art. */
-    background:#F4F5F0; border:1px solid rgba(20,26,20,.1);
-    box-shadow:0 3px 10px rgba(20,26,20,.22);
-    display:flex; align-items:center; justify-content:center;
-    animation:navaRotateReverse 25s linear infinite;
-    padding:16%;
-  }
-  .nava-icon img{ width:100%; height:100%; object-fit:contain; }
-  .nava-icon .nava-icon-text{
-    font-family:"IBM Plex Mono",monospace; font-weight:700; color:#14180F;
-    font-size:.6rem; line-height:1;
-  }
-  @keyframes navaRotate{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
-  @keyframes navaRotateReverse{ from{ transform:rotate(0deg); } to{ transform:rotate(-360deg); } }
   nav.primary{ display:flex; align-items:center; gap:1.4rem; }
   nav.primary a{
     font-family:"IBM Plex Mono",monospace;
@@ -243,15 +163,6 @@
     padding:.45rem .8rem; border:1px solid var(--ink); white-space:nowrap;
   }
   .nav-cta:hover{ background:var(--accent); border-color:var(--accent); color:#181410; }
-  .theme-toggle{
-    display:flex; align-items:center; justify-content:center;
-    width:30px; height:30px; flex:none;
-    border:1px solid var(--line); border-radius:50%; background:none; color:var(--ink-soft);
-    cursor:pointer; padding:0;
-    transition:color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
-  }
-  .theme-toggle svg{ width:15px; height:15px; }
-  .theme-toggle:hover{ color:var(--ink); border-color:var(--accent); }
   .menu-btn{
     display:none; background:none; border:1px solid var(--line); color:var(--ink);
     width:38px; height:34px; align-items:center; justify-content:center; cursor:pointer;
@@ -286,9 +197,9 @@
   }
   .hero h1{ font-size:clamp(2.15rem,5.4vw,3.55rem); max-width:16ch; }
   .hero .lede{
-    margin-top:clamp(1.1rem, 2vh, 2rem); max-width:640px; font-size:1.08rem; color:var(--ink-soft);
+    margin-top:1.4rem; max-width:640px; font-size:1.08rem; color:var(--ink-soft);
   }
-  .hero .ctas{ display:flex; flex-wrap:wrap; gap:1.4rem; margin-top:clamp(1.35rem, 2.4vh, 2.6rem); align-items:center; }
+  .hero .ctas{ display:flex; flex-wrap:wrap; gap:1.4rem; margin-top:2rem; align-items:center; }
 
   /* --- Hero cinematic layout (William Le presence + Parallel density) --- */
   .hero-grid{
@@ -401,9 +312,9 @@
     display:grid; grid-template-columns:repeat(4,1fr);
     border-top:1px solid var(--line);
   }
-  .stat{ padding:clamp(.9rem,1.6vh,1.7rem) .9rem clamp(.9rem,1.6vh,1.7rem) 0; border-right:1px solid var(--line); }
+  .stat{ padding:1.3rem 1.3rem 1.3rem 0; border-right:1px solid var(--line); }
   .stat:last-child{ border-right:none; padding-right:0; }
-  .stat:nth-child(n+2){ padding-left:.9rem; }
+  .stat:nth-child(n+2){ padding-left:1.3rem; }
   .stat b{
     display:block; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
     font-size:clamp(1.5rem,3vw,2rem); color:var(--accent-ink); font-weight:600;
@@ -620,48 +531,8 @@
 
 
   /* ========== HUMAN · designer theme (williamle.design language) ========== */
-  /* Human-mode reskin, light/dark-aware using the same three-rule pattern as
-     the base :root tokens above: a bare default, a prefers-color-scheme
-     override, and an explicit [data-theme] override that always wins. This
-     keeps Human mode consistent with Machine/Chat instead of being hardcoded
-     to one theme regardless of the visitor's OS setting or toggle choice. */
   body[data-mode="site"]{
-    --paper:#F6F7F1;
-    --surface:#FFFFFF;
-    --surface-2:#ECEFE3;
-    --ink:#12160F;
-    --ink-soft:#4A5240;
-    --ink-faint:#7C8571;
-    --line:#DDE1D2;
-    --accent:#3F7A1C;
-    --accent-ink:#2C5B12;
-    --accent-2:#0D7A8A;
-    --accent-hot:#C23E78;
-    --shadow:rgba(20,26,20,.14);
-    --shadow-lift:rgba(20,26,20,.18);
-    --glow:color-mix(in srgb, var(--accent) 20%, transparent);
-    background:var(--paper) !important;
-    color:var(--ink);
-  }
-  @media (prefers-color-scheme: dark){
-    html:not([data-theme="light"]) body[data-mode="site"]{
-      --paper:#101010;
-      --surface:#141417;
-      --surface-2:#1e1d1c;
-      --ink:#f2f2f2;
-      --ink-soft:#979797;
-      --ink-faint:#6E6D68;
-      --line:#272727;
-      --accent:#B6FF6A;
-      --accent-ink:#DFFF9C;
-      --accent-2:#6AE7FF;
-      --accent-hot:#FF6FAE;
-      --shadow:rgba(0,0,0,.55);
-      --shadow-lift:rgba(0,0,0,.5);
-      --glow:color-mix(in srgb, var(--accent) 32%, transparent);
-    }
-  }
-  html[data-theme="dark"] body[data-mode="site"]{
+    background:#101010 !important;
     --paper:#101010;
     --surface:#141417;
     --surface-2:#1e1d1c;
@@ -674,8 +545,9 @@
     --accent-2:#6AE7FF;
     --accent-hot:#FF6FAE;
     --shadow:rgba(0,0,0,.55);
-    --shadow-lift:rgba(0,0,0,.5);
     --glow:color-mix(in srgb, var(--accent) 32%, transparent);
+    background:var(--paper);
+    color:var(--ink);
   }
   body[data-mode="site"]::before{
     content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
@@ -693,28 +565,28 @@
   body[data-mode="site"] .top{
     position:fixed; top:0; left:0; right:0; z-index:70;
     background:transparent; border:none; backdrop-filter:none;
-    padding:1.15rem 0;
+    padding:.85rem 0;
   }
   body[data-mode="site"] .top-inner{
-    max-width:1200px; margin:0 auto; padding:0 clamp(1.5rem,5vw,4rem);
+    max-width:1100px; margin:0 auto; padding:0 1.1rem;
     display:flex; align-items:center; justify-content:space-between; gap:1rem;
   }
   body[data-mode="site"] .mark{ color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:.55rem; }
   body[data-mode="site"] .mark-box{
-    width:42px; height:42px; border-radius:13px; border:none;
+    width:34px; height:34px; border-radius:11px; border:none;
     display:grid; place-items:center;
-    font-family:"Syne",sans-serif; font-weight:800; font-size:.78rem;
+    font-family:"Syne",sans-serif; font-weight:800; font-size:.72rem;
     background:linear-gradient(135deg, var(--accent), var(--accent-2));
-    color:var(--paper); box-shadow:0 0 28px var(--glow);
+    color:#050505; box-shadow:0 0 28px var(--glow);
   }
   body[data-mode="site"] .mark-name{ font-weight:700; font-size:.92rem; }
   body[data-mode="site"] .primary{
     display:flex; align-items:center; gap:.1rem; padding:.32rem;
     border-radius:999px;
-    background:var(--glass-bg-soft);
-    border:1px solid var(--glass-border);
+    background:rgba(14,15,18,.72);
+    border:1px solid rgba(255,255,255,.1);
     backdrop-filter:blur(18px) saturate(150%);
-    box-shadow:0 12px 40px var(--shadow-lift);
+    box-shadow:0 12px 40px rgba(0,0,0,.4);
   }
   body[data-mode="site"] .primary a{
     color:var(--ink-soft); text-decoration:none;
@@ -722,34 +594,24 @@
     padding:.55rem .78rem; border-radius:999px;
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
-  body[data-mode="site"] .primary a:hover{ color:var(--ink); background:var(--tint-strong); }
+  body[data-mode="site"] .primary a:hover{ color:var(--ink); background:rgba(255,255,255,.08); }
   body[data-mode="site"] .primary a.nav-cta{
-    background:var(--ink); color:var(--paper); font-weight:600; margin-left:.15rem;
+    background:var(--ink); color:#050505; font-weight:600; margin-left:.15rem;
   }
   body[data-mode="site"] .primary a.nav-cta:hover{ background:var(--accent); }
   body[data-mode="site"] .nav-clock{
     font-family:"IBM Plex Mono",monospace; font-size:.66rem;
     color:var(--ink-faint); padding:.55rem .7rem; min-width:7ch; text-align:center;
   }
-  body[data-mode="site"] .theme-toggle{
-    width:32px; height:32px; border:1px solid var(--glass-border);
-    background:var(--glass-bg-soft); color:var(--ink-soft); margin:0 .1rem;
-  }
-  body[data-mode="site"] .theme-toggle:hover{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
   body[data-mode="site"] .menu-btn{
-    border:1px solid var(--line); background:var(--glass-bg); color:var(--ink); border-radius:12px;
+    border:1px solid var(--line); background:rgba(16,17,20,.85); color:var(--ink); border-radius:12px;
   }
 
   /* Hero */
   body[data-mode="site"] .hero{
-    /* 5.5rem matches the floating island's own reserved footprint (see the
-       body padding-bottom rule below) so the stat rail never sits under it.
-       Capped at 960px so it doesn't keep stretching to fill 100svh on very
-       tall/large displays — past that point the About section is allowed to
-       peek in underneath rather than leaving an ever-growing dead zone. */
-    min-height:min(calc(100svh - 5.5rem), 960px); border-bottom:none;
-    padding-top:clamp(5rem,9vh,8rem);
-    padding-bottom:clamp(1.6rem,4vh,3.6rem);
+    min-height:100svh; border-bottom:none;
+    padding-top:clamp(6.8rem,16vh,9rem);
+    padding-bottom:clamp(3rem,8vh,5rem);
     display:flex; flex-direction:column; justify-content:center;
   }
   body[data-mode="site"] .hero-grid{ align-items:center; gap:clamp(1.8rem,5vw,3.2rem); }
@@ -764,39 +626,21 @@
   @keyframes pulseDot{ 0%,100%{opacity:1} 50%{opacity:.45} }
   body[data-mode="site"] .hero h1{
     font-family:"Syne",sans-serif; font-weight:800;
-    font-size:clamp(2.1rem,3.3vw,4.2rem); line-height:1.04;
-    letter-spacing:-.03em; max-width:24ch;
-    margin:clamp(.65rem,1.2vh,1.3rem) 0 clamp(.8rem,1.6vh,1.7rem);
+    font-size:clamp(2.55rem,7vw,4.5rem); line-height:.98;
+    letter-spacing:-.045em; max-width:13ch; margin:.9rem 0 1.05rem;
   }
   body[data-mode="site"] .hero h1 em{
     font-family:"Caveat",cursive; font-style:normal; font-weight:600;
     color:var(--accent-2); font-size:1.12em; letter-spacing:0;
   }
-  /* Split-word headline reveal (progressively enhanced by Motion; see inline scripts) */
-  body[data-mode="site"] .hero h1 .word-mask{
-    display:inline-block; overflow:hidden; vertical-align:top;
-    padding-bottom:.08em; margin-bottom:-.08em;
-  }
-  body[data-mode="site"] .hero h1 .word-inner{ display:inline-block; }
-  body[data-mode="site"] .hero h1.hero-split .word-inner{
-    opacity:0; transform:translateY(110%); will-change:transform,opacity;
-  }
-  body[data-mode="site"] .hero h1.hero-split-fallback .word-inner{
-    opacity:1; transform:none;
-    transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1);
-  }
-  /* Disable the block-level rise-in once the headline is split into words — the
-     words handle their own reveal, so animating the parent too would double it up. */
-  body[data-mode="site"] .hero-copy > h1.hero-split{ animation:none; opacity:1; transform:none; }
   body[data-mode="site"] .lede{
-    color:var(--ink-soft); font-size:clamp(1rem,1.15vw,1.2rem);
-    line-height:1.55; max-width:56ch;
+    color:var(--ink-soft); font-size:clamp(1rem,1.45vw,1.12rem);
+    line-height:1.55; max-width:40ch;
   }
   body[data-mode="site"] .btn-solid{
-    background:var(--ink); color:var(--paper); border:none; border-radius:999px;
+    background:var(--ink); color:#050505; border:none; border-radius:999px;
     padding:.88rem 1.25rem; font-weight:600;
-    transition:background .25s ease, box-shadow .25s ease;
-    will-change:transform;
+    transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
   }
   body[data-mode="site"] .btn-solid:hover{
     background:var(--accent); transform:translateY(-2px);
@@ -806,25 +650,20 @@
   body[data-mode="site"] .link-line:hover{ color:var(--accent-2); }
 
   body[data-mode="site"] .hero-panel{
-    min-height:clamp(320px, 34vh, 460px); border:none; background:transparent; overflow:visible;
-    perspective:1000px; will-change:transform;
+    min-height:360px; border:none; background:transparent; overflow:visible;
+    perspective:1000px; transition:transform .2s ease-out;
   }
   body[data-mode="site"] .hero-panel::before{ display:none !important; }
-  body[data-mode="site"] .hp-stack{ position:relative; min-height:clamp(320px, 34vh, 460px); }
+  body[data-mode="site"] .hp-stack{ position:relative; min-height:360px; }
   body[data-mode="site"] .hp-card{
     position:absolute; width:min(80%, 290px);
     border-radius:18px;
-    border:1px solid var(--glass-border);
-    background:var(--glass-bg);
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(16,17,22,.82);
     backdrop-filter:blur(18px) saturate(150%);
-    box-shadow:0 22px 50px var(--shadow-lift), inset 0 1px 0 var(--glass-border-soft);
-    transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, opacity .7s cubic-bezier(.2,.7,.2,1);
-    /* Hidden until the nav-avatar intro (see script near </body>) reveals them */
-    opacity:0;
+    box-shadow:0 22px 50px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
   }
-  body[data-mode="site"] .hp-stack.revealed .hp-a{ opacity:1; transition-delay:0s; }
-  body[data-mode="site"] .hp-stack.revealed .hp-b{ opacity:1; transition-delay:.12s; }
-  body[data-mode="site"] .hp-stack.revealed .hp-c{ opacity:1; transition-delay:.24s; }
   body[data-mode="site"] .hp-a{ top:6%; left:2%; animation:floatA 7s ease-in-out infinite; }
   body[data-mode="site"] .hp-b{
     top:32%; right:0; left:auto; width:min(84%, 310px);
@@ -837,21 +676,21 @@
     animation:floatC 9s ease-in-out infinite;
   }
   body[data-mode="site"] .hp-card:hover{
-    z-index:5; box-shadow:0 30px 60px var(--shadow-lift), 0 0 40px var(--glow);
+    z-index:5; box-shadow:0 30px 60px rgba(0,0,0,.55), 0 0 40px var(--glow);
   }
   @keyframes floatA{ 0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-14px) rotate(-1.8deg)} }
   @keyframes floatB{ 0%,100%{transform:translateY(0) rotate(5deg)} 50%{transform:translateY(12px) rotate(2.8deg)} }
   @keyframes floatC{ 0%,100%{transform:translateY(0) rotate(-1.5deg)} 50%{transform:translateY(-10px) rotate(.6deg)} }
   body[data-mode="site"] .hp-label{ color:var(--accent); }
   body[data-mode="site"] .hp-title{ color:var(--ink); }
-  body[data-mode="site"] .hp-row{ color:var(--ink-soft); border-color:var(--glass-border-soft); }
+  body[data-mode="site"] .hp-row{ color:var(--ink-soft); border-color:rgba(255,255,255,.08); }
   body[data-mode="site"] .ok{ color:var(--accent) !important; }
 
-  body[data-mode="site"] .stat-rail{ border-top:1px solid var(--line); margin-top:clamp(.8rem,2vh,2.4rem); }
+  body[data-mode="site"] .stat-rail{ border-top:1px solid var(--line); margin-top:clamp(2.2rem,6vh,3.2rem); }
   body[data-mode="site"] .stat b{
     font-family:"Syne",sans-serif; font-weight:800;
-    font-size:clamp(1.5rem,2.6vw,2.35rem);
-    background:linear-gradient(120deg, var(--ink), var(--accent-2));
+    font-size:clamp(1.75rem,3.8vw,2.35rem);
+    background:linear-gradient(120deg, #fff, var(--accent-2));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
 
@@ -872,17 +711,17 @@
   body[data-mode="site"] .bag-item:hover{
     transform:translateY(-5px);
     border-color:color-mix(in srgb, var(--accent-2) 45%, var(--line));
-    box-shadow:0 18px 50px var(--shadow-lift);
+    box-shadow:0 18px 50px rgba(0,0,0,.35);
   }
   body[data-mode="site"] .chip{
     border-radius:999px;
-    background:var(--tint);
-    border-color:var(--glass-border);
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.1);
   }
-  body[data-mode="site"] .bag-item{ border-radius:20px; background:linear-gradient(180deg, var(--surface), var(--surface-2)); }
+  body[data-mode="site"] .bag-item{ border-radius:20px; background:linear-gradient(180deg, #14161C, #101114); }
   body[data-mode="site"] .bag-icon{
     border-radius:14px;
-    background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, var(--surface-2)), var(--surface-2));
+    background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, #14161C), #14161C);
   }
 
   body[data-mode="site"] .reveal{
@@ -901,14 +740,14 @@
   @keyframes riseIn{ to{ opacity:1; transform:none; } }
 
   body[data-mode="site"] .bottom-bar{
-    background:linear-gradient(to top, var(--paper) 18%, transparent);
+    background:linear-gradient(to top, rgba(5,5,5,.94) 18%, transparent);
   }
   body[data-mode="site"] .bottom-bar-inner{
-    border:1px solid var(--glass-border);
-    background:var(--glass-bg-soft);
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(14,15,18,.78);
     backdrop-filter:blur(18px) saturate(150%);
     border-radius:999px; padding:.42rem .65rem;
-    box-shadow:0 12px 40px var(--shadow-lift);
+    box-shadow:0 12px 40px rgba(0,0,0,.5);
   }
   body[data-mode="site"] .bb-mode.active{ color:var(--accent); }
   body[data-mode="site"] .bb-mode.active .dot{
@@ -932,12 +771,6 @@
     body[data-mode="site"] .status-dot,
     body[data-mode="site"] .hero-copy > *{ animation:none !important; opacity:1; transform:none; }
     body[data-mode="site"] .reveal{ opacity:1; transform:none; }
-    body[data-mode="site"] .hero h1.hero-split .word-inner{ opacity:1; transform:none; }
-    body[data-mode="site"] .hero-panel,
-    body[data-mode="site"] .hero-copy,
-    body[data-mode="site"] .btn-solid{ transform:none !important; }
-    .nava-stage{ display:none !important; }
-    .mark-box.avatar-active{ opacity:1 !important; }
   }
 
 
@@ -951,6 +784,141 @@
   body[data-mode="site"] .primary a:not(.nav-cta){ display:none; }
   body[data-mode="site"] .primary{ gap:.25rem; }
   body[data-mode="site"] .nav-clock{ display:inline-block; }
+
+
+  /* ===== William Le hero (exact layout language) ===== */
+  .hero-wl{
+    --wl-bg:#000; --wl-text:#f2f2f2; --wl-muted:#8a8a8a;
+    position:relative; min-height:100svh; background:var(--wl-bg); color:var(--wl-text);
+    overflow:hidden; display:flex; flex-direction:column; align-items:center; padding:0 1rem 2.5rem;
+  }
+  .wl-top{
+    width:min(1100px,100%); display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    padding:1.05rem 0.25rem 0; z-index:6;
+  }
+  .wl-logo{ justify-self:start; display:grid; place-items:center; }
+  .wl-island-mini{
+    justify-self:center; display:inline-flex; align-items:center; gap:18px;
+    height:34px; padding:0 14px; border-radius:999px;
+    background:rgba(28,28,30,.92); border:1px solid rgba(255,255,255,.12);
+    color:#d0d0d0; cursor:pointer; box-shadow:0 8px 28px rgba(0,0,0,.45); backdrop-filter:blur(18px);
+  }
+  .wl-cursor{ display:grid; place-items:center; opacity:.9; }
+  .wl-ring{ width:14px; height:14px; border-radius:50%; border:1.5px solid rgba(255,255,255,.55); }
+  .wl-clock{ justify-self:end; font-family:"Inter",system-ui,sans-serif; font-size:.9rem; color:#d8d8d8; font-variant-numeric:tabular-nums; }
+
+  .wl-titleblock{ position:relative; z-index:5; text-align:center; margin-top:clamp(1.2rem,4vh,2.2rem); }
+  .wl-titleblock h1{
+    margin:0; font-family:"Inter",system-ui,sans-serif; font-weight:500;
+    font-size:clamp(3rem,8.5vw,5.25rem); letter-spacing:-.04em; line-height:1; color:#f5f5f5;
+  }
+  .wl-tagline{ margin:.7rem 0 0; font-family:"Inter",system-ui,sans-serif; font-weight:400;
+    font-size:clamp(1rem,2.2vw,1.35rem); color:#8f8f8f; }
+
+  .wl-scene{ position:relative; width:min(980px,100%); flex:1; min-height:420px; margin-top:clamp(.5rem,2vh,1rem); perspective:1400px; }
+  .wl-apps{ position:absolute; top:6%; display:flex; gap:8px; padding:8px 10px; border-radius:14px;
+    background:rgba(24,24,27,.88); border:1px solid rgba(255,255,255,.08); backdrop-filter:blur(12px); z-index:4; }
+  .wl-apps i{ width:22px; height:22px; border-radius:6px; display:block; }
+  .wl-apps-l{ left:12%; } .wl-apps-r{ right:12%; }
+  .a-framer{ background:linear-gradient(135deg,#000,#555); }
+  .a-snap{ background:#fffc00; }
+  .a-unity{ background:#111; border:1px solid #444; }
+  .a-orb{ background:conic-gradient(#39ff14,#00e5ff,#7c5cff,#ff2d95,#39ff14); border-radius:50%; }
+  .a-figma{ background:conic-gradient(#f24e1e 0 25%,#a259ff 0 50%,#1abcfe 0 75%,#0acf83 0 100%); }
+  .a-notion{ background:#fff; }
+  .a-adobe{ background:linear-gradient(135deg,#ff9a00,#ff2d00); }
+  .a-procreate{ background:linear-gradient(135deg,#ff6bcb,#7c5cff); }
+
+  .wl-win{ position:absolute; width:min(260px,42%); aspect-ratio:1.35/1; border-radius:16px;
+    background:rgba(22,22,26,.82); border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 30px 60px rgba(0,0,0,.55); backdrop-filter:blur(16px); overflow:hidden; z-index:3; }
+  .wl-badge{ position:absolute; left:10px; top:10px; z-index:2; font-family:"Inter",sans-serif; font-size:.72rem; font-weight:700;
+    background:var(--b); color:#0a0a0a; padding:.18rem .45rem; border-radius:6px; }
+  .wl-win-art{ position:absolute; inset:0; }
+  .wl-win-ar{ left:4%; top:18%; transform:rotate(-8deg); animation:wlFloat 7s ease-in-out infinite; }
+  .wl-win-ux{ left:50%; top:10%; transform:translateX(-50%) rotate(1deg); width:min(300px,48%); z-index:5; animation:wlFloat 8s ease-in-out infinite .4s; }
+  .wl-win-dj{ right:3%; top:20%; transform:rotate(7deg); animation:wlFloat 9s ease-in-out infinite .2s; }
+  @keyframes wlFloat{ 0%,100%{ translate:0 0; } 50%{ translate:0 -12px; } }
+  .wl-art-room{ background:linear-gradient(90deg,transparent 20%,rgba(192,132,252,.25) 20% 55%,transparent 55%),linear-gradient(#1a1a22 40%,#2a2438 40%); }
+  .wl-art-room::before{ content:""; position:absolute; left:18%; top:28%; width:38%; height:42%; background:linear-gradient(135deg,#3b3348,#1f1a2a); border:1px solid #4c4460; border-radius:4px; }
+  .wl-art-flow{ background:radial-gradient(circle at 30% 30%,rgba(57,255,20,.2),transparent 40%),linear-gradient(#14141a,#1c1c24); }
+  .wl-art-flow::before,.wl-art-flow::after{ content:""; position:absolute; border:1px solid rgba(57,255,20,.35); border-radius:6px; background:rgba(57,255,20,.06); }
+  .wl-art-flow::before{ left:12%; top:28%; width:34%; height:28%; }
+  .wl-art-flow::after{ right:14%; top:40%; width:30%; height:24%; }
+  .wl-art-wave{ background:repeating-linear-gradient(90deg,#00e5ff 0 6px,transparent 6px 12px),linear-gradient(#101018,#181824); background-size:100% 40%,100% 100%; background-position:bottom 12px left 12px,0 0; background-repeat:repeat-x,no-repeat; }
+
+  .wl-stage-floor{ position:absolute; left:50%; bottom:2%; transform:translateX(-50%); width:min(560px,90%); height:48%; z-index:2; }
+  .wl-character{ position:absolute; left:36%; bottom:18%; width:90px; height:120px; }
+  .wl-head{ position:absolute; left:28px; top:8px; width:28px; height:28px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#ffd7b5,#e0a882); }
+  .wl-phones{ position:absolute; left:18px; top:10px; width:48px; height:26px; border-radius:14px; border:3px solid #1a1a1a; border-bottom:none; }
+  .wl-body{ position:absolute; left:22px; top:36px; width:40px; height:46px; border-radius:12px 12px 8px 8px; background:linear-gradient(180deg,#1f6b3a,#163d24); }
+  .wl-lap{ position:absolute; left:14px; top:58px; width:52px; height:28px; border-radius:4px; background:#3a3a40; border:1px solid #555; transform:rotate(-8deg); }
+  .wl-legs{ position:absolute; left:28px; top:80px; width:28px; height:34px; background:linear-gradient(#111 0 55%,#eee 55%); border-radius:0 0 6px 6px; }
+  .wl-desk{ position:absolute; right:18%; bottom:14%; width:150px; height:70px; }
+  .wl-monitor{ position:absolute; right:10px; top:0; width:88px; height:56px; border-radius:6px; background:#f5f5f5; border:2px solid #ddd; display:grid; place-items:center; }
+  .wl-monitor span{ font-family:"Caveat",cursive; font-size:1.2rem; background:linear-gradient(90deg,#39ff14,#00e5ff,#ff2d95); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .wl-keys{ position:absolute; right:18px; bottom:8px; width:70px; height:8px; border-radius:3px; background:#f2f2f2; }
+  .wl-cup{ position:absolute; right:0; bottom:10px; width:12px; height:16px; border-radius:3px; background:#fff; border:1px solid #ddd; }
+  .wl-rack{ position:absolute; left:2%; bottom:20%; width:70px; height:110px; }
+  .wl-tee{ position:absolute; left:12px; top:18px; width:46px; height:58px; background:#f4f4f4; border-radius:4px; display:grid; place-items:center; font-family:"Inter",sans-serif; font-size:.55rem; font-weight:700; color:#111; box-shadow:0 10px 24px rgba(0,0,0,.35); }
+  .wl-tee::before{ content:""; position:absolute; top:-16px; left:50%; transform:translateX(-50%); width:2px; height:18px; background:#666; }
+  .wl-side{ position:absolute; right:0; bottom:12%; width:70px; height:80px; }
+  .wl-vr{ width:42px; height:24px; border-radius:10px; background:#efefef; box-shadow:0 8px 18px rgba(0,0,0,.3); }
+  .wl-ball{ position:absolute; right:8px; bottom:0; width:28px; height:28px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#fff,#b0b0b0 45%,#666); }
+
+  @media (max-width:720px){
+    .wl-apps{ display:none; }
+    .wl-rack,.wl-side{ display:none; }
+    .wl-scene{ min-height:340px; }
+  }
+
+  /* Hide old sticky header on human when WL hero has its own chrome */
+  body[data-mode="site"] .top{ display:none; }
+
+  /* ===== Chi Quach bag ===== */
+  .bag-cq{ background:#fff; color:#111; padding:clamp(3.5rem,8vw,6rem) 0 3.5rem; position:relative; overflow:hidden; }
+  .cq-bleed{ position:absolute; top:-0.15em; left:-0.06em; font-family:"Instrument Serif","Fraunces",Georgia,serif;
+    font-size:clamp(4.8rem,18vw,12rem); line-height:.82; letter-spacing:-.045em; color:#000; opacity:.07; white-space:nowrap; pointer-events:none; }
+  .cq-head{ position:relative; z-index:1; padding:0 clamp(1.25rem,4vw,3rem); max-width:640px; }
+  .cq-kicker{ margin:0 0 .5rem; font-family:"Inter",sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#ff2d95; }
+  .cq-head h2{ margin:0; font-family:"Instrument Serif","Fraunces",serif; font-weight:400; font-size:clamp(2.1rem,4.8vw,3.2rem); letter-spacing:-.02em; }
+  .cq-sub{ margin:.55rem 0 0; color:#666; font-size:.95rem; }
+  .cq-track{ margin-top:2rem; display:flex; gap:1.35rem; align-items:stretch; overflow-x:auto; padding:0.75rem clamp(1.25rem,4vw,3rem) 1.25rem; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+  .cq-track::-webkit-scrollbar{ height:6px; } .cq-track::-webkit-scrollbar-thumb{ background:#ddd; border-radius:99px; }
+  .cq-pouch{ position:relative; flex:0 0 min(400px,78vw); min-height:300px; border-radius:28px; overflow:hidden; scroll-snap-align:start; }
+  .cq-cyan{ background:#e7fbff; border:1px solid rgba(0,200,220,.28); }
+  .cq-pink{ background:#ffe6f2; border:1px solid rgba(255,45,149,.22); }
+  .cq-gel{ position:absolute; inset:-12% -8%; background:radial-gradient(55% 45% at 45% 35%,rgba(0,229,255,.55),transparent 70%),linear-gradient(155deg,rgba(0,210,230,.4),rgba(255,255,255,.2) 50%,rgba(0,180,200,.45)); }
+  .cq-gel-pink{ background:radial-gradient(55% 45% at 55% 40%,rgba(255,45,149,.5),transparent 70%),linear-gradient(155deg,rgba(255,105,180,.45),rgba(255,255,255,.25) 50%,rgba(255,45,149,.4)); }
+  .cq-stuff{ position:absolute; inset:0; z-index:1; }
+  .cq-thing{ position:absolute; border-radius:12px; box-shadow:0 16px 36px rgba(0,0,0,.12); }
+  .cq-mb{ left:12%; top:20%; width:62%; height:44%; background:linear-gradient(160deg,#1a1a1a,#333); border-radius:10px; }
+  .cq-mb::after{ content:""; position:absolute; inset:10% 8% 16%; border-radius:4px; background:linear-gradient(135deg,#0ea5e9,#22c55e 55%,#111); }
+  .cq-air{ right:14%; top:26%; width:46px; height:46px; border-radius:50%; background:radial-gradient(circle at 30% 30%,#fff,#9ca3af); }
+  .cq-glass{ left:18%; bottom:24%; width:54px; height:22px; border-radius:8px; background:rgba(255,255,255,.55); border:1px solid rgba(0,0,0,.08); }
+  .cq-note{ right:16%; bottom:22%; width:40px; height:54px; background:#f8fafc; border:1px solid #e2e8f0; }
+  .cq-cap{ position:absolute; z-index:2; left:50%; bottom:14px; transform:translateX(-50%); font-family:"Inter",sans-serif; font-size:.62rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; background:rgba(255,255,255,.8); padding:.35rem .7rem; border-radius:999px; }
+  .cq-passes{ position:absolute; z-index:1; inset:20% 12% auto; display:flex; flex-wrap:wrap; gap:.4rem; }
+  .cq-passes span{ font-family:"Inter",sans-serif; font-size:.72rem; font-weight:700; background:#111; color:#fff; padding:.45rem .65rem; border-radius:8px; }
+  .cq-card-pink{ flex:0 0 230px; scroll-snap-align:start; border-radius:22px; padding:1.1rem; background:linear-gradient(160deg,#ff5aad,#ff2d95 60%,#ff7ebd); display:flex; flex-direction:column; gap:.55rem; min-height:280px; box-shadow:0 20px 50px rgba(255,45,149,.28); }
+  .cq-avatar{ width:56px; height:56px; border-radius:12px; background:radial-gradient(circle at 40% 30%,#ffe0c2 0 16%,transparent 17%),linear-gradient(180deg,#1e293b,#0f172a); border:2px solid rgba(0,0,0,.12); }
+  .cq-chip-sq{ width:34px; height:34px; border-radius:8px; background:#111; margin-left:auto; margin-top:-56px; }
+  .cq-card-txt{ margin-top:auto; }
+  .cq-card-txt strong{ display:block; font-family:"Inter",sans-serif; font-size:1rem; }
+  .cq-card-txt span{ font-size:.72rem; opacity:.8; }
+  .cq-nfc{ width:26px; height:26px; border-radius:6px; background:#111; opacity:.85; align-self:flex-end; }
+  .cq-item{ flex:0 0 190px; margin:0; scroll-snap-align:start; }
+  .cq-shot{ height:210px; border-radius:22px; border:1px solid rgba(0,0,0,.06); box-shadow:0 14px 36px rgba(0,0,0,.06); }
+  .cq-item figcaption{ margin-top:.55rem; }
+  .cq-item b{ display:block; font-family:"Inter",sans-serif; font-size:.9rem; }
+  .cq-item span{ font-size:.75rem; color:#666; }
+  .cq-shot-book{ background:linear-gradient(90deg,#f59e0b 0 12px,transparent 12px),repeating-linear-gradient(#fff 0 28px,#e5e7eb 28px 29px); }
+  .cq-shot-llm{ background:radial-gradient(circle at 50% 42%,#d4a574,#c4894b 38%,#1a1a1a 39%); }
+  .cq-shot-figma{ background:conic-gradient(from 210deg,#f24e1e,#a259ff,#1abcfe,#0acf83,#f24e1e); }
+  .cq-shot-api{ background:linear-gradient(160deg,#ff6c37,#ff8f66 42%,#1f2937 42%); }
+  .cq-shot-cups{ background:radial-gradient(circle at 50% 55%,#6b3f2a 0 28%,#f5f0e8 29% 56%,#e7e0d4 57%); }
+  .cq-shot-hp{ background:radial-gradient(circle at 50% 50%,transparent 30%,#111 31% 38%,transparent 39%),linear-gradient(#f3f4f6,#e5e7eb); }
+  .cq-scroll-hint{ margin:.35rem clamp(1.25rem,4vw,3rem) 0; font-family:"Inter",sans-serif; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:#999; }
 
 </style>
 <link rel="stylesheet" href="assets/css/modes.css">
@@ -975,9 +943,6 @@
         <a href="#bag">/bag</a>
         <a href="#archive">/archive</a>
         <span class="nav-clock" id="navClock" aria-hidden="true">00:00</span>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-        </button>
         <a class="nav-cta" href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
       </nav>
       <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
@@ -1025,49 +990,80 @@
 <div id="siteView">
 <main id="top">
 
-  <section class="hero wrap">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="status-line"><span class="status-dot"></span> Currently shipping — Senior Product Manager @ HireEZ · Sunnyvale, CA</div>
-        <h1>Product manager for the systems <em>underneath</em> the product.</h1>
-        <p class="lede">I spend most of my time on the parts recruiters skim past — agent prompting, developer-facing platforms, enterprise integrations, go-to-market mechanics — and ship them anyway. Trained as an engineer first (three published ML papers before my first PM title), which is why I review architecture diagrams before I review wireframes.</p>
-        <div class="ctas">
-      <a class="btn-solid" href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Download résumé</a>
-      <a class="link-line" href="mailto:pulinpprabhu@gmail.com">pulinpprabhu@gmail.com</a>
-      <a class="link-line" href="https://www.linkedin.com/in/pulinprabhu/" target="_blank" rel="noopener">LinkedIn</a>
+  
+<section class="hero-wl" id="top">
+  <div class="wl-top">
+    <a class="wl-logo" href="#top" aria-label="Home">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <defs>
+          <linearGradient id="wlG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#39FF14"/>
+            <stop offset="45%" stop-color="#7C5CFF"/>
+            <stop offset="100%" stop-color="#00E5FF"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#wlG)" d="M4 6h5.2l3.2 12.4L16.8 6H22l-5.4 20h-5.2L4 6z"/>
+        <circle cx="24.5" cy="22.5" r="4.2" fill="#FF2D95"/>
+        <circle cx="24.5" cy="22.5" r="2" fill="#39FF14"/>
+      </svg>
+    </a>
+    <button type="button" class="wl-island-mini" id="wlIslandMini" aria-label="Open site menu">
+      <span class="wl-cursor" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 12 12"><path fill="currentColor" d="M1 1l4.2 9.2 1.1-3.3L9.8 5.8z"/></svg>
+      </span>
+      <span class="wl-ring" aria-hidden="true"></span>
+    </button>
+    <div class="wl-clock" id="wlClock">00:00</div>
+  </div>
+
+  <div class="wl-titleblock">
+    <h1>Pulin Prabhu</h1>
+    <p class="wl-tagline">Building through a different lens.</p>
+  </div>
+
+  <div class="wl-scene" aria-hidden="true">
+    <div class="wl-apps wl-apps-l">
+      <i class="a-framer"></i><i class="a-snap"></i><i class="a-unity"></i><i class="a-orb"></i>
     </div>
-      </div>
-      <aside class="hero-panel" aria-hidden="true">
-        <div class="hp-stack">
-          <div class="hp-card hp-a">
-            <div class="hp-label">agent / prompt</div>
-            <div class="hp-title">voice_screener.v3</div>
-            <div class="hp-row"><span>latency</span><span class="ok">1.2s</span></div>
-            <div class="hp-row"><span>screen lift</span><span class="ok">+80%</span></div>
-          </div>
-          <div class="hp-card hp-b">
-            <div class="hp-label">mcp / tools</div>
-            <div class="hp-title">hireez.feature_support</div>
-            <div class="hp-row"><span>tools</span><span>12 exported</span></div>
-            <div class="hp-row"><span>turnaround</span><span class="ok">−93%</span></div>
-          </div>
-          <div class="hp-card hp-c">
-            <div class="hp-label">roadmap / now</div>
-            <div class="hp-title">developer surface</div>
-            <div class="hp-row"><span>integrations</span><span>live</span></div>
-            <div class="hp-row"><span>gtm loop</span><span class="ok">closed</span></div>
-          </div>
-        </div>
-      </aside>
+    <div class="wl-apps wl-apps-r">
+      <i class="a-figma"></i><i class="a-notion"></i><i class="a-adobe"></i><i class="a-procreate"></i>
     </div>
 
-    <div class="stat-rail reveal">
-      <div class="stat"><b data-count="80" data-suffix="%">0</b><span>Faster recruiter screening</span><em>voice-agent prompting · HireEZ</em></div>
-      <div class="stat"><b data-count="93" data-suffix="%">0</b><span>Faster feature-support turnaround</span><em>MCP server · HireEZ</em></div>
-      <div class="stat"><b data-count="500" data-suffix="K+">0</b><span>Users onboarded</span><em>zero-to-one launch · ICICI Lombard</em></div>
-      <div class="stat"><b data-count="60" data-suffix="%">0</b><span>Faster vendor onboarding</span><em>micro-warehousing · VYBD.AI</em></div>
+    <div class="wl-win wl-win-ar">
+      <span class="wl-badge" style="--b:#C084FC">Pm</span>
+      <div class="wl-win-art wl-art-room"></div>
     </div>
-  </section>
+    <div class="wl-win wl-win-ux">
+      <span class="wl-badge" style="--b:#39FF14">Ai</span>
+      <div class="wl-win-art wl-art-flow"></div>
+    </div>
+    <div class="wl-win wl-win-dj">
+      <span class="wl-badge" style="--b:#00E5FF">Mcp</span>
+      <div class="wl-win-art wl-art-wave"></div>
+    </div>
+
+    <div class="wl-stage-floor">
+      <div class="wl-rack"><div class="wl-tee">PP</div></div>
+      <div class="wl-character">
+        <div class="wl-phones"></div>
+        <div class="wl-head"></div>
+        <div class="wl-body"></div>
+        <div class="wl-lap"></div>
+        <div class="wl-legs"></div>
+      </div>
+      <div class="wl-desk">
+        <div class="wl-monitor"><span>hello</span></div>
+        <div class="wl-keys"></div>
+        <div class="wl-cup"></div>
+      </div>
+      <div class="wl-side">
+        <div class="wl-vr"></div>
+        <div class="wl-ball"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
   <section class="wrap reveal" id="about">
     <div class="eyebrow">About</div>
@@ -1340,65 +1336,73 @@
     </div>
   </section>
 
-  <section class="wrap reveal" id="bag">
-    <div class="bag-head">
-      <div>
-        <div class="eyebrow">What's in my bag</div>
-        <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:1rem;">The kit that actually ships with me</h2>
+  
+<section class="bag-cq" id="bag">
+  <div class="cq-bleed" aria-hidden="true">WHAT&rsquo;S IN MY BAG</div>
+  <div class="cq-head">
+    <p class="cq-kicker">Personal inventory</p>
+    <h2>Objects over adjectives</h2>
+    <p class="cq-sub">A Chi Quach–style carry dump — scroll sideways.</p>
+  </div>
+
+  <div class="cq-track" id="bagRail">
+    <div class="cq-pouch cq-cyan">
+      <div class="cq-gel"></div>
+      <div class="cq-stuff">
+        <div class="cq-thing cq-mb"></div>
+        <div class="cq-thing cq-air"></div>
+        <div class="cq-thing cq-glass"></div>
+        <div class="cq-thing cq-note"></div>
       </div>
-      <p class="bag-note">Not a skill list — the physical and digital objects I reach for when the work gets ambiguous. Toolkit above stays the skill stack — this is the kit itself.</p>
+      <span class="cq-cap">daily carry</span>
     </div>
-    <div class="bag-strip" role="list">
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></div>
-        <h3>MacBook</h3>
-        <p>Where roadmaps, prompts, and architecture notes get written before they become tickets.</p>
-        <span class="bag-tag">daily driver</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H4z"/><path d="M8 20h8"/><circle cx="12" cy="11" r="2"/></svg></div>
-        <h3>Claude / LLM tabs</h3>
-        <p>Agent workbench for drafting evals, tool schemas, and the weird edge-case prompts.</p>
-        <span class="bag-tag">ai bench</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg></div>
-        <h3>Figma</h3>
-        <p>When the surface has to be felt, not just specified — especially developer and agent UX.</p>
-        <span class="bag-tag">surface</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M5 9h14M9 5v14"/></svg></div>
-        <h3>Notion + Jira</h3>
-        <p>Operating system for shipping: decisions, specs, and the trail of why we chose them.</p>
-        <span class="bag-tag">ops</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 12h10M4 16h14"/><circle cx="18" cy="12" r="2"/></svg></div>
-        <h3>Postman / traces</h3>
-        <p>Engineer-first habit — I trust an API response more than a slide about an API.</p>
-        <span class="bag-tag">apis</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12v3a5 5 0 0 0 5 5h0a5 5 0 0 0 5-5v-3"/><path d="M15 12V9a5 5 0 0 0-5-5h0a5 5 0 0 0-5 5v3"/><path d="M4 12h16"/></svg></div>
-        <h3>Headphones</h3>
-        <p>Deep-work armor for prompt loops, PRDs, and the hours where context has to stay loaded.</p>
-        <span class="bag-tag">focus</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
-        <h3>Field notebook</h3>
-        <p>Interviews and messy systems thinking before anything becomes a deck.</p>
-        <span class="bag-tag">research</span>
-      </article>
-      <article class="bag-item" role="listitem">
-        <div class="bag-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 9c0-2.5 2-4 4-4s4 1.5 4 4c0 3-4 3-4 6"/><circle cx="12" cy="19" r="1"/></svg></div>
-        <h3>Coffee</h3>
-        <p>Non-negotiable shipping fuel. Everything else is negotiable.</p>
-        <span class="bag-tag">fuel</span>
-      </article>
+
+    <div class="cq-card-pink">
+      <div class="cq-avatar"></div>
+      <div class="cq-chip-sq"></div>
+      <div class="cq-card-txt">
+        <strong>pulin prabhu</strong>
+        <span>/ product · agents · platforms</span>
+      </div>
+      <div class="cq-nfc"></div>
     </div>
-  </section>
+
+    <div class="cq-pouch cq-pink">
+      <div class="cq-gel cq-gel-pink"></div>
+      <div class="cq-passes">
+        <span>HireEZ</span><span>MCP</span><span>Voice agents</span><span>TAMU</span>
+      </div>
+      <span class="cq-cap">events &amp; conferences</span>
+    </div>
+
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-book"></div>
+      <figcaption><b>Field notebook</b><span>Interviews before decks</span></figcaption>
+    </figure>
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-llm"></div>
+      <figcaption><b>LLM workbench</b><span>Evals · tools · prompts</span></figcaption>
+    </figure>
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-figma"></div>
+      <figcaption><b>Figma</b><span>When surface must be felt</span></figcaption>
+    </figure>
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-api"></div>
+      <figcaption><b>API traces</b><span>Trust the response</span></figcaption>
+    </figure>
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-cups"></div>
+      <figcaption><b>Coffee</b><span>Non-negotiable</span></figcaption>
+    </figure>
+    <figure class="cq-item">
+      <div class="cq-shot cq-shot-hp"></div>
+      <figcaption><b>Headphones</b><span>Deep-work armor</span></figcaption>
+    </figure>
+  </div>
+  <p class="cq-scroll-hint">Drag / scroll →</p>
+</section>
+
 
 
   <section class="wrap reveal" id="credentials">
@@ -1911,40 +1915,6 @@
   tick();
   setInterval(tick, 1000 * 30);
 
-  // Dark / light toggle. Explicit choices persist in localStorage and win
-  // over prefers-color-scheme (see the anti-flash script in <head> and the
-  // :root[data-theme] rules in <style>); with no stored choice, this just
-  // mirrors whatever prefers-color-scheme already resolved to.
-  var themeBtn = document.getElementById('themeToggle');
-  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
-  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
-  if (themeBtn){
-    var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-    function activeTheme(){
-      var explicit = document.documentElement.getAttribute('data-theme');
-      if (explicit === 'light' || explicit === 'dark') return explicit;
-      return systemDark.matches ? 'dark' : 'light';
-    }
-    function paint(theme){
-      themeBtn.innerHTML = theme === 'dark' ? MOON : SUN;
-      themeBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
-      themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-    themeBtn.addEventListener('click', function(){
-      var next = activeTheme() === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e){}
-      paint(next);
-    });
-    // If there's no saved preference, keep following the OS setting live.
-    systemDark.addEventListener('change', function(){
-      var stored;
-      try { stored = localStorage.getItem('theme'); } catch (e){}
-      if (stored !== 'light' && stored !== 'dark') paint(activeTheme());
-    });
-    paint(activeTheme());
-  }
-
   // Scroll reveals for Human view
   var els = document.querySelectorAll('#siteView .reveal');
   if ('IntersectionObserver' in window){
@@ -1958,162 +1928,16 @@
     els.forEach(function(el){ el.classList.add('in'); });
   }
 
-})();
-</script>
-
-<script>
-(function(){
-  // Split the hero headline into per-word spans (a mask + an inner span each) so it
-  // can be revealed word-by-word by Motion below. This runs synchronously and up
-  // front, independent of whether the Motion CDN import ever resolves: the words are
-  // fully visible, readable text either way — this just prepares the markup and a
-  // hidden starting state (via the .hero-split class) for the reveal to animate from.
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var h1 = document.querySelector('.hero h1');
-  if (!h1 || reduceMotion) return;
-
-  var words = [];
-  Array.prototype.slice.call(h1.childNodes).forEach(function(node){
-    if (node.nodeType === Node.TEXT_NODE){
-      var frag = document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(function(part){
-        if (part === '') return;
-        if (/^\s+$/.test(part)){
-          frag.appendChild(document.createTextNode(part));
-          return;
-        }
-        var mask = document.createElement('span');
-        mask.className = 'word-mask';
-        var inner = document.createElement('span');
-        inner.className = 'word-inner';
-        inner.textContent = part;
-        mask.appendChild(inner);
-        frag.appendChild(mask);
-        words.push(inner);
-      });
-      h1.replaceChild(frag, node);
-    } else if (node.nodeType === Node.ELEMENT_NODE){
-      // e.g. the <em>underneath</em> — treat the whole element as one word unit,
-      // keeping its own tag/styling intact inside the mask.
-      var mask2 = document.createElement('span');
-      mask2.className = 'word-mask';
-      node.parentNode.insertBefore(mask2, node);
-      mask2.appendChild(node);
-      var inner2 = document.createElement('span');
-      inner2.className = 'word-inner';
-      while (node.firstChild) inner2.appendChild(node.firstChild);
-      node.appendChild(inner2);
-      words.push(inner2);
-    }
-  });
-
-  h1.classList.add('hero-split');
-
-  // Safety net: if the Motion CDN never resolves (offline, blocked), reveal the
-  // words with a plain CSS transition instead of leaving them stuck invisible.
-  var revealed = false;
-  var fallbackTimer = setTimeout(function(){
-    if (revealed) return;
-    revealed = true;
-    h1.classList.add('hero-split-fallback');
-  }, 900);
-
-  window.__heroHeadline = {
-    words: words,
-    markRevealed: function(){ revealed = true; clearTimeout(fallbackTimer); }
-  };
-})();
-</script>
-
-<script type="module">
-// Hero micro-interactions, built on Motion (motion.dev) — the standalone,
-// framework-free engine behind Framer Motion. Loaded from a pinned CDN version
-// since this site has no build step; everything here is additive progressive
-// enhancement over the CSS/vanilla-JS hero that already renders and reveals
-// correctly on its own (see the script above and the .hero-split CSS).
-(async function(){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-  var fineHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-
-  var Motion;
-  try {
-    Motion = await import('https://cdn.jsdelivr.net/npm/motion@13.4.1/+esm');
-  } catch (err){
-    return; // CDN unreachable — the CSS fallback above already reveals the headline
-  }
-  var animate = Motion.animate, stagger = Motion.stagger, scroll = Motion.scroll;
-
-  function siteMode(){ return document.body.getAttribute('data-mode') === 'site'; }
-
-  function rafThrottle(fn){
-    var ticking = false, lastArgs;
-    return function(){
-      lastArgs = arguments;
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function(){ ticking = false; fn.apply(null, lastArgs); });
-    };
-  }
-
-  // 1) Word-by-word headline reveal
-  var headline = window.__heroHeadline;
-  if (headline && headline.words.length){
-    headline.markRevealed();
-    animate(headline.words, { opacity: [0, 1], y: ['110%', '0%'] }, {
-      duration: 0.9,
-      delay: stagger(0.045, { startDelay: 0.1 }),
-      ease: [0.2, 0.7, 0.2, 1]
-    });
-  }
-
-  // 2) Magnetic résumé CTA — pulls gently toward the cursor, springs back on release
-  var cta = hero.querySelector('.btn-solid');
-  if (cta && fineHover){
-    var bounds = null;
-    cta.addEventListener('pointerenter', function(){ bounds = cta.getBoundingClientRect(); });
-    cta.addEventListener('pointermove', rafThrottle(function(e){
-      if (!siteMode()) return;
-      if (!bounds) bounds = cta.getBoundingClientRect();
-      var relX = e.clientX - (bounds.left + bounds.width / 2);
-      var relY = e.clientY - (bounds.top + bounds.height / 2);
-      animate(cta, { x: relX * 0.3, y: relY * 0.45 - 2 }, {
-        type: 'spring', stiffness: 300, damping: 20, mass: 0.4
-      });
-    }));
-    cta.addEventListener('pointerleave', function(){
-      bounds = null;
-      animate(cta, { x: 0, y: 0 }, { type: 'spring', stiffness: 280, damping: 18 });
-    });
-  }
-
-  // 3) Spring-smoothed hero panel tilt (replaces a raw 1:1 pointermove transform
-  // with inertial spring physics, which is what actually makes it feel premium)
-  var panel = hero.querySelector('.hero-panel');
-  if (panel && fineHover){
-    window.addEventListener('pointermove', rafThrottle(function(e){
-      if (!siteMode()) return;
+  // Soft parallax on hero collage
+  var panel = document.querySelector('.hero-panel');
+  if (panel && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.addEventListener('pointermove', function(e){
+      if (document.body.getAttribute('data-mode') !== 'site') return;
       var r = panel.getBoundingClientRect();
-      var pad = 100;
-      if (e.clientX < r.left - pad || e.clientX > r.right + pad ||
-          e.clientY < r.top - pad || e.clientY > r.bottom + pad) return;
       var x = (e.clientX - r.left) / r.width - 0.5;
       var y = (e.clientY - r.top) / r.height - 0.5;
-      animate(panel, { rotateY: x * 7, rotateX: y * -7 }, {
-        type: 'spring', stiffness: 130, damping: 16, mass: 0.5
-      });
-    }), { passive: true });
-  }
-
-  // 4) Subtle scroll-linked depth: the copy drifts up slightly slower than the
-  // page scrolls, separating it from the card stack as the hero scrolls away.
-  var copy = hero.querySelector('.hero-copy');
-  if (copy){
-    scroll(
-      animate(copy, { y: [0, -40] }, { ease: 'linear' }),
-      { target: hero, offset: ['start start', 'end start'] }
-    );
+      panel.style.transform = 'rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg)';
+    });
   }
 })();
 </script>
@@ -2189,243 +2013,33 @@
 })();
 </script>
 
+
 <script>
 (function(){
-  // Nav-avatar intro: reuses the memoji + orbiting-tool-icons animation from the
-  // original index.html (animated-avatar.html) as a one-time page-load moment
-  // over the "PP" mark, then docks it down into that exact slot and leaves it
-  // running there. Once the intro cycle finishes, the hero's floating cards
-  // (hidden via CSS until now) reveal. See .nava-* CSS near the top of <head>.
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hpStack = document.querySelector('.hp-stack');
-  var markBox = document.querySelector('.mark-box');
-
-  function revealCards(){
-    if (hpStack) hpStack.classList.add('revealed');
+  function tick(){
+    var el = document.getElementById('wlClock');
+    if (!el) return;
+    el.textContent = new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
   }
-
-  // Hard safety net: the cards must never stay hidden, no matter what else happens.
-  // (Comfortably past the ~14s natural intro cycle + dock transition below.)
-  var safetyTimer = setTimeout(revealCards, 16500);
-
-  if (reduceMotion || !markBox || !hpStack){
-    clearTimeout(safetyTimer);
-    revealCards();
-    return;
-  }
-
-  try {
-    runNavAvatarIntro();
-  } catch (err){
-    clearTimeout(safetyTimer);
-    revealCards();
-    markBox.classList.remove('avatar-active');
-  }
-
-  function runNavAvatarIntro(){
-    var USERS = [
-      { memoji:'./assets/images/imageMovie/EmojiMovie779932665.mp4',
-        apps:[
-          { name:'Jira' }, { name:'Python' }, { name:'Docker' }, { name:'SQL' },
-          { name:'Slack' }, { name:'AWS' }, { name:'Tableau' }
-        ] },
-      { memoji:'./assets/images/imageMovie/EmojiMovie779932701.mp4',
-        apps:[
-          { name:'Tableau' }, { name:'PowerBI' }, { name:'Python' }, { name:'SQL' },
-          { name:'Excel' }, { name:'Azure' }
-        ] },
-      { memoji:'./assets/images/imageMovie/EmojiMovie779932788.mp4',
-        apps:[
-          { name:'Confluence' }, { name:'Postman' }, { name:'Git' }, { name:'Miro' },
-          { name:'Figma' }, { name:'Notion' }
-        ] }
-    ];
-    var LOGOS = {
-      Jira:'jira-logo.png', Python:'python-logo.png', Figma:'figma-logo.png',
-      SQL:'sql-logo.png', Slack:'slack-logo.png', AWS:'aws-logo.png',
-      Tableau:'tableau-logo.png', PowerBI:'powerbi-logo.png', Excel:'excel-logo.png',
-      Azure:'azure-logo.png', Confluence:'confluence-logo.png', Postman:'postman-logo.png',
-      Git:'git-logo.png', Docker:'docker-logo.png', Miro:'miro-logo.png', Notion:'notion-logo.png'
-    };
-
-    var stage = document.createElement('div');
-    stage.className = 'nava-stage';
-    stage.setAttribute('aria-hidden', 'true');
-    stage.innerHTML =
-      '<div class="nava-circle"><video muted loop playsinline preload="metadata" webkit-playsinline></video></div>' +
-      '<div class="nava-orbit"></div>';
-    document.body.appendChild(stage);
-    var video = stage.querySelector('video');
-    var orbit = stage.querySelector('.nava-orbit');
-    var heroPanel = document.querySelector('.hero-panel');
-
-    markBox.classList.add('avatar-active');
-
-    var docked = false;
-    var currentSize = 0;
-    var icons = []; // [{ wrapper, sizeFactor, angle }]
-    var personaIndex = 0;
-
-    function markRect(){ return markBox.getBoundingClientRect(); }
-
-    // The intro plays big, centered over where the hero cards live (that's the
-    // "one cycle" the viewer sees), before docking up into the nav mark slot.
-    function bigSize(){
-      if (!heroPanel) return 120;
-      var rect = heroPanel.getBoundingClientRect();
-      var basis = Math.min(rect.width, rect.height);
-      if (!basis) return 190;
-      return Math.max(170, Math.min(280, Math.round(basis * 0.72)));
-    }
-    function bigPosition(size){
-      if (!heroPanel) return markRect();
-      var rect = heroPanel.getBoundingClientRect();
-      return {
-        left: rect.left + rect.width / 2 - size / 2,
-        top: rect.top + rect.height / 2 - size / 2
-      };
-    }
-
-    function positionStage(pos, size){
-      stage.style.width = size + 'px';
-      stage.style.height = size + 'px';
-      stage.style.left = pos.left + 'px';
-      stage.style.top = pos.top + 'px';
-    }
-
-    function setVideoSrc(src){
-      while (video.firstChild) video.removeChild(video.firstChild);
-      var source = document.createElement('source');
-      source.type = 'video/mp4';
-      source.src = src;
-      video.appendChild(source);
-      video.load();
-      var playPromise = video.play();
-      if (playPromise && playPromise.catch) playPromise.catch(function(){});
-    }
-    video.addEventListener('error', function(){
-      video.style.display = 'none';
-      if (!stage.querySelector('.nava-fallback-img')){
-        var img = document.createElement('img');
-        img.className = 'nava-fallback-img';
-        img.src = './assets/images/my-avatar.png';
-        img.alt = '';
-        img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
-        stage.querySelector('.nava-circle').appendChild(img);
-      }
+  tick(); setInterval(tick, 30000);
+  var mini = document.getElementById('wlIslandMini');
+  if (mini){
+    mini.addEventListener('click', function(){
+      var island = document.getElementById('island');
+      var toggle = document.getElementById('islandToggle');
+      if (!island) return;
+      var on = island.getAttribute('data-state') !== 'expanded';
+      island.setAttribute('data-state', on ? 'expanded' : 'collapsed');
+      if (toggle) toggle.setAttribute('aria-expanded', on ? 'true' : 'false');
     });
-
-    function buildIcons(apps){
-      orbit.innerHTML = '';
-      var angleStep = (2 * Math.PI) / apps.length;
-      icons = apps.map(function(app, i){
-        var wrapper = document.createElement('div');
-        wrapper.className = 'nava-icon-wrapper';
-        var iconEl = document.createElement('div');
-        iconEl.className = 'nava-icon';
-        var logo = LOGOS[app.name];
-        if (logo){
-          iconEl.innerHTML = '<img src="./assets/images/' + logo + '" alt="' + app.name + '">';
-        } else {
-          var initials = app.name.split(' ').map(function(n){ return n[0]; }).join('').slice(0, 2);
-          iconEl.innerHTML = '<span class="nava-icon-text">' + initials + '</span>';
-        }
-        wrapper.appendChild(iconEl);
-        orbit.appendChild(wrapper);
-        return {
-          wrapper: wrapper,
-          sizeFactor: 0.23 + Math.random() * 0.04,
-          angle: i * angleStep + (Math.random() - 0.5) * angleStep * 0.3
-        };
-      });
-    }
-
-    function layoutIcons(size, animate){
-      // Orbit radius has to clear the center circle's own radius (28% of
-      // size, see .nava-circle) plus each icon's own radius, or the icons
-      // end up overlapping the face instead of ringing it.
-      var radius = size * 0.46;
-      icons.forEach(function(icon){
-        var d = Math.max(10, size * icon.sizeFactor);
-        var x = radius * Math.cos(icon.angle);
-        var y = radius * Math.sin(icon.angle);
-        var w = icon.wrapper;
-        if (!animate) w.style.transition = 'none';
-        w.style.width = d + 'px';
-        w.style.height = d + 'px';
-        w.style.marginTop = (-d / 2) + 'px';
-        w.style.marginLeft = (-d / 2) + 'px';
-        w.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(1)';
-        w.style.opacity = '1';
-        if (!animate){
-          void w.offsetHeight; // flush the transition:none before restoring it
-          w.style.transition = '';
-        }
-      });
-    }
-
-    function switchPersona(){
-      if (!icons.length) return;
-      icons.forEach(function(icon){
-        icon.wrapper.style.transform = 'translate(0,0) scale(.1)';
-        icon.wrapper.style.opacity = '0';
-      });
-      setTimeout(function(){
-        personaIndex = (personaIndex + 1) % USERS.length;
-        var user = USERS[personaIndex];
-        setVideoSrc(user.memoji);
-        buildIcons(user.apps);
-        setTimeout(function(){ layoutIcons(currentSize, true); }, 40);
-      }, 450);
-    }
-
-    // --- Entrance: big, centered over the hero cards, icons fly out once ---
-    currentSize = bigSize();
-    positionStage(bigPosition(currentSize), currentSize);
-    setVideoSrc(USERS[0].memoji);
-    buildIcons(USERS[0].apps);
-    setTimeout(function(){ layoutIcons(currentSize, true); }, 60);
-
-    // --- Dock up into the nav slot + reveal the hero cards in its place.
-    // Fires after one full cycle (icons settle + a short hold), or immediately
-    // if the viewer starts scrolling before that, whichever happens first. ---
-    var triggered = false;
-    function triggerDock(){
-      if (triggered) return;
-      triggered = true;
-      clearTimeout(cycleTimer);
-      window.removeEventListener('scroll', onScroll);
-      var rect = markRect();
-      currentSize = rect.width || 34;
-      positionStage(rect, currentSize);
-      layoutIcons(currentSize, true);
-      revealCards();
-      clearTimeout(safetyTimer);
-      setTimeout(function(){ docked = true; }, 750);
-    }
-    function onScroll(){
-      if (window.scrollY > 12) triggerDock();
-    }
-    // Long enough to comfortably see the app set switch at least twice
-    // (switchPersona runs every 6s) before it docks and hands off to the cards.
-    var cycleTimer = setTimeout(triggerDock, 14000);
-    // Slight delay before listening, so e.g. scroll-position restoration on
-    // reload can't fire this before the intro has even had a chance to play.
-    setTimeout(function(){
-      if (!triggered) window.addEventListener('scroll', onScroll, { passive: true });
-    }, 120);
-
-    // --- Keep it alive in the nav: orbit runs via CSS, persona switches every 6s ---
-    setInterval(switchPersona, 6000);
-
-    // Keep the docked avatar aligned with the mark slot if the layout reflows.
-    window.addEventListener('resize', function(){
-      if (!docked) return;
-      var rect = markRect();
-      currentSize = rect.width || 34;
-      positionStage(rect, currentSize);
-      layoutIcons(currentSize, false);
-    });
+  }
+  var rail = document.getElementById('bagRail');
+  if (rail){
+    var down=false,x=0,left=0;
+    rail.addEventListener('pointerdown', function(e){ down=true; rail.setPointerCapture(e.pointerId); x=e.clientX; left=rail.scrollLeft; });
+    rail.addEventListener('pointerup', function(){ down=false; });
+    rail.addEventListener('pointercancel', function(){ down=false; });
+    rail.addEventListener('pointermove', function(e){ if(!down) return; rail.scrollLeft = left - (e.clientX - x); });
   }
 })();
 </script>

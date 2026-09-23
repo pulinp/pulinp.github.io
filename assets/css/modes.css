@@ -183,7 +183,10 @@
   display:flex; justify-content:center;
   padding:0 1rem calc(1.1rem + env(safe-area-inset-bottom));
   pointer-events:none;
-  background:linear-gradient(to top, rgba(5,5,5,.85) 0%, rgba(5,5,5,.35) 55%, transparent 100%);
+  background:linear-gradient(to top,
+    color-mix(in srgb, var(--paper) 85%, transparent) 0%,
+    color-mix(in srgb, var(--paper) 35%, transparent) 55%,
+    transparent 100%);
 }
 .island-pill{
   pointer-events:auto;
@@ -192,12 +195,12 @@
   min-height:48px;
   padding:.35rem .4rem .35rem .45rem;
   border-radius:999px;
-  background:rgba(16,16,16,.92);
-  border:1px solid rgba(255,255,255,.1);
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
   box-shadow:
-    0 12px 40px rgba(0,0,0,.55),
-    0 0 0 1px rgba(0,0,0,.4),
-    inset 0 1px 0 rgba(255,255,255,.06);
+    0 12px 40px var(--shadow-lift),
+    0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent),
+    inset 0 1px 0 var(--glass-border-soft);
   backdrop-filter:blur(50px) saturate(160%);
   -webkit-backdrop-filter:blur(50px) saturate(160%);
   transition:
@@ -219,7 +222,7 @@
 .island-mode{
   display:inline-flex; align-items:center; gap:.4rem;
   border:none; background:transparent; cursor:pointer;
-  color:rgba(242,242,242,.45);
+  color:var(--ink-faint);
   font-family:"Inter","IBM Plex Mono",system-ui,monospace;
   font-size:.68rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
   padding:.55rem .7rem; border-radius:999px;
@@ -230,18 +233,18 @@
   border:1.5px solid currentColor; background:transparent;
   transition:background .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-.island-mode:hover{ color:rgba(242,242,242,.85); background:rgba(255,255,255,.06); }
+.island-mode:hover{ color:var(--ink); background:var(--tint-strong); }
 .island-mode.active{
-  color:#f2f2f2;
-  background:rgba(255,255,255,.1);
+  color:var(--ink);
+  background:var(--tint-strong);
 }
 .island-mode.active .dot{
-  background:#B6FF6A; border-color:#B6FF6A;
-  box-shadow:0 0 10px rgba(182,255,106,.55);
+  background:var(--accent); border-color:var(--accent);
+  box-shadow:0 0 10px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 
 .island-divider{
-  width:1px; height:16px; background:rgba(255,255,255,.12); flex:none; margin:0 .15rem;
+  width:1px; height:16px; background:var(--glass-border); flex:none; margin:0 .15rem;
 }
 .island-nav{
   display:flex; align-items:center; gap:.1rem;
@@ -260,7 +263,7 @@
 
 .island-nav a{
   flex:none;
-  color:rgba(242,242,242,.55);
+  color:var(--ink-faint);
   text-decoration:none;
   font-family:"Inter",system-ui,sans-serif;
   font-size:.72rem; font-weight:500;
@@ -270,17 +273,17 @@
 }
 .island-nav a:hover,
 .island-nav a.is-active{
-  color:#fff; background:rgba(255,255,255,.08);
+  color:var(--ink); background:var(--tint-strong);
 }
 
 .island-cmdk{
   display:none; align-items:center; justify-content:center;
-  border:none; background:rgba(255,255,255,.06);
-  color:rgba(242,242,242,.7); cursor:pointer;
+  border:none; background:var(--tint);
+  color:var(--ink-soft); cursor:pointer;
   border-radius:999px; padding:.45rem .65rem;
   transition:background .2s ease, color .2s ease;
 }
-.island-cmdk:hover{ background:rgba(255,255,255,.12); color:#fff; }
+.island-cmdk:hover{ background:var(--tint-strong); color:var(--ink); }
 .island-cmdk kbd{
   font-family:"IBM Plex Mono",monospace; font-size:.65rem;
   border:none; background:transparent; color:inherit; padding:0;
@@ -290,10 +293,10 @@
   display:inline-flex; align-items:center; justify-content:center;
   width:32px; height:32px; flex:none;
   border:none; border-radius:999px; cursor:pointer;
-  background:rgba(255,255,255,.06); color:rgba(242,242,242,.7);
+  background:var(--tint); color:var(--ink-soft);
   transition:transform .35s cubic-bezier(.2,.9,.2,1), background .2s ease, color .2s ease;
 }
-.island-toggle:hover{ background:rgba(255,255,255,.12); color:#fff; }
+.island-toggle:hover{ background:var(--tint-strong); color:var(--ink); }
 .island[data-state="expanded"] .island-toggle{ transform:rotate(180deg); }
 
 /* Hide legacy bottom-bar if any remnant */
