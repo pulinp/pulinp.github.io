@@ -86,19 +86,9 @@
     { id:'toolkit-technical', type:'text', tag:'Toolkit · Technical', title:'Technical skills', body:'Python, Java, Swift, JavaScript, SQL, JSON, ETL, CI/CD, OCR, AWS, Azure.' },
     { id:'toolkit-tools', type:'text', tag:'Toolkit · Tools & Platforms', title:'Tools & platforms', body:'Jira, Confluence, Notion, Asana, Slack, Salesforce, Snowflake, Figma, Miro, Lucid Charts, Photoshop, Tableau, Power BI, Amplitude, Postman, Bitbucket.' },
 
-  { id:'bag-macbook', type:'text', tag:'Bag · Daily driver', title:'MacBook', body:'Where roadmaps, prompts, and architecture notes get written before they become tickets.' },
-  { id:'bag-claude', type:'text', tag:'Bag · AI bench', title:'Claude / LLM tabs', body:'Agent workbench for drafting evals, tool schemas, and edge-case prompts.' },
-  { id:'bag-figma', type:'text', tag:'Bag · Surface', title:'Figma', body:'When the surface has to be felt, not just specified — especially developer and agent UX.' },
-  { id:'bag-notion', type:'text', tag:'Bag · Ops', title:'Notion + Jira', body:'Operating system for shipping: decisions, specs, and the trail of why we chose them.' },
-  { id:'bag-postman', type:'text', tag:'Bag · APIs', title:'Postman / traces', body:'Engineer-first habit — trust an API response more than a slide about an API.' },
-  { id:'bag-headphones', type:'text', tag:'Bag · Focus', title:'Headphones', body:'Deep-work armor for prompt loops, PRDs, and hours where context has to stay loaded.' },
-  { id:'bag-notebook', type:'text', tag:'Bag · Research', title:'Field notebook', body:'Interviews and messy systems thinking before anything becomes a deck.' },
-  { id:'bag-coffee', type:'text', tag:'Bag · Fuel', title:'Coffee', body:'Non-negotiable shipping fuel. Everything else is negotiable.' },
-
-
     { id:'credentials', type:'text', tag:'Certifications', title:'Certifications', body:'Gen AI for Product Manager, Certified Scrum Master (CSM), Certified Scrum Product Owner (CSPO), Cybersecurity Specialization.' },
     { id:'education', type:'text', tag:'Education', title:'Education', body:'MS, Management Information Systems, Texas A&M University, GPA 3.9 (2022–2024) — coursework: Human-Computer Interaction, Project Management, Advanced System Analysis & Design, Design & Development Project, Advanced Database Management. B.Tech, Computer Science & Engineering, Sardar Patel Institute of Technology, Mumbai, GPA 3.4 (2017–2021) — coursework: Object Oriented Programming, Technology Entrepreneurship, Design Thinking, Computer Vision.' },
-    { id:'archive', type:'text', tag:'Archive', title:'Archive — earlier work', body:'37 files from undergrad and grad school, filed rather than deleted — each one now a short write-up of what it actually is, not just a link out: 11 product write-ups, one case study each for Hertz App Redesign, Apollo Urgent Care and EventVol, 13 presentations, and 10 Design Diary UX-teardown essays. The 37 individual entries immediately follow this one in the machine index below.', link:{ label:'View archive', href:'https://pulinpprabhu.com/#archive' } },
+    { id:'archive', type:'text', tag:'Archive', title:'Archive — more work', body:'Sits directly after Selected work on the page, as the wider body of work those four case studies are drawn from. 37 files from undergrad and grad school, filed rather than deleted — each one now a short write-up of what it actually is, not just a link out: 11 product write-ups, one case study each for Hertz App Redesign, Apollo Urgent Care and EventVol, 13 presentations, and 10 Design Diary UX-teardown essays. The 37 individual entries immediately follow this one in the machine index below.', link:{ label:'View archive', href:'https://pulinpprabhu.com/#archive' } },
 
     // ---- archive: one entry per write-up, grouped Product / Case Studies / Presentations / Design Diary ----
     { id:'arc-easy-bryan', type:'text', tag:'Archive · Product', title:'A product canvas for a downtown that had outgrown its website', body:'Easy Bryan — three personas, ten features, two sprints of story-pointed user stories, built to replace a booking process that couldn’t show real-time availability', link:{ label:'Read →', href:'https://pulinpprabhu.com/work/post.html?p=easy-bryan' } },
@@ -169,7 +159,6 @@
     if (e.id.indexOf('pub-') === 0) return '#publications';
     if (e.id.indexOf('post-') === 0) return '#writing';
     if (e.id.indexOf('toolkit-') === 0) return '#toolkit';
-    if (e.id.indexOf('bag-') === 0) return '#bag';
     if (e.id === 'credentials' || e.id === 'education') return '#credentials';
     if (e.id === 'contact') return '#contact';
     return '#top';
