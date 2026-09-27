@@ -198,3 +198,36 @@
 @media (prefers-reduced-motion: reduce){
   .island-pill{ transition:none; }
 }
+
+.island-mode:disabled{ opacity:.4; cursor:default; }
+
+/* ========== Mode transition overlay (Human/Machine/Chat "encrypt/decrypt" crossfade) ==========
+   Sits above the sticky header (z-index 50) so the effect is full-bleed, but
+   below the island pill (z-index 80) so the switcher itself stays visible
+   through the transition (its buttons are disabled for the duration instead). */
+.mode-transition-overlay{
+  position:fixed; inset:0; z-index:65; pointer-events:none;
+  display:none; overflow:hidden;
+}
+.mode-transition-overlay.active{ display:block; }
+.mt-band{
+  position:absolute; left:0; right:0; height:20%;
+  background:var(--ink); opacity:.05;
+  transform:translateY(-100%);
+}
+.mt-band:nth-child(1){ top:0%; }
+.mt-band:nth-child(2){ top:20%; }
+.mt-band:nth-child(3){ top:40%; }
+.mt-band:nth-child(4){ top:60%; }
+.mt-band:nth-child(5){ top:80%; }
+.mt-noise{
+  position:absolute; inset:0; opacity:0;
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--ink) 9%, transparent) 0px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--ink) 6%, transparent) 0px, transparent 1px, transparent 4px);
+  mix-blend-mode:overlay;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .mode-transition-overlay{ display:none !important; }
+}

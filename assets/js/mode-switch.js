@@ -47,7 +47,15 @@
     document.dispatchEvent(new CustomEvent('viewmodechange', { detail: { mode: mode } }));
   }
   modeButtons.forEach(function(btn){
-    btn.addEventListener('click', function(){ setMode(btn.dataset.view); });
+    btn.addEventListener('click', function(){
+      var target = btn.dataset.view;
+      if (target === document.body.getAttribute('data-mode')) return;
+      // mode-transition.js (if loaded) hooks in here to run the animated
+      // crossfade and call setMode itself partway through; otherwise this
+      // falls back to the plain instant swap below, unchanged.
+      if (window.animateModeSwitch) window.animateModeSwitch(target);
+      else setMode(target);
+    });
   });
   setMode('site');
   syncHeaderHeight();
