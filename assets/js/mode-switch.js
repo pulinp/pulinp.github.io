@@ -1,10 +1,11 @@
-// Human / Machine / Chat mode switcher, shared by every page that has the bottom-bar
-// pill switcher. Switching modes never re-fetches or re-derives content — it only
-// toggles which of #siteView / #machineView / #chatView is visible. Each page is
+// Human / Machine / Chat mode switcher, shared by every page that has the floating
+// island pill switcher (index-new.html and work/post.html). Switching modes never
+// re-fetches or re-derives content, and never navigates — it only toggles which of
+// #siteView / #machineView / #chatView is visible on the current page. Each page is
 // responsible for populating all three with the same underlying content before this
 // runs; this file only owns the toggle.
 (function(){
-  var modeButtons = document.querySelectorAll('.island-mode, .bb-mode');
+  var modeButtons = document.querySelectorAll('.island-mode');
   var siteView = document.getElementById('siteView');
   var machineView = document.getElementById('machineView');
   var chatViewEl = document.getElementById('chatView');
@@ -39,6 +40,11 @@
       var ci = document.getElementById('chatInput');
       if (ci) ci.focus();
     }
+    // Lets other scripts (e.g. the docked nav-avatar animation) re-sync anything
+    // that's positioned off a live getBoundingClientRect() — the header itself
+    // doesn't move between modes, but a stale position from before the switch
+    // can otherwise linger uncorrected since nothing else triggers a resize.
+    document.dispatchEvent(new CustomEvent('viewmodechange', { detail: { mode: mode } }));
   }
   modeButtons.forEach(function(btn){
     btn.addEventListener('click', function(){ setMode(btn.dataset.view); });

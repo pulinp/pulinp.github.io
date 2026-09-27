@@ -6,9 +6,6 @@
 (function(){
   // ---- knowledge base: single source of truth the chat and machine views draw from ----
   var KB = [
-    { id:'about', type:'text', tag:'About', title:'About Pulin',
-      body:'Product manager who started as an engineer — a CS degree from Mumbai, three peer-reviewed machine learning papers, and an MS in Management Information Systems from Texas A&M sit underneath every roadmap. Equally comfortable in Postman and a Bitbucket pipeline as in Figma. Over the last four years: launched a cross-platform insurance app to 500K+ users, architected a multi-agent commerce platform as a founding product manager, and is now rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ. Outside work: cars and driving since childhood, and a recent pickleball habit.' },
-
     { id:'stat-hireez-screening', type:'stat', tag:'HireEZ', title:'80% faster recruiter screening', big:'80%',
       body:'Rebuilt dynamic voice-agent prompting for real-time persona, question & evaluation generation from job and candidate context, scaling to thousands of automated interviews.' },
     { id:'stat-hireez-turnaround', type:'stat', tag:'HireEZ', title:'93% faster feature-support turnaround', big:'93%',
@@ -81,11 +78,6 @@
       body:'On moving from engineering into product and starting to write about it.',
       link:{ label:'Read on Medium', href:'https://medium.com/@pulinprabhu02/from-code-to-product-my-journey-in-tech-and-why-im-finally-writing-about-it-1cc41c00af86' } },
 
-    { id:'toolkit-product', type:'text', tag:'Toolkit · Product', title:'Product skills', body:'Agile/Scrum, Roadmaps, APIs, SaaS, Go-to-Market, Feature Prioritization, Metrics, Customer Insights.' },
-    { id:'toolkit-ai', type:'text', tag:'Toolkit · AI & Agents', title:'AI & agent skills', body:'LLMs, RAG, Agent Design, OpenAI, LangChain.' },
-    { id:'toolkit-technical', type:'text', tag:'Toolkit · Technical', title:'Technical skills', body:'Python, Java, Swift, JavaScript, SQL, JSON, ETL, CI/CD, OCR, AWS, Azure.' },
-    { id:'toolkit-tools', type:'text', tag:'Toolkit · Tools & Platforms', title:'Tools & platforms', body:'Jira, Confluence, Notion, Asana, Slack, Salesforce, Snowflake, Figma, Miro, Lucid Charts, Photoshop, Tableau, Power BI, Amplitude, Postman, Bitbucket.' },
-
     { id:'credentials', type:'text', tag:'Certifications', title:'Certifications', body:'Gen AI for Product Manager, Certified Scrum Master (CSM), Certified Scrum Product Owner (CSPO), Cybersecurity Specialization.' },
     { id:'education', type:'text', tag:'Education', title:'Education', body:'MS, Management Information Systems, Texas A&M University, GPA 3.9 (2022–2024) — coursework: Human-Computer Interaction, Project Management, Advanced System Analysis & Design, Design & Development Project, Advanced Database Management. B.Tech, Computer Science & Engineering, Sardar Patel Institute of Technology, Mumbai, GPA 3.4 (2017–2021) — coursework: Object Oriented Programming, Technology Entrepreneurship, Design Thinking, Computer Vision.' },
     { id:'archive', type:'text', tag:'Archive', title:'Archive — more work', body:'Sits directly after Selected work on the page, as the wider body of work those four case studies are drawn from. 37 files from undergrad and grad school, filed rather than deleted — each one now a short write-up of what it actually is, not just a link out: 11 product write-ups, one case study each for Hertz App Redesign, Apollo Urgent Care and EventVol, 13 presentations, and 10 Design Diary UX-teardown essays. The 37 individual entries immediately follow this one in the machine index below.', link:{ label:'View archive', href:'https://pulinpprabhu.com/#archive' } },
@@ -152,13 +144,11 @@
   // and the command palette. Archive/case entries resolve to their own dedicated pages
   // elsewhere (via e.link), this is specifically "where on the homepage does this live."
   function sectionForEntry(e){
-    if (e.id === 'about') return '#about';
     if (e.id === 'archive' || e.id.indexOf('arc-') === 0) return '#archive';
     if (e.id.indexOf('stat-') === 0 || e.id.indexOf('exp-') === 0) return '#experience';
     if (e.id.indexOf('case-') === 0) return '#work';
     if (e.id.indexOf('pub-') === 0) return '#publications';
     if (e.id.indexOf('post-') === 0) return '#writing';
-    if (e.id.indexOf('toolkit-') === 0) return '#toolkit';
     if (e.id === 'credentials' || e.id === 'education') return '#credentials';
     if (e.id === 'contact') return '#contact';
     return '#top';

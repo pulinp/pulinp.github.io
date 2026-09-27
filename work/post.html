@@ -3,6 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Applied before first paint so there's no flash of the wrong theme: if the
+// visitor has an explicit saved preference, use it; otherwise the CSS below
+// falls back to prefers-color-scheme on its own (see :root/:root[data-theme]).
+(function(){
+  try {
+    var stored = localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark'){
+      document.documentElement.setAttribute('data-theme', stored);
+    }
+  } catch (e){}
+})();
+</script>
 <title>Pulin Prabhu — Archive</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../assets/images/logo.svg" type="image/svg+xml">
@@ -23,6 +36,17 @@
     --accent-ink:#7A5119;
     --accent-2:#3B7D6C;
     --shadow:rgba(20,26,20,0.10);
+    --shadow-lift:rgba(20,26,20,.18);
+    /* "Glass" tokens for the header nav-pill and bottom island — mixed from
+       --surface/--ink rather than hardcoded, so one definition covers light
+       and dark without a separate per-theme copy. Kept in sync with the same
+       tokens in index-new.html. */
+    --glass-bg:color-mix(in srgb, var(--surface) 82%, transparent);
+    --glass-bg-soft:color-mix(in srgb, var(--surface) 68%, transparent);
+    --glass-border:color-mix(in srgb, var(--ink) 10%, transparent);
+    --glass-border-soft:color-mix(in srgb, var(--ink) 6%, transparent);
+    --tint:color-mix(in srgb, var(--ink) 4%, transparent);
+    --tint-strong:color-mix(in srgb, var(--ink) 8%, transparent);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -30,6 +54,7 @@
       --ink:#ECEEE7; --ink-soft:#AAB3AA; --ink-faint:#6E7871;
       --line:#293230; --accent:#E3A455; --accent-ink:#F0C384; --accent-2:#5FB89C;
       --shadow:rgba(0,0,0,0.45);
+      --shadow-lift:rgba(0,0,0,.5);
     }
   }
   :root[data-theme="dark"]{
@@ -37,6 +62,7 @@
     --ink:#ECEEE7; --ink-soft:#AAB3AA; --ink-faint:#6E7871;
     --line:#293230; --accent:#E3A455; --accent-ink:#F0C384; --accent-2:#5FB89C;
     --shadow:rgba(0,0,0,0.45);
+    --shadow-lift:rgba(0,0,0,.5);
   }
 
   *{ box-sizing:border-box; }
@@ -78,6 +104,137 @@
     font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.8rem; color:var(--ink); flex:none;
   }
   .mark-name{ font-weight:600; font-size:.95rem; letter-spacing:-.01em; white-space:nowrap; }
+
+  /* --- Animated nav avatar: same orbiting memoji/icon animation as the "PP"
+     mark on index-new.html, docked in the mark slot from the start (no
+     homepage-style big centered entrance — there's no hero panel here to
+     play that over). See the script near the end of <body>. --- */
+  .mark-box.avatar-active{ opacity:0; }
+  .nava-stage{
+    position:fixed; z-index:90; pointer-events:none; border-radius:50%;
+    transition:
+      width .7s cubic-bezier(.2,.8,.2,1), height .7s cubic-bezier(.2,.8,.2,1),
+      top .7s cubic-bezier(.2,.8,.2,1), left .7s cubic-bezier(.2,.8,.2,1),
+      opacity .3s ease;
+  }
+  /* It starts already docked here (no big-intro phase, see the script below),
+     so — unlike a mid-intro moment on the homepage — it's part of the
+     persistent header chrome and should keep running in every mode. */
+  body:not([data-mode="site"]) .nava-stage:not(.docked){ opacity:0; }
+  .nava-circle{
+    position:absolute; left:22%; top:22%; width:56%; height:56%;
+    border-radius:50%; overflow:hidden;
+    background:var(--surface); box-shadow:0 10px 30px var(--shadow);
+  }
+  .nava-circle video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .nava-orbit{ position:absolute; inset:0; animation:navaRotate 25s linear infinite; }
+  .nava-icon-wrapper{
+    position:absolute; top:50%; left:50%;
+    transform:translate(0,0) scale(.1); opacity:0;
+    transition:
+      transform .6s cubic-bezier(.68,-.55,.27,1.55), opacity .5s ease-out,
+      width .7s cubic-bezier(.2,.8,.2,1), height .7s cubic-bezier(.2,.8,.2,1),
+      margin .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .nava-icon{
+    width:100%; height:100%; border-radius:50%; box-sizing:border-box;
+    background:#F4F5F0; border:1px solid rgba(20,26,20,.1);
+    box-shadow:0 3px 10px rgba(20,26,20,.22);
+    display:flex; align-items:center; justify-content:center;
+    animation:navaRotateReverse 25s linear infinite;
+    padding:16%;
+  }
+  .nava-icon img{ width:100%; height:100%; object-fit:contain; }
+  .nava-icon .nava-icon-text{
+    font-family:"IBM Plex Mono",monospace; font-weight:700; color:#14180F;
+    font-size:.6rem; line-height:1;
+  }
+  @keyframes navaRotate{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+  @keyframes navaRotateReverse{ from{ transform:rotate(0deg); } to{ transform:rotate(-360deg); } }
+  @media (prefers-reduced-motion:reduce){
+    .nava-stage{ display:none !important; }
+    .mark-box.avatar-active{ opacity:1 !important; }
+  }
+
+  /* One pill — hamburger, clock, theme, résumé — same recipe as index-new.html's
+     header and the bottom island's mode switcher, so all three floating chrome
+     pieces read as one design language across the whole site. */
+  .nav-pill{
+    display:flex; align-items:center; gap:.4rem;
+    padding:.4rem .45rem; border-radius:999px;
+    background:var(--glass-bg-soft);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+    box-shadow:0 12px 40px var(--shadow-lift);
+  }
+  nav.primary{
+    display:flex; align-items:center; gap:.15rem;
+    max-width:0; opacity:0; overflow:hidden;
+    transition:max-width .45s cubic-bezier(.2,.9,.2,1), opacity .25s ease, margin .35s ease;
+    margin:0;
+  }
+  .nav-pill[data-state="expanded"] nav.primary{
+    max-width:580px; opacity:1; margin-right:.1rem;
+  }
+  nav.primary a{
+    flex:none;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.68rem; letter-spacing:.04em;
+    text-decoration:none; color:var(--ink-soft);
+    padding:.6rem .8rem; border-radius:999px;
+    white-space:nowrap;
+    transition:color .2s ease, background .2s ease;
+  }
+  nav.primary a:hover{ color:var(--ink); background:var(--tint-strong); }
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; flex:none;
+    border:1px solid var(--glass-border); border-radius:50%;
+    background:var(--glass-bg-soft); color:var(--ink-soft);
+    cursor:pointer; padding:0;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .nav-toggle:hover{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
+  .nav-toggle .nt-top, .nav-toggle .nt-bot{ transition:transform .25s ease, opacity .2s ease; transform-origin:center; }
+  .nav-toggle .nt-mid{ transition:opacity .15s ease; }
+  .nav-toggle[aria-expanded="true"]{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
+  .nav-toggle[aria-expanded="true"] .nt-top{ transform:translateY(3px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nt-bot{ transform:translateY(-3px) rotate(-45deg); }
+  .nav-toggle[aria-expanded="true"] .nt-mid{ opacity:0; }
+  .nav-divider{ width:1px; height:18px; background:var(--glass-border); flex:none; }
+  .nav-clock{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.02em;
+    color:var(--ink-faint); padding:.3rem .1rem; text-align:center; flex:none;
+    white-space:nowrap;
+  }
+  .theme-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; flex:none;
+    border:1px solid var(--glass-border); border-radius:50%;
+    background:var(--glass-bg-soft); color:var(--ink-soft);
+    cursor:pointer; padding:0;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .theme-toggle svg{ width:15px; height:15px; }
+  .theme-toggle:hover{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
+  .nav-cta{
+    flex:none;
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.04em;
+    text-decoration:none; color:var(--paper); background:var(--ink);
+    padding:.62rem .95rem; border-radius:999px; white-space:nowrap;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{ background:var(--accent); color:#181410; }
+  @media (max-width:640px){
+    .top-inner{ gap:.5rem; flex-wrap:wrap; }
+    .mark-name{ display:none; }
+    .nav-clock{ display:none; }
+    .nav-pill{ max-width:calc(100vw - 140px); }
+    .nav-pill[data-state="expanded"] nav.primary{ overflow-x:auto; scrollbar-width:none; }
+    nav.primary::-webkit-scrollbar{ display:none; }
+  }
+
   .back-link{
     font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.06em; text-decoration:none;
     color:var(--ink-faint); border-bottom:1px solid transparent; padding:.3rem 0;
@@ -167,7 +324,30 @@
       <span class="mark-box">PP</span>
       <span class="mark-name">Pulin Prabhu</span>
     </a>
-    <a class="back-link" id="backLink" href="../index-new.html#archive">← Back to archive</a>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <div class="nav-pill" id="navPill" data-state="collapsed">
+        <nav class="primary" id="primaryNav" aria-label="Site sections">
+          <a href="../index-new.html#work">/work</a>
+          <a href="../index-new.html#experience">/experience</a>
+          <a href="../index-new.html#publications">/publications</a>
+          <a href="../index-new.html#credentials">/education</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Expand navigation">
+          <svg class="nt-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path class="nt-top" d="M2 4.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path class="nt-mid" d="M2 7.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path class="nt-bot" d="M2 10.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <span class="nav-divider" aria-hidden="true"></span>
+        <span class="nav-clock" id="navClock" aria-hidden="true">00:00</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a class="nav-cta" href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Résumé ↓</a>
+      </div>
+      <a class="back-link" id="backLink" href="../index-new.html#archive">← Back to archive</a>
+    </div>
   </div>
 </header>
 
@@ -212,21 +392,15 @@
 
 <div id="chatView" class="chat-view" hidden>
   <aside class="chat-sidebar" id="chatSidebar">
-    <div class="cs-top">
-      <span class="mark-box">PP</span>
-      <span class="cs-name">Pulin Prabhu</span>
-    </div>
     <button type="button" class="cs-new" id="chatNewBtn">+ New chat</button>
     <div class="cs-label">Sections</div>
     <nav class="cs-list" id="csList">
-      <button type="button" class="cs-item" data-target="#about">About</button>
-      <button type="button" class="cs-item" data-target="#experience">Experience</button>
       <button type="button" class="cs-item" data-target="#work">Selected work</button>
-      <button type="button" class="cs-item" data-target="#publications">Publications</button>
-      <button type="button" class="cs-item" data-target="#writing">Writing</button>
-      <button type="button" class="cs-item" data-target="#toolkit">Toolkit</button>
-      <button type="button" class="cs-item" data-target="#credentials">Credentials</button>
       <button type="button" class="cs-item" data-target="#archive">Archive</button>
+      <button type="button" class="cs-item" data-target="#experience">Experience</button>
+      <button type="button" class="cs-item" data-target="#writing">Writing</button>
+      <button type="button" class="cs-item" data-target="#publications">Publications</button>
+      <button type="button" class="cs-item" data-target="#credentials">Credentials</button>
       <button type="button" class="cs-item" data-target="#contact">Contact</button>
     </nav>
   </aside>
@@ -243,7 +417,7 @@
           <button type="button" class="suggest-chip">What did he build at HireEZ?</button>
           <button type="button" class="suggest-chip">Walk me through the zero-to-one insurance launch</button>
           <button type="button" class="suggest-chip">What's the research record?</button>
-          <button type="button" class="suggest-chip">What tools does he use day to day?</button>
+          <button type="button" class="suggest-chip">What's he shipped most recently?</button>
         </div>
       </div>
     </div>
@@ -257,11 +431,19 @@
   </div>
 </div>
 
-<div class="bottom-bar">
-  <div class="bottom-bar-inner">
-    <button type="button" class="bb-mode active" data-view="site" role="tab" aria-selected="true"><span class="dot"></span>Human</button>
-    <button type="button" class="bb-mode" data-view="machine" role="tab" aria-selected="false"><span class="dot"></span>Machine</button>
-    <button type="button" class="bb-mode" data-view="chat" role="tab" aria-selected="false"><span class="dot"></span>Chat</button>
+<div class="island" id="island" data-state="collapsed">
+  <div class="island-pill" id="islandPill">
+    <div class="island-modes" role="tablist" aria-label="View mode">
+      <button type="button" class="island-mode active" data-view="site" role="tab" aria-selected="true" title="Human">
+        <span class="dot"></span><span class="lbl">Human</span>
+      </button>
+      <button type="button" class="island-mode" data-view="machine" role="tab" aria-selected="false" title="Machine">
+        <span class="dot"></span><span class="lbl">Machine</span>
+      </button>
+      <button type="button" class="island-mode" data-view="chat" role="tab" aria-selected="false" title="Chat">
+        <span class="dot"></span><span class="lbl">Chat</span>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -269,6 +451,90 @@
 <script src="../assets/js/kb.js"></script>
 <script src="../assets/js/mode-switch.js"></script>
 <script src="../assets/js/chat-widget.js"></script>
+<script>
+(function(){
+  var nav = document.getElementById('primaryNav');
+  var navPill = document.getElementById('navPill');
+  var navToggle = document.getElementById('navToggle');
+
+  // Pill expands leftward on hover/tap of the hamburger, same as index-new.html's
+  // header. A click also "pins" it open (so touch/click-only users aren't stuck
+  // relying on hover), closed by outside click, Escape, or picking a link.
+  var pinned = false;
+  function setExpanded(on){
+    navPill.setAttribute('data-state', on ? 'expanded' : 'collapsed');
+    navToggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', on ? 'Collapse navigation' : 'Expand navigation');
+  }
+  navToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    pinned = !pinned;
+    setExpanded(pinned);
+  });
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    navToggle.addEventListener('mouseenter', function(){ if (!pinned) setExpanded(true); });
+    navPill.addEventListener('mouseleave', function(){ if (!pinned) setExpanded(false); });
+  }
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ pinned = false; setExpanded(false); });
+  });
+  document.addEventListener('click', function(e){
+    if (navPill.getAttribute('data-state') !== 'expanded') return;
+    if (navPill.contains(e.target)) return;
+    pinned = false; setExpanded(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && navPill.getAttribute('data-state') === 'expanded'){
+      pinned = false; setExpanded(false);
+    }
+  });
+
+  // Live clock in pill nav — always Pulin's own local time (Sunnyvale, CA).
+  var clock = document.getElementById('navClock');
+  function tick(){
+    if (!clock) return;
+    var d = new Date();
+    clock.textContent = d.toLocaleTimeString('en-US', {
+      hour:'2-digit', minute:'2-digit',
+      timeZone:'America/Los_Angeles', timeZoneName:'short'
+    });
+  }
+  tick();
+  setInterval(tick, 1000 * 30);
+
+  // Dark / light toggle. Explicit choices persist in localStorage and win
+  // over prefers-color-scheme (see the anti-flash script in <head> and the
+  // :root[data-theme] rules in <style>).
+  var themeBtn = document.getElementById('themeToggle');
+  var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';
+  if (themeBtn){
+    var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+    function activeTheme(){
+      var explicit = document.documentElement.getAttribute('data-theme');
+      if (explicit === 'light' || explicit === 'dark') return explicit;
+      return systemDark.matches ? 'dark' : 'light';
+    }
+    function paint(theme){
+      themeBtn.innerHTML = theme === 'dark' ? MOON : SUN;
+      themeBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+      themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    themeBtn.addEventListener('click', function(){
+      var next = activeTheme() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e){}
+      paint(next);
+    });
+    systemDark.addEventListener('change', function(){
+      var stored;
+      try { stored = localStorage.getItem('theme'); } catch (e){}
+      if (stored !== 'light' && stored !== 'dark') paint(activeTheme());
+    });
+    paint(activeTheme());
+  }
+})();
+</script>
 <script>
 (function(){
   function qs(name){
@@ -379,6 +645,169 @@
       document.getElementById('postArticle').hidden = false;
     })
     .catch(function(){ showError(); });
+})();
+</script>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var markBox = document.querySelector('.mark-box');
+  if (reduceMotion || !markBox) return;
+
+  try { runDockedNavAvatar(); }
+  catch (err){ markBox.classList.remove('avatar-active'); }
+
+  function runDockedNavAvatar(){
+    var USERS = [
+      { memoji:'../assets/images/imageMovie/EmojiMovie779932665.mp4',
+        apps:[ { name:'Jira' }, { name:'Python' }, { name:'Docker' }, { name:'SQL' },
+               { name:'Slack' }, { name:'AWS' }, { name:'Tableau' } ] },
+      { memoji:'../assets/images/imageMovie/EmojiMovie779932701.mp4',
+        apps:[ { name:'Tableau' }, { name:'PowerBI' }, { name:'Python' }, { name:'SQL' },
+               { name:'Excel' }, { name:'Azure' } ] },
+      { memoji:'../assets/images/imageMovie/EmojiMovie779932788.mp4',
+        apps:[ { name:'Confluence' }, { name:'Postman' }, { name:'Git' }, { name:'Miro' },
+               { name:'Figma' }, { name:'Notion' } ] }
+    ];
+    var LOGOS = {
+      Jira:'jira-logo.png', Python:'python-logo.png', Figma:'figma-logo.png',
+      SQL:'sql-logo.png', Slack:'slack-logo.png', AWS:'aws-logo.png',
+      Tableau:'tableau-logo.png', PowerBI:'powerbi-logo.png', Excel:'excel-logo.png',
+      Azure:'azure-logo.png', Confluence:'confluence-logo.png', Postman:'postman-logo.png',
+      Git:'git-logo.png', Docker:'docker-logo.png', Miro:'miro-logo.png', Notion:'notion-logo.png'
+    };
+
+    var stage = document.createElement('div');
+    stage.className = 'nava-stage docked';
+    stage.setAttribute('aria-hidden', 'true');
+    stage.innerHTML =
+      '<div class="nava-circle"><video muted loop playsinline preload="metadata" webkit-playsinline></video></div>' +
+      '<div class="nava-orbit"></div>';
+    document.body.appendChild(stage);
+    var video = stage.querySelector('video');
+    var orbit = stage.querySelector('.nava-orbit');
+
+    markBox.classList.add('avatar-active');
+
+    var currentSize = 0;
+    var icons = []; // [{ wrapper, sizeFactor, angle }]
+    var personaIndex = 0;
+
+    function markRect(){ return markBox.getBoundingClientRect(); }
+
+    function positionStage(pos, size){
+      stage.style.width = size + 'px';
+      stage.style.height = size + 'px';
+      stage.style.left = pos.left + 'px';
+      stage.style.top = pos.top + 'px';
+    }
+
+    function setVideoSrc(src){
+      while (video.firstChild) video.removeChild(video.firstChild);
+      var source = document.createElement('source');
+      source.type = 'video/mp4';
+      source.src = src;
+      video.appendChild(source);
+      video.load();
+      var playPromise = video.play();
+      if (playPromise && playPromise.catch) playPromise.catch(function(){});
+    }
+    video.addEventListener('error', function(){
+      video.style.display = 'none';
+      if (!stage.querySelector('.nava-fallback-img')){
+        var img = document.createElement('img');
+        img.className = 'nava-fallback-img';
+        img.src = '../assets/images/my-avatar.png';
+        img.alt = '';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+        stage.querySelector('.nava-circle').appendChild(img);
+      }
+    });
+
+    function buildIcons(apps){
+      orbit.innerHTML = '';
+      var angleStep = (2 * Math.PI) / apps.length;
+      icons = apps.map(function(app, i){
+        var wrapper = document.createElement('div');
+        wrapper.className = 'nava-icon-wrapper';
+        var iconEl = document.createElement('div');
+        iconEl.className = 'nava-icon';
+        var logo = LOGOS[app.name];
+        if (logo){
+          iconEl.innerHTML = '<img src="../assets/images/' + logo + '" alt="' + app.name + '">';
+        } else {
+          var initials = app.name.split(' ').map(function(n){ return n[0]; }).join('').slice(0, 2);
+          iconEl.innerHTML = '<span class="nava-icon-text">' + initials + '</span>';
+        }
+        wrapper.appendChild(iconEl);
+        orbit.appendChild(wrapper);
+        return {
+          wrapper: wrapper,
+          sizeFactor: 0.23 + Math.random() * 0.04,
+          angle: i * angleStep + (Math.random() - 0.5) * angleStep * 0.3
+        };
+      });
+    }
+
+    function layoutIcons(size, animate){
+      var radius = size * 0.46;
+      icons.forEach(function(icon){
+        var d = Math.max(10, size * icon.sizeFactor);
+        var x = radius * Math.cos(icon.angle);
+        var y = radius * Math.sin(icon.angle);
+        var w = icon.wrapper;
+        if (!animate) w.style.transition = 'none';
+        w.style.width = d + 'px';
+        w.style.height = d + 'px';
+        w.style.marginTop = (-d / 2) + 'px';
+        w.style.marginLeft = (-d / 2) + 'px';
+        w.style.transform = 'translate(' + x + 'px,' + y + 'px) scale(1)';
+        w.style.opacity = '1';
+        if (!animate){
+          void w.offsetHeight; // flush the transition:none before restoring it
+          w.style.transition = '';
+        }
+      });
+    }
+
+    function switchPersona(){
+      if (!icons.length) return;
+      icons.forEach(function(icon){
+        icon.wrapper.style.transform = 'translate(0,0) scale(.1)';
+        icon.wrapper.style.opacity = '0';
+      });
+      setTimeout(function(){
+        personaIndex = (personaIndex + 1) % USERS.length;
+        var user = USERS[personaIndex];
+        setVideoSrc(user.memoji);
+        buildIcons(user.apps);
+        setTimeout(function(){ layoutIcons(currentSize, true); }, 40);
+      }, 450);
+    }
+
+    // Start straight in the docked state, sized to the mark slot — no
+    // homepage-style big centered entrance (there's no hero panel here).
+    var rect = markRect();
+    currentSize = rect.width || 30;
+    positionStage(rect, currentSize);
+    setVideoSrc(USERS[0].memoji);
+    buildIcons(USERS[0].apps);
+    setTimeout(function(){ layoutIcons(currentSize, false); }, 30);
+
+    // Keep it alive: orbit runs via CSS, persona switches every 6s.
+    setInterval(switchPersona, 6000);
+
+    // Keep the docked avatar aligned with the mark slot if the layout reflows,
+    // or if a Human/Machine/Chat switch left it stale (see mode-switch.js).
+    function resyncDocked(){
+      var r = markRect();
+      currentSize = r.width || 30;
+      positionStage(r, currentSize);
+      layoutIcons(currentSize, false);
+    }
+    window.addEventListener('resize', resyncDocked);
+    document.addEventListener('viewmodechange', resyncDocked);
+  }
 })();
 </script>
 
