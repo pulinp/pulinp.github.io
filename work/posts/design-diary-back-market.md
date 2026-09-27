@@ -20,7 +20,7 @@ Search history and a curated view of previously browsed items mean a comparison-
 
 ## Standard design patterns, plus one Back Market-specific pattern
 
-Login, product display, and information placement all lean on conventions from other e-commerce apps, minimizing the learning curve. But the pattern that stood out as specific to this product is the standardized condition grading — every listing is labeled Fair, Good, or Excellent, consistently, everywhere. That's not a generic e-commerce pattern; it's a purpose-built signifier that lets you compare two listings at a glance without reading a paragraph of condition notes.
+Login, product display, and information placement all lean on conventions from other e-commerce apps, minimizing the learning curve. But the pattern that stood out as specific to this product is the standardized condition grading — every listing is labeled Fair, Good, or Excellent, consistently, everywhere. It's a purpose-built signifier, more specific than a generic e-commerce pattern, that lets you compare two listings at a glance without reading a paragraph of condition notes.
 
 ## Memory aid
 
@@ -28,4 +28,4 @@ Password recovery is supported directly in-app or through customer support, and 
 
 ## The takeaway
 
-What makes Back Market interesting as a design case isn't that it invented new patterns — it borrows heavily and deliberately from fast-fashion e-commerce (the same placeholder and recall strategies I found in SHEIN). What it *did* build purpose-specific is the condition-grading system, because that's the one place where a generic pattern wouldn't have been enough — refurbished electronics carry a trust problem new products don't, and the interface had to solve for that specifically rather than assume familiarity would cover it.
+What makes Back Market interesting as a design case is how heavily and deliberately it borrows from fast-fashion e-commerce (the same placeholder and recall strategies I found in SHEIN), rather than inventing new patterns of its own. What it *did* build purpose-specific is the condition-grading system, because that's the one place where a generic pattern wouldn't have been enough — refurbished electronics carry a trust problem new products don't, and the interface had to solve for that specifically rather than assume familiarity would cover it.

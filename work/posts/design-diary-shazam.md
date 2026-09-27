@@ -12,7 +12,7 @@ I got introduced to Shazam the way most people probably do: a song played at a g
 
 ## Affordance and signifiers, concentrated in one place
 
-Shazam's whole interface is organized around a single, unmistakable button. It's large, high-contrast, and dead center — there's no ambiguity about what it does or where to find it. What impressed me more was how that same centered, prominent treatment carries over to secondary actions: opening a track in your streaming app, saving it to your library. The app doesn't just nail its primary affordance, it reuses that visual language consistently.
+Shazam's whole interface is organized around a single, unmistakable button. It's large, high-contrast, and dead center — there's no ambiguity about what it does or where to find it. What impressed me more was how that same centered, prominent treatment carries over to secondary actions: opening a track in your streaming app, saving it to your library. The app reuses that same visual language for secondary actions, not just the primary button.
 
 ## Discoverability
 

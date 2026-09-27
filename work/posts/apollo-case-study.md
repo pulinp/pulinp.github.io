@@ -12,9 +12,9 @@ Apollo Urgent Care was a group project for my Human-Computer Interaction class, 
 
 ## My role, under a two-day clock
 
-With a prototype as the only realistic deliverable in that window, my contributions focused on two things: deciding the actual sequence of screens, and figuring out how a patient could get assigned a doctor with the least possible delay — which, for an urgent care kiosk, isn't a nice-to-have, it's the entire point of the product. I also worked directly on the prototype design itself alongside the rest of the team.
+With a prototype as the only realistic deliverable in that window, my contributions focused on two things: deciding the actual sequence of screens, and figuring out how a patient could get assigned a doctor with the least possible delay — for an urgent care kiosk, that's the entire point of the product, not a nice-to-have. I also worked directly on the prototype design itself alongside the rest of the team.
 
-Before any visual design happened, we built a wireframe mapping the patient's journey and the order screens needed to appear in. Under a two-day timeline, that wireframe wasn't a formality — it was what let the team split up and build the actual screens in parallel with confidence that they'd fit together, instead of discovering conflicts once the visual design was already underway.
+Before any visual design happened, we built a wireframe mapping the patient's journey and the order screens needed to appear in. Under a two-day timeline, that wireframe did real work: it let the team split up and build the actual screens in parallel with confidence that they'd fit together, instead of discovering conflicts once the visual design was already underway.
 
 ## The decision that shaped everything else
 

@@ -16,7 +16,7 @@ Every earlier entry in this series touched discoverability and feedback almost b
 
 ## Placeholders that tell you what a field wants
 
-Search fields don't just sit empty — they suggest queries, so you're never staring at a blank box wondering what's a valid search. Login carries this further: the app auto-completes your email address, which isn't just convenience, it's a memory-load reduction. You don't have to *recall* your email, you just have to *recognize* it.
+Search fields don't just sit empty — they suggest queries, so you're never staring at a blank box wondering what's a valid search. Login carries this further: the app auto-completes your email address — a memory-load reduction more than a convenience. You don't have to *recall* your email, you just have to *recognize* it.
 
 ## Minimizing memory load
 

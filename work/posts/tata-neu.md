@@ -18,7 +18,7 @@ Expand Tata Neu's Tier 2 user base by 30% within 12 months, and ship at least th
 
 Rather than starting from tactics, the analysis breaks the acquisition funnel into three stages — Awareness, Discovery, Onboarding — and finds a distinct failure mode at each:
 
-- **Awareness:** limited brand visibility, narrow marketing reach, a competitive landscape crowded with regional players, and few local influencer or brand endorsements.
+- **Awareness:** limited brand visibility, narrow marketing reach, a market crowded with regional players, and few local influencer or brand endorsements.
 - **Discovery:** low familiarity with the "super app" category itself, limited word-of-mouth, and the same competitive pressure showing up again at a different stage.
 - **Onboarding:** a slow, buggy app experience, thin localized options, and hard-to-reach customer support once someone actually tries to sign up.
 

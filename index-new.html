@@ -18,6 +18,13 @@
 </script>
 <title>Pulin Prabhu</title>
 <meta name="description" content="Senior Product Manager building AI-native platforms — agent behavior, developer surfaces, and B2B SaaS growth.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pulin Prabhu — Product Manager, AI-native platforms">
+<meta property="og:description" content="Senior Product Manager building AI-native platforms — agent behavior, developer surfaces, and B2B SaaS growth.">
+<meta property="og:url" content="https://pulinpprabhu.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pulin Prabhu — Product Manager, AI-native platforms">
+<meta name="twitter:description" content="Senior Product Manager building AI-native platforms — agent behavior, developer surfaces, and B2B SaaS growth.">
 <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
 <link rel="alternate icon" href="assets/images/logo.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,7 +186,6 @@
     flex:none;
   }
   .mark-name{ font-weight:600; font-size:.95rem; letter-spacing:-.01em; white-space:nowrap; }
-  .top-right{ display:flex; align-items:center; gap:.7rem; min-width:0; }
 
   /* --- Animated nav avatar: plays a one-time orbit-icon intro over the "PP"
      mark on load, then docks down into that exact slot and keeps orbiting
@@ -234,35 +240,59 @@
   }
   @keyframes navaRotate{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
   @keyframes navaRotateReverse{ from{ transform:rotate(0deg); } to{ transform:rotate(-360deg); } }
-  /* nav.primary is the "time · theme · resume" bar's nav-links portion — a
-     glass pill built from the same recipe as the bottom island's mode-switcher
-     pill (island-pill in modes.css), so the two floating chrome pieces read as
-     one design language. It's standard across every viewport and every view
-     mode: no separate mobile dropdown, no per-mode reskin — narrow screens
-     just let it scroll horizontally instead of wrapping or hiding behind a
-     hamburger. */
-  nav.primary{
-    display:flex; align-items:center; gap:.1rem;
+  /* One pill — hamburger, clock, theme, résumé — built from the same
+     glass-pill recipe as the bottom island's mode switcher (island-pill in
+     modes.css), so the two floating chrome pieces read as one design
+     language. Hovering (or tapping) the hamburger grows the pill leftward,
+     the same expand-on-hover move the bottom island used to do, revealing a
+     short list of major sections rather than the full site map. The pill's
+     right edge is pinned by top-inner's justify-content:space-between, so
+     growth reads as opening "to the left" instead of shifting the whole
+     cluster. */
+  .nav-pill{
+    display:flex; align-items:center; gap:.15rem;
     padding:.32rem; border-radius:999px;
     background:var(--glass-bg-soft);
     border:1px solid var(--glass-border);
     backdrop-filter:blur(18px) saturate(150%);
     -webkit-backdrop-filter:blur(18px) saturate(150%);
     box-shadow:0 12px 40px var(--shadow-lift);
-    max-width:min(560px, 46vw);
-    overflow-x:auto; scrollbar-width:none;
   }
-  nav.primary::-webkit-scrollbar{ display:none; }
+  nav.primary{
+    display:flex; align-items:center; gap:.05rem;
+    max-width:0; opacity:0; overflow:hidden;
+    transition:max-width .45s cubic-bezier(.2,.9,.2,1), opacity .25s ease, margin .35s ease;
+    margin:0;
+  }
+  .nav-pill[data-state="expanded"] nav.primary{
+    max-width:520px; opacity:1; margin-right:.15rem;
+  }
   nav.primary a{
     flex:none;
     font-family:"IBM Plex Mono",monospace;
     font-size:.66rem; letter-spacing:.04em;
     text-decoration:none; color:var(--ink-soft);
-    padding:.55rem .7rem; border-radius:999px;
-    transition:color .2s ease, background .2s ease;
+    padding:.55rem .65rem; border-radius:999px;
     white-space:nowrap;
+    transition:color .2s ease, background .2s ease;
   }
   nav.primary a:hover, nav.primary a.active{ color:var(--ink); background:var(--tint-strong); }
+  .nav-toggle{
+    display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; flex:none;
+    border:1px solid var(--glass-border); border-radius:50%;
+    background:var(--glass-bg-soft); color:var(--ink-soft);
+    cursor:pointer; padding:0;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .nav-toggle:hover{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
+  .nav-toggle .nt-top, .nav-toggle .nt-bot{ transition:transform .25s ease, opacity .2s ease; transform-origin:center; }
+  .nav-toggle .nt-mid{ transition:opacity .15s ease; }
+  .nav-toggle[aria-expanded="true"]{ color:var(--ink); border-color:var(--accent); background:var(--tint-strong); }
+  .nav-toggle[aria-expanded="true"] .nt-top{ transform:translateY(3px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nt-bot{ transform:translateY(-3px) rotate(-45deg); }
+  .nav-toggle[aria-expanded="true"] .nt-mid{ opacity:0; }
+  .nav-divider{ width:1px; height:16px; background:var(--glass-border); flex:none; margin:0 .1rem; }
   .nav-clock{
     font-family:"IBM Plex Mono",monospace; font-size:.7rem;
     color:var(--ink-faint); min-width:5ch; text-align:center; flex:none;
@@ -281,16 +311,28 @@
     flex:none;
     font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.04em;
     text-decoration:none; color:var(--paper); background:var(--ink);
-    padding:.6rem 1rem; border-radius:999px; white-space:nowrap;
+    padding:.55rem .85rem; border-radius:999px; white-space:nowrap;
+    margin-left:.1rem;
     transition:background .2s ease;
   }
   .nav-cta:hover{ background:var(--accent); color:#181410; }
 
   @media (max-width:640px){
-    .top-inner{ gap:.6rem; }
+    .top-inner{ gap:.5rem; }
     .mark-name{ display:none; }
-    nav.primary{ max-width:38vw; }
     .nav-clock{ display:none; }
+    /* The pill still grows leftward from the hamburger, but on a narrow
+       screen an uncapped expansion would push past the viewport edge — cap
+       the whole pill (not just the nav) to what's actually available, and
+       let the nav scroll internally if even that's tight. Capping nav.primary
+       alone isn't enough: it's nested two flex levels deep (top-inner >
+       nav-pill > nav.primary), and nothing forces the outer levels to shrink
+       to match, so the pill itself would still overflow past the viewport. */
+    .nav-pill{ max-width:calc(100vw - 90px); }
+    .nav-pill[data-state="expanded"] nav.primary{
+      overflow-x:auto; scrollbar-width:none;
+    }
+    nav.primary::-webkit-scrollbar{ display:none; }
   }
 
   /* ---------- hero ---------- */
@@ -890,18 +932,22 @@
       <span class="mark-box">PP</span>
       <span class="mark-name">Pulin Prabhu</span>
     </a>
-    <div class="top-right">
+    <div class="nav-pill" id="navPill" data-state="collapsed">
       <nav class="primary" id="primaryNav" aria-label="On this page">
         <a href="#about">/about</a>
         <a href="#experience">/experience</a>
         <a href="#work">/work</a>
-        <a href="#archive">/archive</a>
-        <a href="#writing">/writing</a>
         <a href="#publications">/publications</a>
-        <a href="#toolkit">/toolkit</a>
-        <a href="#credentials">/credentials</a>
-        <a href="#contact">/contact</a>
+        <a href="#credentials">/education</a>
       </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Expand navigation">
+        <svg class="nt-icon" width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path class="nt-top" d="M2 4.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="nt-mid" d="M2 7.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="nt-bot" d="M2 10.5h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <span class="nav-divider" aria-hidden="true"></span>
       <span class="nav-clock" id="navClock" aria-hidden="true">00:00</span>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
@@ -979,7 +1025,8 @@
     <div class="about-grid">
       <div>
         <p class="lede-text">I'm a product manager who started as an engineer. A CS degree from Mumbai, three peer-reviewed machine learning papers, and an MS in Management Information Systems from Texas A&amp;M sit underneath every roadmap I write — which is why I'm as comfortable in Postman and a Bitbucket pipeline as I am in Figma.</p>
-        <p class="lede-text">Over the last four years that's meant launching a cross-platform insurance app to 500K+ users, architecting a multi-agent commerce platform as a founding product manager, and — right now — rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ. The common thread is ambiguous problems, systems that have to hold up in production, and a plan for getting the market to actually adopt them.</p>
+        <p class="lede-text">Over the last four years that's meant launching a cross-platform insurance app to 500K+ users, architecting a multi-agent commerce platform as a founding product manager, and — right now — rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ. The common thread is ambiguous problems and systems that have to hold up in production, plus a plan for getting the market to actually adopt them.</p>
+        <p class="lede-text">Outside work: cars and driving, a thing since I was a kid, and lately a pickleball habit I can't put down.</p>
       </div>
       <div class="do-list">
         <div class="do-item"><h3>Product Strategy &amp; Design</h3><p>Roadmapping, A/B testing, user personas, wireframes</p></div>
@@ -1442,6 +1489,45 @@
 <script>
 (function(){
   var nav = document.getElementById('primaryNav');
+  var navPill = document.getElementById('navPill');
+  var navToggle = document.getElementById('navToggle');
+
+  // Pill expands leftward on hover/tap of the hamburger — same move the
+  // bottom island used to do. A click also "pins" it open (so touch and
+  // click-only users aren't stuck relying on hover), closed by outside
+  // click, Escape, or picking a link.
+  var pinned = false;
+  function setExpanded(on){
+    navPill.setAttribute('data-state', on ? 'expanded' : 'collapsed');
+    navToggle.setAttribute('aria-expanded', on ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', on ? 'Collapse navigation' : 'Expand navigation');
+  }
+  navToggle.addEventListener('click', function(e){
+    e.stopPropagation();
+    // Toggle the pinned flag itself, not the current visual state — a click
+    // is often preceded by the pointer landing on the button, which already
+    // fired mouseenter and hover-expanded it; deriving from that state would
+    // read as "already open" and immediately re-collapse it.
+    pinned = !pinned;
+    setExpanded(pinned);
+  });
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    navToggle.addEventListener('mouseenter', function(){ if (!pinned) setExpanded(true); });
+    navPill.addEventListener('mouseleave', function(){ if (!pinned) setExpanded(false); });
+  }
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ pinned = false; setExpanded(false); });
+  });
+  document.addEventListener('click', function(e){
+    if (navPill.getAttribute('data-state') !== 'expanded') return;
+    if (navPill.contains(e.target)) return;
+    pinned = false; setExpanded(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && navPill.getAttribute('data-state') === 'expanded'){
+      pinned = false; setExpanded(false);
+    }
+  });
 
   // scroll-spy
   var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));

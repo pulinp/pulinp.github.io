@@ -12,7 +12,7 @@ Car rental apps have one job that sounds simple — get someone into a car quick
 
 ## Walking the actual journey
 
-New users land on informative splash screens covering quick rides, flexible rentals, and — notably — CO2 emissions, before choosing to log in, sign up, or continue as a guest. Signup includes clear error handling on bad input and OTP verification for security. Once in, the homepage uses GPS to surface nearby rental locations alongside upcoming rentals and recent searches, so a returning user never starts from zero. Picking a pickup location opens a date picker that only shows real availability, car selection shows CO2 emissions transparently for every option, and booking closes with a confetti-backed success screen plus the option to add the reservation straight to Apple Wallet.
+New users land on informative splash screens covering quick rides, flexible rentals, and CO2 emissions, before choosing to log in, sign up, or continue as a guest. Signup includes clear error handling on bad input and OTP verification for security. Once in, the homepage uses GPS to surface nearby rental locations alongside upcoming rentals and recent searches, so a returning user never starts from zero. Picking a pickup location opens a date picker that only shows real availability, car selection shows CO2 emissions transparently for every option, and booking closes with a confetti-backed success screen plus the option to add the reservation straight to Apple Wallet.
 
 ## The cognitive design layer
 

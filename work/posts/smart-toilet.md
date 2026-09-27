@@ -12,7 +12,7 @@ This design-thinking exercise starts from a fact most people never think about: 
 
 ## Observing before inventing: the AEIOU pass
 
-Before jumping to solutions, the framework forces a structured look at the problem space across five lenses — Activities, Environments, Interactions, Objects, and Users. Applied here: the activities are flushing, hand-washing, and using a jet spray; the environments span household washrooms, public restrooms, and portable toilets; the objects are the commode, the seat, and the flush mechanism; and the users are, deliberately, everyone — plus municipal corporations as an institutional stakeholder with their own interest in water infrastructure. The interactions lens comes back almost empty, and that's an honest, useful observation in itself: a toilet is one of the few designed objects built around having essentially no interpersonal interaction at all.
+Before jumping to solutions, the framework forces a structured look at the problem space across five lenses — Activities, Environments, Interactions, Objects, and Users. Applied here, the activities are flushing, hand-washing, and using a jet spray, and the environments span household washrooms, public restrooms, and portable toilets. The objects worth noting are the commode, the seat, and the flush mechanism; the users, deliberately, are everyone — plus municipal corporations as an institutional stakeholder with their own interest in water infrastructure. The interactions lens comes back almost empty, and that's an honest, useful observation in itself: a toilet is one of the few designed objects built around having essentially no interpersonal interaction at all.
 
 ## What already exists, and exactly where it falls short
 

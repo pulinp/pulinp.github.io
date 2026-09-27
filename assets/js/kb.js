@@ -7,7 +7,7 @@
   // ---- knowledge base: single source of truth the chat and machine views draw from ----
   var KB = [
     { id:'about', type:'text', tag:'About', title:'About Pulin',
-      body:'Product manager who started as an engineer — a CS degree from Mumbai, three peer-reviewed machine learning papers, and an MS in Management Information Systems from Texas A&M sit underneath every roadmap. Equally comfortable in Postman and a Bitbucket pipeline as in Figma. Over the last four years: launched a cross-platform insurance app to 500K+ users, architected a multi-agent commerce platform as a founding product manager, and is now rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ.' },
+      body:'Product manager who started as an engineer — a CS degree from Mumbai, three peer-reviewed machine learning papers, and an MS in Management Information Systems from Texas A&M sit underneath every roadmap. Equally comfortable in Postman and a Bitbucket pipeline as in Figma. Over the last four years: launched a cross-platform insurance app to 500K+ users, architected a multi-agent commerce platform as a founding product manager, and is now rebuilding the prompting and developer-platform layer behind an AI voice-agent product at HireEZ. Outside work: cars and driving since childhood, and a recent pickleball habit.' },
 
     { id:'stat-hireez-screening', type:'stat', tag:'HireEZ', title:'80% faster recruiter screening', big:'80%',
       body:'Rebuilt dynamic voice-agent prompting for real-time persona, question & evaluation generation from job and candidate context, scaling to thousands of automated interviews.' },

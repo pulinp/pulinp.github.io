@@ -8,11 +8,11 @@ original_href: mailto:pulinpprabhu@gmail.com?subject=Walkthrough%3A%20AI%20agent
 original_label: Ask for a walkthrough
 ---
 
-As founding product manager at VYBD.AI — then still called BulkMagic — the job wasn't "improve an existing process." It was build the process, and the systems underneath it, at the same time, without a dedicated infrastructure team to hand the hard engineering problems to. Market research that should have taken weeks was taking months, done by hand. Seller operations — onboarding, compliance, logistics — were manual at a scale where manual was already the ceiling.
+As founding product manager at VYBD.AI — then still called BulkMagic — the job was building the process, and the systems underneath it, at the same time, not improving one that already existed, and without a dedicated infrastructure team to hand the hard engineering problems to. Market research that should have taken weeks was taking months, done by hand. Seller operations — onboarding, compliance, logistics — were manual at a scale where manual was already the ceiling.
 
 ## Three problems that looked separate and weren't
 
-Slow research, manual seller operations, and a lack of infrastructure aren't three unrelated problems — they're the same problem at different layers. Research was slow because there was no system doing the first pass automatically. Seller operations were manual because there was no platform coordinating supplier onboarding, KYC, and shipment tracking as one flow instead of three disconnected manual steps. And neither of those could get built by "hiring more people," because there was no infra team to hire into — the systems had to be architected, not staffed around.
+Slow research, manual seller operations, and a lack of infrastructure are the same problem at different layers, not three unrelated ones. Research was slow because there was no system doing the first pass automatically. Seller operations were manual because there was no platform coordinating supplier onboarding, KYC, and shipment tracking as one flow instead of three disconnected manual steps. And neither of those could get built by "hiring more people," because there was no infra team to hire into — the systems had to be architected, not staffed around.
 
 ## The AI Market Research Agent
 
@@ -28,4 +28,4 @@ Beyond the two flagship systems, the role included governing the AI roadmap for 
 
 ## The founding-PM lesson underneath all of it
 
-Without a dedicated infra team, every architectural decision was also a product decision — there was no engineering org to absorb a bad choice quietly. Multi-agent architecture won out over a single large system specifically because it degrades gracefully: one agent underperforming doesn't take down the whole research pipeline, it's a discrete piece you can isolate and fix. That's not just good systems design, it's the kind of decision a founding PM has to get right when there's no one downstream to catch the mistake.
+Without a dedicated infra team, every architectural decision was also a product decision — there was no engineering org to absorb a bad choice quietly. Multi-agent architecture won out over a single large system specifically because it degrades gracefully: one agent underperforming doesn't take down the whole research pipeline, it's a discrete piece you can isolate and fix. That's the kind of decision a founding PM has to get right when there's no one downstream to catch the mistake, not just good systems design.

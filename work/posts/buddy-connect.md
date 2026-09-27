@@ -8,7 +8,7 @@ original_href: https://docs.google.com/presentation/d/1_dF8NNbgFsfvHcaXR0NS_HXIe
 original_label: View the original presentation
 ---
 
-Buddy Connect isn't an app I built — it's a real student program at Texas A&M, and for the 2023-24 year I served as VP of Operations on its leadership team. This deck is the program's own overview: who ran it, how it was structured, and what it set out to do for the students who went through it.
+Buddy Connect is a real student program at Texas A&M, not an app I built, and for the 2023-24 year I served as VP of Operations on its leadership team. This deck is the program's own overview: who ran it, how it was structured, and what it set out to do for the students who went through it.
 
 ## What Buddy Connect is
 

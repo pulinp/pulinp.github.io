@@ -16,7 +16,7 @@ The core promise is a structured curriculum with interactive lessons and a gamif
 
 ## Level 2 — Reliable
 
-Reliability here isn't about uptime, it's about whether the app's *assessment* of you is accurate and consistent. Real-time feedback on exercises, accurate progress tracking, and — a detail I appreciated specifically — resurfacing the exact words you got wrong so you can check your progress against your own past mistakes. The gamified Progress Quiz reinforces the same idea in a lighter-weight format.
+Reliability here has less to do with uptime than with whether the app's *assessment* of you is accurate and consistent. Real-time feedback on exercises, accurate progress tracking, and — a detail I appreciated specifically — resurfacing the exact words you got wrong so you can check your progress against your own past mistakes. The gamified Progress Quiz reinforces the same idea in a lighter-weight format.
 
 ## Level 3 — Usable
 

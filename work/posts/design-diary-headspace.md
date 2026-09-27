@@ -16,7 +16,7 @@ The interface evokes reflection before you've done anything at all. Color choice
 
 ## Behavioral emotion
 
-This is the layer that's supposed to keep you coming back, and Headspace leans on familiar mechanics — progress trackers, session-completion celebrations — but applies them to something less transactional than a typical habit app. The navigation stays simple enough that it never competes with the content for attention, which matters more here than in most apps: friction in a mindfulness app doesn't just cost a conversion, it undercuts the entire premise.
+This is the layer that's supposed to keep you coming back, and Headspace leans on familiar mechanics — progress trackers, session-completion celebrations — but applies them to something less transactional than a typical habit app. The navigation stays simple enough that it never competes with the content for attention, which matters more here than in most apps: friction in a mindfulness app costs more than a conversion — it undercuts the entire premise.
 
 ## Visceral emotion
 

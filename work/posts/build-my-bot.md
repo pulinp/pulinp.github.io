@@ -8,7 +8,7 @@ original_href: https://drive.google.com/file/d/1OlN6b3aIV0qhLenvX7OJZ1C-hG3dxwwV
 original_label: View the original presentation
 ---
 
-Despite what the name suggests, "Build My Bot" isn't a chatbot project. It's a mockup assignment for ISTM 624, System Analysis and Design, and the deliverable was a full set of screens for a fictional e-commerce site that sells robot kits — full assembled bots, individual components, classroom kits for teachers, and larger hobbyist builds. The point of the assignment wasn't the robots at all; it was practicing the discipline of going from a use case to a user flow to an actual clickable interface before any of it gets built.
+Despite what the name suggests, "Build My Bot" is a mockup assignment for ISTM 624, System Analysis and Design, not a chatbot project, and the deliverable was a full set of screens for a fictional e-commerce site that sells robot kits — full assembled bots, individual components, classroom kits for teachers, and larger hobbyist builds. The point of the assignment wasn't the robots at all; it was practicing the discipline of going from a use case to a user flow to an actual clickable interface before any of it gets built.
 
 ## The use case behind the screens
 

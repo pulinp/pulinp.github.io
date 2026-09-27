@@ -13,7 +13,7 @@ Downtown Bryan Association runs the website that's supposed to connect visitors 
 ## Three people, three different reasons the current site fails them
 
 - **Samantha Sharp**, 33, works remotely for a fintech startup and lives in Bryan. She's into live music and has clients who ask her about places to stay — she's tried to book restaurant tables and hotel rooms through the current system and found the process unintuitive, and she can't reliably find out when a show is scheduled. She's also the kind of user who'd pay for a membership if it got her priority booking.
-- **Smith Reed**, 41, a business owner who's run restaurants in several U.S. cities before landing in Bryan. His problem is structural: the system doesn't show real-time table status, so seats that have emptied don't show as available, which is a direct loss of business, and he has no streamlined way to invite frequent visitors back.
+- **Smith Reed**, 41, a business owner who's run restaurants in several U.S. cities before landing in Bryan. His problem is structural: the system doesn't show real-time table status, so seats that have emptied don't show as available, which is a direct loss of business, and he has no easy way to invite frequent visitors back.
 - **Juan Porrello**, 31, the Easy Bryan manager with an MBA from University of Washington. He's stuck presenting crowd-volume and profit data to stakeholders without a dashboard, and as downtown's popularity grows week over week, he needs a way to actually manage a VIP membership program rather than track it informally.
 
 ## Ten features, two sprints, two developers

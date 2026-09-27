@@ -13,7 +13,7 @@ Most of the work on this site is measured in adoption numbers and revenue lift. 
 
 ## The problem, in a student's own words
 
-College students at Texas A&M who genuinely wanted to volunteer kept running into the same wall — a disorganized landscape of opportunities that didn't account for their class schedule, and for students without a car, no real answer for how to get there. This wasn't a hypothetical persona problem; it showed up directly in interviews, where one student summed up the whole project brief better than any spec could: *"I know I want to help, but where do I start with so many opportunities?"*
+College students at Texas A&M who genuinely wanted to volunteer kept running into the same wall — a disorganized scatter of opportunities that didn't account for their class schedule, and for students without a car, no real answer for how to get there. This wasn't a hypothetical persona problem; it showed up directly in interviews, where one student summed up the whole project brief better than any spec could: *"I know I want to help, but where do I start with so many opportunities?"*
 
 ## 1. Research: what Aggies actually said, before we designed anything
 

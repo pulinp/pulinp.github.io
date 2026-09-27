@@ -8,11 +8,11 @@ original_href: https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr
 original_label: View résumé detail
 ---
 
-Before this project, ICICI Lombard's health, motor, and travel insurance products each lived in their own disconnected legacy flow — separate systems, separate experiences, no single place a customer could manage everything they held with the company. The brief was to unify all of it into one cross-platform digital app. The constraint that made this hard wasn't technical ambition, it was risk: this product would handle live policies and active claims for real customers, so there was no room to treat it like a typical consumer app launch where you ship fast and iterate on trust later.
+Before this project, ICICI Lombard's health, motor, and travel insurance products each lived in their own disconnected legacy flow — separate systems, separate experiences, no single place a customer could manage everything they held with the company. The brief was to unify all of it into one cross-platform digital app. The constraint that made this hard was risk, not technical ambition: this product would handle live policies and active claims for real customers, so there was no room to treat it like a typical consumer app launch where you ship fast and iterate on trust later.
 
 ## Rebuilding payment before rebuilding anything else
 
-The first structural fix was the payment gateway — moving from a fragmented setup into one centralized, policy-linked system with automated reconciliation. This wasn't a visible feature; it was foundational plumbing. But it's also where a fintech product either earns or loses trust fastest, because payment failures and reconciliation errors are the failure mode customers actually notice and remember. Getting this right first cut issuance time 40% and transaction failures 18% — both of which mattered less as standalone metrics and more as the precondition for everything built on top of them being trustworthy.
+The first structural fix was the payment gateway — moving from a fragmented setup into one centralized, policy-linked system with automated reconciliation. This was foundational plumbing, not a visible feature. But it's also where a fintech product either earns or loses trust fastest, because payment failures and reconciliation errors are the failure mode customers actually notice and remember. Getting this right first cut issuance time 40% and transaction failures 18% — both of which mattered less as standalone metrics and more as the precondition for everything built on top of them being trustworthy.
 
 ## Shipping features in phases instead of one big launch
 

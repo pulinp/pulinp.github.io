@@ -29,7 +29,7 @@ This exercise revisits the same kind of box-office booking system as an earlier 
 
 ## What the estimates actually reveal
 
-The heaviest single story in the whole set is the customer's past-bookings-and-receipts feature at 8 points — bigger than booking a seat in the first place. That tracks: seat booking is mostly a form flow against live data that the system already needs for other stories, while surfacing historical receipts means real persistence, retrieval, and document generation work that nothing else in the list reuses. The performance-booking rep's waitlist story is the second-heaviest at 6 points for the same underlying reason — it's not a lookup, it's a piece of state the system has to maintain and let a user edit over time.
+The heaviest single story in the whole set is the customer's past-bookings-and-receipts feature at 8 points — bigger than booking a seat in the first place. That tracks: seat booking is mostly a form flow against live data that the system already needs for other stories, while surfacing historical receipts means real persistence, retrieval, and document generation work that nothing else in the list reuses. The performance-booking rep's waitlist story is the second-heaviest at 6 points for the same underlying reason — a waitlist is state the system has to maintain and let a user edit over time, not a single lookup.
 
 ## Why separate epics per role, instead of one shared backlog
 

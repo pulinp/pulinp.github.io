@@ -16,7 +16,7 @@ The first study runs Decision Tree, Naïve Bayes, Logistic Regression, SVM, KNN,
 
 ## Study 2: Random Forest wins on Kaggle's HR analytics data
 
-The second study, working from Kaggle's HR Analytics dataset (15,000 records — satisfaction rate, average monthly hours, salary band, department, and similar features), runs a similar comparison — linear SVM, Decision Tree, Random Forest, KNN, and Naïve Bayes — and this time Random Forest comes out clearly ahead, with linear SVM performing worst. Different dataset, different algorithm wins, which is the first hint that "best algorithm for churn prediction" isn't really a fixed answer.
+The second study, working from Kaggle's HR Analytics dataset (15,000 records: satisfaction rate, average monthly hours, salary band, department, and similar features), runs a similar comparison — linear SVM, Decision Tree, Random Forest, KNN, and Naïve Bayes — and this time Random Forest comes out clearly ahead, with linear SVM performing worst. Different dataset, different algorithm wins, which is the first hint that "best algorithm for churn prediction" isn't really a fixed answer.
 
 ## Study 3: Random Forest wins again, on real telecom HR data
 
@@ -24,4 +24,4 @@ The third study uses actual personnel records from an Indonesian telecommunicati
 
 ## What actually generalizes across all three
 
-Putting the three side by side, the "winning" algorithm isn't consistent — SVM in one study, Random Forest in the other two — which on its own tells you the answer depends more on the dataset's structure and size than on any one algorithm being intrinsically superior. What *is* consistent is the workflow: clean and preprocess the data, compare multiple classifiers on the same accuracy/precision/recall/F-measure criteria rather than picking one method on faith, and treat feature selection as part of the modeling process rather than an afterthought. The real value across all three papers isn't a single number — it's a reusable comparison method that an organization could point at its own HR data and trust, rather than a "best" model asserted in the abstract and never checked against a second dataset.
+Putting the three side by side, the "winning" algorithm isn't consistent — SVM in one study, Random Forest in the other two — which on its own tells you the answer depends more on the dataset's structure and size than on any one algorithm being intrinsically superior. What *is* consistent is the workflow: clean and preprocess the data, compare multiple classifiers on the same accuracy/precision/recall/F-measure criteria rather than picking one method on faith, and treat feature selection as part of the modeling process rather than an afterthought. The real value across all three papers is a reusable comparison method that an organization could point at its own HR data and trust, rather than a single "best" model asserted in the abstract and never checked against a second dataset.

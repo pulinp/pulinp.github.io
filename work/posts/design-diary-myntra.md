@@ -12,7 +12,7 @@ Myntra was my go-to for multi-brand fashion shopping back in India, and I used i
 
 ## What actually changed, and what didn't
 
-The app looked almost identical to how I remembered it. The one thing that had visibly shifted was the home screen redesigning itself around whatever festival was current — which tracks with how price-sensitive and deal-driven the Indian fashion e-commerce market is. Everything else — navigation, product pages, checkout — had stayed put. That consistency is itself a signal: Myntra isn't optimizing for novelty, it's optimizing for a shopper who already knows where things are.
+The app looked almost identical to how I remembered it. The one thing that had visibly shifted was the home screen redesigning itself around whatever festival was current — which tracks with how price-sensitive and deal-driven the Indian fashion e-commerce market is. Everything else — navigation, product pages, checkout — had stayed put. That consistency is itself a signal: Myntra is optimizing for a shopper who already knows where things are, not for novelty.
 
 ## Placeholders for field clarification
 

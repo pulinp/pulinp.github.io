@@ -24,4 +24,4 @@ The third actor doesn't book anything — the manager's use case is about turnin
 
 ## Why the structure matters more than the specific system
 
-What ties the three together isn't the ticketing domain — it's that every use case shares the same preconditions (authenticated login, a real-time-connected backend) and the same discipline of specifying what happens when the happy path breaks. That's the actual skill the assignment is testing: a requirements document that only describes success is a document that hasn't been stress-tested yet.
+What ties the three together is the same shared preconditions every use case relies on (authenticated login, a real-time-connected backend) and the same discipline of specifying what happens when the happy path breaks — not the ticketing domain itself. That's the actual skill the assignment is testing: a requirements document that only describes success is a document that hasn't been stress-tested yet.

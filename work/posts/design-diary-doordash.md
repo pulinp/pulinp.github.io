@@ -28,4 +28,4 @@ This is the level that's easiest to skip and hardest to fake. DoorDash gets ther
 
 ## The takeaway
 
-What makes this framework useful isn't that DoorDash scores well on all four levels — plenty of apps do. It's that the levels build on each other: reliability doesn't matter if the core function doesn't work, and no amount of delight covers for an app that's unreliable. DoorDash's package-handoff feature only lands as delightful *because* the functional and reliable layers underneath it are already solid.
+What makes this framework useful is less DoorDash's score on all four levels — plenty of apps clear those bars — and more how the levels build on each other: reliability doesn't matter if the core function doesn't work, and no amount of delight covers for an app that's unreliable. DoorDash's package-handoff feature only lands as delightful *because* the functional and reliable layers underneath it are already solid.

@@ -12,7 +12,7 @@ This was the project for OE2: Robotic Vision, an open elective in SPIT's Compute
 
 ## The constraint the project actually names
 
-The presentation is upfront about the hard part, and it isn't the model architecture — it's the data. At the time, there simply wasn't a large, readily available dataset of "with_mask" images to train against, which made the whole exercise more cumbersome than a typical image-classification task where you can lean on an existing labeled dataset.
+The presentation is upfront about the hard part: the data, not the model architecture. At the time, there simply wasn't a large, readily available dataset of "with_mask" images to train against, which made the whole exercise more cumbersome than a typical image-classification task where you can lean on an existing labeled dataset.
 
 ## A two-phase pipeline: train once, deploy fast
 
