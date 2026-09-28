@@ -493,7 +493,7 @@
      instead of the reference's hardcoded dark palette so the card still
      adapts across light/dark mode like the rest of the page. */
   .case-legend{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-faint); white-space:nowrap; }
-  .work-grid{ margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:1.6rem; align-items:stretch; }
+  .work-grid{ margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:1.3rem; align-items:stretch; }
   .case{
     border:1px solid var(--line); border-radius:14px; overflow:hidden;
     display:flex; flex-direction:column;
@@ -503,9 +503,9 @@
   .case:hover{ border-color:var(--accent-2); box-shadow:0 16px 40px var(--shadow); }
   .case-shot{
     position:relative; flex:none;
-    aspect-ratio:16/8;
+    aspect-ratio:16/6;
     display:flex; align-items:flex-end; justify-content:space-between; gap:.7rem;
-    padding:.9rem 1rem;
+    padding:.7rem .85rem;
     text-decoration:none;
     background-color:var(--surface-2);
     background-image:repeating-linear-gradient(135deg, var(--surface-2) 0 10px, var(--tint-strong) 10px 20px);
@@ -523,9 +523,9 @@
     background:color-mix(in srgb, var(--paper) 88%, transparent);
     padding:.28rem .5rem; border-radius:6px;
   }
-  .case-body{ padding:1.6rem; display:flex; flex-direction:column; gap:1.1rem; flex:1; }
+  .case-body{ padding:1.3rem 1.4rem; display:flex; flex-direction:column; gap:.8rem; flex:1; }
   .case-tag{ font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--accent-ink); letter-spacing:.06em; text-transform:uppercase; }
-  .case-body h3{ font-size:1.28rem; margin-top:.35rem; }
+  .case-body h3{ font-size:1.16rem; margin-top:.2rem; }
   .case-body h3 a{ color:inherit; text-decoration:none; }
   .case-body h3 a:hover{ color:var(--accent-ink); }
   .case-links{ display:flex; flex-wrap:wrap; gap:.6rem; }
@@ -535,13 +535,13 @@
     transition:border-color .2s ease, color .2s ease;
   }
   .case-links a:hover{ border-color:var(--accent); color:var(--accent-ink); }
-  .case-dl{ display:flex; flex-direction:column; gap:.7rem; }
-  .case-row{ display:grid; grid-template-columns:78px 1fr; gap:.7rem; font-size:.9rem; }
+  .case-dl{ display:flex; flex-direction:column; gap:.5rem; }
+  .case-row{ display:grid; grid-template-columns:78px 1fr; gap:.6rem; font-size:.86rem; }
   .case-row dt{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-faint); letter-spacing:.05em; text-transform:uppercase; padding-top:.15rem; margin:0; }
-  .case-row dd{ margin:0; color:var(--ink-soft); line-height:1.55; }
+  .case-row dd{ margin:0; color:var(--ink-soft); line-height:1.45; }
   .case-impact{
-    margin-top:auto; padding-top:1rem; border-top:1px dashed var(--line);
-    display:grid; grid-template-columns:78px 1fr; gap:.7rem; font-size:.9rem;
+    margin-top:auto; padding-top:.8rem; border-top:1px dashed var(--line);
+    display:grid; grid-template-columns:78px 1fr; gap:.6rem; font-size:.86rem;
   }
   .case-impact-label{ font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--accent-ink); letter-spacing:.05em; text-transform:uppercase; padding-top:.15rem; }
   .case-impact-text{ font-weight:500; color:var(--ink); }
@@ -559,11 +559,11 @@
   .testi-stage.dragging{ cursor:grabbing; }
   .testi-card{
     position:absolute; top:50%; left:50%; margin:0;
-    width:min(560px,88%);
+    width:min(460px,88%);
     background:var(--surface); border:1px solid var(--line);
-    padding:2rem 2.2rem 1.8rem;
+    padding:1.4rem 1.6rem 1.3rem;
     box-shadow:0 24px 48px -26px var(--shadow-lift);
-    display:flex; flex-direction:column; gap:1rem;
+    display:flex; flex-direction:column; gap:.7rem;
     transition:transform .6s cubic-bezier(.22,1,.36,1), opacity .6s ease, box-shadow .6s ease, height .3s ease;
     user-select:none;
   }
@@ -571,12 +571,15 @@
   .testi-card[data-pos="active"]{ transform:translate(-50%,-50%) rotate(0deg) scale(1); opacity:1; z-index:3; box-shadow:0 30px 60px -22px var(--shadow-lift); }
   .testi-card[data-pos="prev"]{ transform:translate(-50%,-50%) translateX(-58%) rotate(-6deg) scale(.86); opacity:.5; z-index:2; pointer-events:none; }
   .testi-card[data-pos="next"]{ transform:translate(-50%,-50%) translateX(58%) rotate(6deg) scale(.86); opacity:.5; z-index:2; pointer-events:none; }
-  .testi-mark{ font-family:"Fraunces",serif; font-style:italic; font-size:2.6rem; line-height:.6; color:var(--accent); }
-  .testi-card blockquote{ margin:0; font-family:"Fraunces",serif; font-size:1.1rem; font-style:italic; line-height:1.5; color:var(--ink-soft); }
-  .testi-card figcaption{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.6rem; margin-top:auto; padding-top:1rem; }
-  .testi-name{ font-weight:600; font-size:.9rem; color:var(--ink); }
-  .testi-role{ font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink-faint); }
-  .testi-controls{ margin-top:1.6rem; display:flex; align-items:center; justify-content:center; gap:1.4rem; }
+  .testi-mark{ font-family:"Fraunces",serif; font-style:italic; font-size:1.9rem; line-height:.6; color:var(--accent); }
+  .testi-card blockquote{
+    margin:0; font-family:"Fraunces",serif; font-size:.92rem; font-style:italic; line-height:1.45; color:var(--ink-soft);
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:6; line-clamp:6; overflow:hidden;
+  }
+  .testi-card figcaption{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.6rem; margin-top:auto; padding-top:.7rem; }
+  .testi-name{ font-weight:600; font-size:.82rem; color:var(--ink); }
+  .testi-role{ font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-faint); }
+  .testi-controls{ margin-top:1.2rem; display:flex; align-items:center; justify-content:center; gap:1.4rem; }
   .testi-arrow{
     width:2.3rem; height:2.3rem; border-radius:50%; border:1px solid var(--line);
     background:var(--surface); color:var(--ink); cursor:pointer;
@@ -589,7 +592,7 @@
   .testi-dot.active{ background:var(--accent); transform:scale(1.35); }
   @media (max-width:640px){
     .testi-card[data-pos="prev"], .testi-card[data-pos="next"]{ opacity:0; }
-    .testi-card{ padding:1.5rem 1.4rem; }
+    .testi-card{ padding:1.2rem 1.2rem; }
   }
 
   /* ---------- publications ---------- */
@@ -666,8 +669,11 @@
   .contact-item .v{ margin-top:.35rem; font-size:1.05rem; }
   .contact-item .v a{ text-decoration:none; border-bottom:1px solid var(--line); }
   .contact-item .v a:hover{ border-color:var(--accent); color:var(--accent-ink); }
-  footer{ padding:2rem 0 3rem; }
-  .foot-row{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
+  footer{ padding:clamp(2.8rem,6vw,4.5rem) 0 3rem; scroll-margin-top:70px; }
+  .foot-row{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center;
+    margin-top:2.4rem; padding-top:1.6rem; border-top:1px solid var(--line);
+  }
   .foot-log{ font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink-faint); }
   .foot-social{ display:flex; gap:1rem; }
   .foot-social a{ font-family:"IBM Plex Mono",monospace; font-size:.74rem; text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; }
@@ -774,13 +780,6 @@
     --shadow:rgba(0,0,0,.55);
     --shadow-lift:rgba(0,0,0,.5);
     --glow:color-mix(in srgb, var(--accent) 32%, transparent);
-  }
-  body[data-mode="site"]::before{
-    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
-    background:
-      radial-gradient(70% 45% at 50% -8%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 60%),
-      radial-gradient(50% 40% at 92% 18%, color-mix(in srgb, var(--accent-hot) 12%, transparent), transparent 55%),
-      radial-gradient(45% 35% at 8% 28%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 50%);
   }
   body[data-mode="site"] #siteView{ position:relative; z-index:1; }
   body[data-mode="site"] h1, body[data-mode="site"] .mark-name{
@@ -1112,8 +1111,8 @@
           <span class="case-tag">Developer platforms · AI</span>
           <h3><a href="work/post.html?p=work-mcp-developer-surface">A developer surface out of a fragmented internal wiki</a></h3>
           <dl class="case-dl">
-            <div class="case-row"><dt>Problem</dt><dd>Sales GTM and Account Management at HireEZ had no fast way to answer "does the product support X" — every question routed through Product and Engineering.</dd></div>
-            <div class="case-row"><dt>Approach</dt><dd>Built a custom MCP server on top of the internal integration dashboard, querying the master database and the markdown docs engineering keeps current on every major release, to surface live feature-support answers natively inside Claude.</dd></div>
+            <div class="case-row"><dt>Problem</dt><dd>Sales GTM and Account Management at HireEZ routed every "does the product support X" question through Product and Engineering.</dd></div>
+            <div class="case-row"><dt>Approach</dt><dd>Built a custom MCP server on the internal integration dashboard, querying the master database and current docs, to surface live feature-support answers inside Claude.</dd></div>
           </dl>
           <div class="case-impact"><span class="case-impact-label">Impact</span><span class="case-impact-text">Turnaround on feature-support questions cut <b>93%</b>, removing Product/Engineering as a bottleneck for GTM.</span></div>
           <div class="case-links">
@@ -1132,8 +1131,8 @@
           <span class="case-tag">AI · Agent systems</span>
           <h3><a href="work/post.html?p=work-ai-agent-marketplace">Teaching agents to run a marketplace</a></h3>
           <dl class="case-dl">
-            <div class="case-row"><dt>Problem</dt><dd>As founding PM at VYBD.AI (formerly BulkMagic), I needed to compress slow human research and manual seller operations into automated systems — with no dedicated infra team.</dd></div>
-            <div class="case-row"><dt>Approach</dt><dd>Architected a multi-agent AI Market Research Agent, orchestrated a micro-warehousing platform (supplier onboarding, KYC, shipment tracking), and connected agent workflows for catalog automation.</dd></div>
+            <div class="case-row"><dt>Problem</dt><dd>As founding PM at VYBD.AI (formerly BulkMagic), I needed to automate slow human research and manual seller operations — with no dedicated infra team.</dd></div>
+            <div class="case-row"><dt>Approach</dt><dd>Architected a multi-agent Market Research Agent, a micro-warehousing platform (onboarding, KYC, shipment tracking), and agent workflows for catalog automation.</dd></div>
           </dl>
           <div class="case-impact"><span class="case-impact-label">Impact</span><span class="case-impact-text">Decision cycles cut from <b>6 months to 8 weeks</b> at <b>85% accuracy</b>; vendor onboarding <b>60% faster</b>; manual operational gaps down <b>40%</b>.</span></div>
           <div class="case-links">
@@ -1152,8 +1151,8 @@
           <span class="case-tag">Zero-to-one · Fintech</span>
           <h3><a href="work/post.html?p=work-icici-zero-to-one">Zero to one, at insurance scale</a></h3>
           <dl class="case-dl">
-            <div class="case-row"><dt>Problem</dt><dd>Health, motor and travel insurance lived in disconnected legacy flows. ICICI Lombard needed one cross-platform digital app — without risking trust on a product handling live policies and claims.</dd></div>
-            <div class="case-row"><dt>Approach</dt><dd>Rebuilt the payment gateway into a centralized, policy-linked system with automated reconciliation, phased the GTM per feature, and ran behavior-based A/B tests on digital insurance cards and push notifications.</dd></div>
+            <div class="case-row"><dt>Problem</dt><dd>Health, motor and travel insurance lived in disconnected legacy flows — ICICI Lombard needed one cross-platform app without risking trust on live policies and claims.</dd></div>
+            <div class="case-row"><dt>Approach</dt><dd>Rebuilt the payment gateway into a centralized, policy-linked system with automated reconciliation, phased GTM per feature, and ran behavior-based A/B tests.</dd></div>
           </dl>
           <div class="case-impact"><span class="case-impact-label">Impact</span><span class="case-impact-text"><b>500K+ users</b> onboarded in 6 months, policy conversion up <b>22%</b> (~<b>$4.2M+</b> in new premium), transaction failures down <b>18%</b>.</span></div>
           <div class="case-links">
@@ -1172,8 +1171,8 @@
           <span class="case-tag">Craft · HCI research</span>
           <h3><a href="work/post.html?p=work-eventvol-overview">Designing for students who want to help, not search</a></h3>
           <dl class="case-dl">
-            <div class="case-row"><dt>Problem</dt><dd>College students at Texas A&amp;M wanted to volunteer but couldn't find opportunities that fit their schedule or transportation — <em>EventVol</em>, a full HCI research project.</dd></div>
-            <div class="case-row"><dt>Approach</dt><dd>Ran user interviews and affinity mapping, built personas and a journey map, then iterated mid-fidelity wireframes into a working Figma prototype with a full style guide.</dd></div>
+            <div class="case-row"><dt>Problem</dt><dd>College students at Texas A&amp;M wanted to volunteer but couldn't find opportunities fitting their schedule or transportation — <em>EventVol</em>, a full HCI research project.</dd></div>
+            <div class="case-row"><dt>Approach</dt><dd>Ran user interviews and affinity mapping, built personas and a journey map, then iterated wireframes into a working Figma prototype with a style guide.</dd></div>
           </dl>
           <div class="case-impact"><span class="case-impact-label">Impact</span><span class="case-impact-text">Shipped a validated end-to-end prototype covering discovery, transportation coordination and feedback — proof of the research-to-prototype process, not just the output.</span></div>
           <div class="case-links">
@@ -1254,39 +1253,6 @@
         </div>
       </div>
     </details>
-  </section>
-
-  <section class="wrap reveal" id="testimonials">
-    <div class="eyebrow">Testimonials</div>
-    <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:1rem;">What it's like to work with me</h2>
-    <div class="testi-riff">
-      <div class="testi-stage" id="testiStage" role="group" aria-roledescription="carousel" aria-label="Testimonials">
-        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 1 of 3">
-          <span class="testi-mark" aria-hidden="true">&#8220;</span>
-          <blockquote>I've had the opportunity to work closely with Pulin and he consistently stands out as a high-impact leader across product, program, and technical execution. Pulin operates seamlessly across roles, leading product strategy, driving program execution, and stepping into Founder's Office responsibilities to ensure alignment and velocity across teams. He has been instrumental in building our AI-driven platform, designing and scaling AI agents and workflow systems, bringing structure and clarity to highly complex, cross-functional initiatives. What sets Pulin apart is his ownership mindset and ability to turn ambiguity into execution. He anticipates gaps, drives decisions, and consistently delivers measurable outcomes.</blockquote>
-          <figcaption><span class="testi-name">Ken Chester Jr</span><span class="testi-role">Founder, VYBD</span></figcaption>
-        </figure>
-        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 2 of 3">
-          <span class="testi-mark" aria-hidden="true">&#8220;</span>
-          <blockquote>Pulin is a strong Project and Program Manager who drove Agile adoption across global teams at Carrier. He owned backlog prioritization and delivery for the Global Sales and Orders (GSO) Dashboard. He consistently demonstrated ownership, cross-functional leadership, and execution excellence.</blockquote>
-          <figcaption><span class="testi-name">Mahesh Patel</span><span class="testi-role">Director of Data Platforms, Carrier</span></figcaption>
-        </figure>
-        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 3 of 3">
-          <span class="testi-mark" aria-hidden="true">&#8220;</span>
-          <blockquote>Pulin isn't just a fantastic and precise Flutter Developer but also an inspiring person. He is always punctual, his knowledge is vast and thorough. Pulin is extremely enthusiastic about his work which is infectious. He is ready to deal with difficult situations and solve the problems on time. He always takes care of the job. The success achieved in his job required extensive knowledge and dedication. I enjoyed working with him on the different projects we took upon at ICICI Lombard.</blockquote>
-          <figcaption><span class="testi-name">Samson Dsouza</span><span class="testi-role">Vice President – Digital Platforms, ICICI Lombard</span></figcaption>
-        </figure>
-      </div>
-      <div class="testi-controls">
-        <button type="button" class="testi-arrow" data-dir="-1" aria-label="Previous testimonial">&#8592;</button>
-        <div class="testi-dots">
-          <button type="button" class="testi-dot" data-index="0" aria-label="Go to testimonial 1"></button>
-          <button type="button" class="testi-dot" data-index="1" aria-label="Go to testimonial 2"></button>
-          <button type="button" class="testi-dot" data-index="2" aria-label="Go to testimonial 3"></button>
-        </div>
-        <button type="button" class="testi-arrow" data-dir="1" aria-label="Next testimonial">&#8594;</button>
-      </div>
-    </div>
   </section>
 
   <section class="wrap reveal" id="experience">
@@ -1483,7 +1449,40 @@
     </div>
   </section>
 
-  <section class="wrap reveal" id="contact">
+  <section class="wrap reveal" id="testimonials">
+    <div class="eyebrow">Testimonials</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem); margin-top:1rem;">What it's like to work with me</h2>
+    <div class="testi-riff">
+      <div class="testi-stage" id="testiStage" role="group" aria-roledescription="carousel" aria-label="Testimonials">
+        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 1 of 3">
+          <span class="testi-mark" aria-hidden="true">&#8220;</span>
+          <blockquote>I've had the opportunity to work closely with Pulin and he consistently stands out as a high-impact leader across product, program, and technical execution. Pulin operates seamlessly across roles, leading product strategy, driving program execution, and stepping into Founder's Office responsibilities to ensure alignment and velocity across teams. He has been instrumental in building our AI-driven platform, designing and scaling AI agents and workflow systems, bringing structure and clarity to highly complex, cross-functional initiatives. What sets Pulin apart is his ownership mindset and ability to turn ambiguity into execution. He anticipates gaps, drives decisions, and consistently delivers measurable outcomes.</blockquote>
+          <figcaption><span class="testi-name">Ken Chester Jr</span><span class="testi-role">Founder, VYBD</span></figcaption>
+        </figure>
+        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 2 of 3">
+          <span class="testi-mark" aria-hidden="true">&#8220;</span>
+          <blockquote>Pulin is a strong Project and Program Manager who drove Agile adoption across global teams at Carrier. He owned backlog prioritization and delivery for the Global Sales and Orders (GSO) Dashboard. He consistently demonstrated ownership, cross-functional leadership, and execution excellence.</blockquote>
+          <figcaption><span class="testi-name">Mahesh Patel</span><span class="testi-role">Director of Data Platforms, Carrier</span></figcaption>
+        </figure>
+        <figure class="testi-card" role="group" aria-roledescription="slide" aria-label="Testimonial 3 of 3">
+          <span class="testi-mark" aria-hidden="true">&#8220;</span>
+          <blockquote>Pulin isn't just a fantastic and precise Flutter Developer but also an inspiring person. He is always punctual, his knowledge is vast and thorough. Pulin is extremely enthusiastic about his work which is infectious. He is ready to deal with difficult situations and solve the problems on time. He always takes care of the job. The success achieved in his job required extensive knowledge and dedication. I enjoyed working with him on the different projects we took upon at ICICI Lombard.</blockquote>
+          <figcaption><span class="testi-name">Samson Dsouza</span><span class="testi-role">Vice President – Digital Platforms, ICICI Lombard</span></figcaption>
+        </figure>
+      </div>
+      <div class="testi-controls">
+        <button type="button" class="testi-arrow" data-dir="-1" aria-label="Previous testimonial">&#8592;</button>
+        <div class="testi-dots">
+          <button type="button" class="testi-dot" data-index="0" aria-label="Go to testimonial 1"></button>
+          <button type="button" class="testi-dot" data-index="1" aria-label="Go to testimonial 2"></button>
+          <button type="button" class="testi-dot" data-index="2" aria-label="Go to testimonial 3"></button>
+        </div>
+        <button type="button" class="testi-arrow" data-dir="1" aria-label="Next testimonial">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="wrap reveal" id="contact">
     <div class="eyebrow">Contact</div>
     <h2 style="font-size:clamp(1.7rem,4vw,2.6rem); margin-top:1rem; max-width:14ch;">Let's talk about what's next.</h2>
     <div class="contact-row">
@@ -1492,9 +1491,6 @@
       <div class="contact-item"><div class="k">Location</div><div class="v">Sunnyvale, CA</div></div>
       <div class="contact-item"><div class="k">Résumé</div><div class="v"><a href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Download ↓</a></div></div>
     </div>
-  </section>
-
-  <footer class="wrap">
     <div class="foot-row">
       <span class="foot-log">// last shipped 19 sep 2026 · Sunnyvale, CA</span>
       <div class="foot-social">
