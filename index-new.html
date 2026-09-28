@@ -161,6 +161,7 @@
   .js .reveal.in{ opacity:1; transform:none; }
   @media (prefers-reduced-motion: reduce){
     .js .reveal{ transition:none !important; opacity:1 !important; transform:none !important; }
+    .js .footer-ascii{ transition:none !important; opacity:.85 !important; filter:none !important; }
     html{ scroll-behavior:auto; }
   }
 
@@ -663,21 +664,148 @@
   .dir-col li a:hover{ color:var(--accent-ink); }
   @media (max-width:760px){ .dir{ grid-template-columns:1fr; gap:1.5rem; } }
 
-  /* ---------- contact / footer ---------- */
-  .contact-row{ display:flex; flex-wrap:wrap; gap:2.4rem; margin-top:2rem; }
-  .contact-item .k{ font-family:"IBM Plex Mono",monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); }
-  .contact-item .v{ margin-top:.35rem; font-size:1.05rem; }
-  .contact-item .v a{ text-decoration:none; border-bottom:1px solid var(--line); }
-  .contact-item .v a:hover{ border-color:var(--accent); color:var(--accent-ink); }
-  footer{ padding:clamp(2.8rem,6vw,4.5rem) 0 3rem; scroll-margin-top:70px; }
-  .foot-row{
-    display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center;
-    margin-top:2.4rem; padding-top:1.6rem; border-top:1px solid var(--line);
+  /* ---------- site footer (studio-style, full-bleed) ----------
+     Dark-studio footer inspired by good-fella.com's landmark-studio template,
+     rebuilt with this site's own tokens/type system so it reskins correctly
+     across light/dark instead of being a hardcoded dark block. --footer-orange
+     is a fixed brand accent (same hex both themes, per design brief); only
+     --footer-mark (the ghost wordmark color) needs a light/dark pair, defined
+     alongside the rest of the Human-mode tokens above. */
+  .site-footer{
+    position:relative; overflow:hidden;
+    background:var(--paper); color:var(--ink);
+    border-top:1px solid var(--line);
+    scroll-margin-top:92px;
   }
-  .foot-log{ font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink-faint); }
-  .foot-social{ display:flex; gap:1rem; }
-  .foot-social a{ font-family:"IBM Plex Mono",monospace; font-size:.74rem; text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; }
-  .foot-social a:hover{ color:var(--accent-ink); border-color:var(--accent-ink); }
+  .footer-grid{
+    display:grid; grid-template-columns:1.5fr .8fr 1fr; gap:clamp(2rem,5vw,4rem);
+    /* padding-top has a floor well above the fixed header's own visual
+       height, including its orbiting-avatar decoration, rather than a
+       vw-scaled clamp that can dip under it on narrower screens — when the
+       footer is short enough to fit in one viewport, this is the only thing
+       keeping the headline from ever rendering underneath the header, since
+       there's no scroll room left to carry the header away from it the way
+       there is for every section above it. padding-bottom is dropped
+       entirely so the hand art starts right after the contact block instead
+       of leaving a gap. */
+    padding-top:clamp(7.5rem,10vw,9rem); padding-bottom:0;
+  }
+  .footer-headline{
+    font-family:"Fraunces",serif; font-weight:500; font-size:clamp(1.6rem,3.2vw,2.3rem);
+    line-height:1.15; max-width:14ch; margin:0;
+  }
+  .footer-contact{ display:flex; flex-direction:column; gap:.55rem; margin-top:1.5rem; }
+  .footer-contact a, .footer-contact span{ font-family:"Archivo",sans-serif; font-size:.95rem; color:var(--ink-soft); }
+  .footer-contact a{ text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px; transition:color .2s ease, text-decoration-color .2s ease; }
+  .footer-contact a:hover{ color:var(--footer-orange); text-decoration-color:currentColor; }
+  .footer-label{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-faint); margin-bottom:.55rem;
+  }
+  .footer-nav{ display:flex; flex-direction:column; gap:.9rem; }
+  .footer-nav a{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; transition:color .2s ease;
+  }
+  .footer-nav a:hover{ color:var(--footer-orange); }
+  .footer-col-end{ display:flex; flex-direction:column; gap:1.5rem; }
+  .footer-resume{
+    font-family:"IBM Plex Mono",monospace; font-size:.82rem;
+    color:var(--ink); text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px;
+    transition:color .2s ease, text-decoration-color .2s ease;
+  }
+  .footer-resume:hover{ color:var(--footer-orange); text-decoration-color:currentColor; }
+  .footer-socials{ display:flex; flex-direction:column; gap:.5rem; }
+  .footer-socials a{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; transition:color .2s ease;
+  }
+  .footer-socials a:hover{ color:var(--footer-orange); }
+
+  /* Pinned as an overlay on the wordmark's crop band, right at the very
+     bottom of the page, rather than its own row between the hands and the
+     wordmark — it's a short status line, not content that needs dedicated
+     vertical space, and dropping its row out of the flow is what actually
+     made room for the footer to fit in one screen instead of just nudging
+     paddings around it. */
+  .footer-status{
+    position:absolute; left:0; right:0; bottom:clamp(1rem,3vw,1.5rem); z-index:2;
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.9rem 2.4rem;
+    padding:0 clamp(1rem,3vw,1.5rem);
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .footer-status-left{ display:flex; flex-wrap:wrap; gap:.9rem 2.4rem; }
+  .footer-status-item{ display:inline-flex; align-items:center; gap:.6rem; }
+  .footer-dot{ width:7px; height:7px; flex:none; background:var(--footer-orange); }
+
+  /* The hand art is a single, whole, un-cropped background layer — sized to
+     its own content (not stretched or flex-shrunk) — with the tagline laid
+     on top of it via absolute positioning, landed on a spot in the source
+     photo's own empty space (found by scanning the mask for it, not eyeballed)
+     rather than reserving flex space that would squeeze/crop the art. Its
+     font-size is computed in JS, same trick as the wordmark below: measure
+     the text's natural width and solve for the size that makes it span
+     exactly 100% of the page, so the left hand's wrist and the right hand's
+     wrist land flush against the two edges of the viewport regardless of
+     screen width. The CSS size here is just a sane no-JS fallback. A small
+     negative bottom margin lets it bleed slightly into the wordmark below,
+     which is fine — they're allowed to overlap. */
+  .footer-sign{
+    position:relative; z-index:2;
+    margin:0 0 clamp(-2rem,-3vw,-.5rem);
+  }
+  .footer-ascii{
+    display:block; width:100%; margin:0; user-select:none;
+    font-family:"IBM Plex Mono",monospace; font-size:clamp(6px,1.8vw,16px); line-height:1.05;
+    color:var(--footer-orange); opacity:.85;
+  }
+  .footer-sign-text{
+    position:absolute; left:54%; top:64%; transform:translate(-50%,-50%);
+    display:flex; flex-direction:column; gap:.4rem; text-align:center; white-space:nowrap;
+    z-index:1;
+  }
+  .footer-tagline{ font-family:"Fraunces",serif; font-style:italic; font-weight:500; font-size:clamp(1.15rem,2.6vw,1.5rem); }
+
+  /* Font-size and wrap height are both computed in JS: font-size is solved
+     so the wordmark's rendered width fills exactly 100% of the page edge to
+     edge (a vw-based clamp can't guarantee that for an arbitrary string in
+     an arbitrary font), and the wrap's height is then set to 70% of the
+     resulting glyph height so the bottom 30% is cropped by overflow:hidden —
+     the "partially cut off by the viewport edge" effect. The CSS heights
+     below are just a sane no-JS fallback. */
+  .footer-mark-wrap{
+    position:relative; z-index:1; overflow:hidden; pointer-events:none;
+    height:clamp(90px,11vw,170px); margin-bottom:0;
+  }
+  .footer-mark{
+    position:absolute; top:0; left:0; width:100%; margin:0;
+    display:block; text-align:center; white-space:nowrap;
+    font-family:"Unbounded","Syne",sans-serif; font-weight:800;
+    font-size:clamp(120px,22vw,400px); line-height:.8; letter-spacing:-.01em;
+    color:var(--footer-mark);
+  }
+
+  .footer-legal{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:normal; text-transform:none;
+    color:var(--ink-faint);
+  }
+
+  .js .footer-ascii{ opacity:0; filter:blur(6px); transition:opacity 1.1s ease .15s, filter 1.1s ease .15s; }
+  .js .site-footer.reveal.in .footer-ascii{ opacity:.85; filter:blur(0); }
+
+  @media (max-width:760px){
+    .footer-grid{ grid-template-columns:1fr; gap:2.2rem; }
+    /* The bottom-overlay treatment needs room the wordmark's crop band
+       doesn't have at this width — fall back to a plain row below it. */
+    .footer-status{
+      position:static; flex-direction:column; align-items:flex-start; gap:.7rem;
+      padding:1rem clamp(1.5rem,6vw,5.5rem) 0; margin-top:.5rem; border-top:1px solid var(--line);
+    }
+    .footer-ascii{ display:none; }
+    .footer-sign{ margin:1rem 0; }
+    .footer-sign-text{ position:static; transform:none; }
+  }
 
   /* ---------- command palette ---------- */
   .cmdk-overlay{
@@ -744,6 +872,8 @@
     --shadow:rgba(27,26,23,.14);
     --shadow-lift:rgba(27,26,23,.18);
     --glow:color-mix(in srgb, var(--accent) 20%, transparent);
+    --footer-orange:#ff4d00;
+    --footer-mark:#e4e0d8;
     background:var(--paper) !important;
     color:var(--ink);
   }
@@ -763,6 +893,7 @@
       --shadow:rgba(0,0,0,.55);
       --shadow-lift:rgba(0,0,0,.5);
       --glow:color-mix(in srgb, var(--accent) 32%, transparent);
+      --footer-mark:#262626;
     }
   }
   html[data-theme="dark"] body[data-mode="site"]{
@@ -780,6 +911,7 @@
     --shadow:rgba(0,0,0,.55);
     --shadow-lift:rgba(0,0,0,.5);
     --glow:color-mix(in srgb, var(--accent) 32%, transparent);
+    --footer-mark:#262626;
   }
   body[data-mode="site"] #siteView{ position:relative; z-index:1; }
   body[data-mode="site"] h1, body[data-mode="site"] .mark-name{
@@ -985,13 +1117,18 @@
 
   /* Space for floating island */
   body{ padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
-  #siteView, #machineView{ padding-bottom: 1rem; }
+  #machineView{ padding-bottom: 1rem; }
   /* Chat is a fixed-height, single-screen layout (.chat-view sizes itself to
      100dvh minus the header, and .chat-input-wrap already reserves its own
      space for the island at the bottom of the thread) — the body's own
      island reserve on top of that just pushes the page past one screen and
      makes it scrollable for no reason. */
   body[data-mode="chat"]{ padding-bottom: 0; }
+  /* Human mode ends on the full-bleed footer, whose cropped wordmark is meant
+     to sit flush against the true bottom of the page — the island already
+     floats over it (fixed position, own soft paper-tint gradient), so no
+     reserve is needed here the way the base body rule assumes elsewhere. */
+  body[data-mode="site"]{ padding-bottom: 0; }
 
 </style>
 <link rel="stylesheet" href="assets/css/modes.css">
@@ -1048,7 +1185,7 @@
 <div id="siteView">
 <main id="top">
 
-  <section class="hero wrap">
+  <section class="hero wrap" id="about">
     <div class="hero-grid">
       <div class="hero-copy">
         <div class="status-line"><span class="status-dot"></span> Currently shipping — Senior Product Manager @ HireEZ · Sunnyvale, CA</div>
@@ -1482,23 +1619,53 @@
     </div>
   </section>
 
-  <footer class="wrap reveal" id="contact">
-    <div class="eyebrow">Contact</div>
-    <h2 style="font-size:clamp(1.7rem,4vw,2.6rem); margin-top:1rem; max-width:14ch;">Let's talk about what's next.</h2>
-    <div class="contact-row">
-      <div class="contact-item"><div class="k">Email</div><div class="v"><a href="mailto:pulinpprabhu@gmail.com">pulinpprabhu@gmail.com</a></div></div>
-      <div class="contact-item"><div class="k">Phone</div><div class="v"><a href="tel:+19793448376">+1 (979) 344-8376</a></div></div>
-      <div class="contact-item"><div class="k">Location</div><div class="v">Sunnyvale, CA</div></div>
-      <div class="contact-item"><div class="k">Résumé</div><div class="v"><a href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Download ↓</a></div></div>
-    </div>
-    <div class="foot-row">
-      <span class="foot-log">// last shipped 19 sep 2026 · Sunnyvale, CA</span>
-      <div class="foot-social">
-        <a href="https://www.linkedin.com/in/pulinprabhu/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://medium.com/@pulinprabhu02" target="_blank" rel="noopener">Medium</a>
-        <a href="https://www.instagram.com/pulinprabhu/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/pulinprabhu02/" target="_blank" rel="noopener">Facebook</a>
+  <footer class="site-footer reveal" id="contact">
+    <div class="wrap footer-grid">
+      <div class="footer-col footer-col-main">
+        <h2 class="footer-headline">Let's talk about what's next.</h2>
+        <div class="footer-contact">
+          <a href="mailto:pulinpprabhu@gmail.com">pulinpprabhu@gmail.com</a>
+          <a href="tel:+19793448376">+1 (979) 344-8376</a>
+          <span>Sunnyvale, CA</span>
+        </div>
       </div>
+      <nav class="footer-col footer-nav" aria-label="Footer">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-col footer-col-end">
+        <div>
+          <div class="footer-label">Résumé</div>
+          <a class="footer-resume" href="https://drive.google.com/file/d/13S4RebOj6an3I0DSTXd2G1W-MsrJAPIr/view?usp=sharing" target="_blank" rel="noopener">Download ↓</a>
+        </div>
+        <div>
+          <div class="footer-label">Elsewhere</div>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/pulinprabhu/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://medium.com/@pulinprabhu02" target="_blank" rel="noopener">Medium</a>
+            <a href="https://www.instagram.com/pulinprabhu/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.facebook.com/pulinprabhu02/" target="_blank" rel="noopener">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-sign">
+      <pre class="footer-ascii" aria-hidden="true"></pre>
+      <div class="footer-sign-text">
+        <span class="footer-tagline">Let's build what's next.</span>
+      </div>
+    </div>
+
+    <div class="footer-mark-wrap" aria-hidden="true"><span class="footer-mark">PULIN</span></div>
+
+    <div class="footer-status">
+      <div class="footer-status-left">
+        <span class="footer-status-item"><span class="footer-dot" aria-hidden="true"></span>Open to new opportunities.</span>
+        <span class="footer-status-item"><span class="footer-dot" aria-hidden="true"></span>Based in Sunnyvale, CA.</span>
+      </div>
+      <span class="footer-legal">© 2026 Pulin Prabhu · // last shipped 19 sep 2026</span>
     </div>
   </footer>
 
@@ -1635,6 +1802,7 @@
   } else {
     revealEls.forEach(function(el){ el.classList.add('in'); });
   }
+
 
   // animated stat counters
   var counters = document.querySelectorAll('[data-count]');
@@ -1802,6 +1970,122 @@
   render();
   equalizeCardHeights();
   startAutoplay();
+})();
+</script>
+
+<script>
+(function(){
+  // ---- footer sign: one ASCII hand-silhouette background — two hands
+  // reaching toward each other (a nod to good-fella.com's studio-footer
+  // composition and, further back, the Sistine Chapel "Creation of Adam"
+  // gesture) — with the tagline laid over the empty gap between them. This
+  // is a single un-cropped grid (not two flex-shrunk halves, which was
+  // clipping the hands to make room for the text) so the whole shape always
+  // renders intact; the text sits on top via absolute positioning instead of
+  // competing with the art for layout space. HAND_ART holds 0-9 luminance
+  // levels traced from a source photo, downsampled to a monospace character
+  // grid; each level maps to a character of matching ink density (the
+  // standard " .:-=+*#%@" ascii-art ramp), colored in the site's own orange
+  // accent token so it stays on-theme in both light and dark.
+  var art = document.querySelector('.footer-ascii');
+  if (!art) return;
+  var RAMP = [' ', '.', ':', '-', '=', '+', '*', '#', '%', '@'];
+  var HAND_ART = [
+    '000122211112222212100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '433443444444556566544445422100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '222111222232443333334434444544220000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '212223223333344334433342332234444533310000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '322221222222234333444444332333222235666554433334311100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '554433333335433322223333232222112222232343455445454442000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '644435454345423222222332223321111122223322222332343345510000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '778876777765423322112212333232111111112221111223222333562000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '765655656567742422222211222323211112112323221121322222235520000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '666666655777765222322212212222222112122222322111121233323556644200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '777787776676677522232111121233332222343443423333112211122332467875310000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '777664544557667632332211111112233342356655565322332122211221112344675530000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    '656665678787566233233331121111112233356754532235521112233112222112135566200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000223444344444',
+    '677787776541110014423333233221122211236664567658756533567632121211132136640000000000000000000000000000000000000000000000000000000000000000000000000000000002224444232343432112112122',
+    '777877410000000000253224422321111112102677767655578876777786654233212223575000000000000000000000000000000000000000000000000000000000000000000000000131233312211111222211312222222222',
+    '788630000000000000014443453352121111223366651145666677778764766655543221247500000000000000000000000000000000000000000000000000000000000000000112222122211111112111222222222213233444',
+    '863000000000000000000245445345211112334335565213777666677755564577575232122661000000000000000000000000000000000000122332334443443212133333332332111111221112122111221221222344655555',
+    '300000000000000000000001223555434323211221245763575677556676677566656535423147100000000000000000000000000001233232232112221122222333212222221111121221211112212212223421345544344545',
+    '000000000000000000000000000000012233332222211145666546704854666555565603764226700000000000000000000000003322111111102212552111011220111111222322122321112221221212233675776333355654',
+    '000000000000000000000000000000000000023343123332235566510136667467556820166224761000000000000000000000013231233446665666766565454340111201245655564211121122222212245677776655565644',
+    '000000000000000000000000000000000000000013442332323365610001767645656850004542367200000000000000000000000366666756433433332446767873111451026766410111222223222212455667887765444445',
+    '000000000000000000000000000000000000000000034322345334560000575665467782000144446300000000000000000000000000000000000000000000001333444455322451011112233322222124667778777655566666',
+    '000000000000000000000000000000000000000000001331345544465000036685564685000000000000000000000000000000000000000000000000000000000000137555565311112122366422222256577767777777656666',
+    '000000000000000000000000000000000000000000000044456223366300003566354782000000000000000000000000000000000000000000000000000000000000035644321121223455777543565687666677777776778887',
+    '000000000000000000000000000000000000000000000364455653345200003468655684000000000000000000000000000000000000000000000000000000000013532210001133456776667777876767556776777777777777',
+    '000000000000000000000000000000000000000000000155552246532000002668657568300000000000000000000000000000000000000000000000000000014443413133135667775577767777765555667776668776211111',
+    '000000000000000000000000000000000000000000000003300000000000000246623556500000000000000000000000000000000000000000000000000003433311332245677764331125776676777666777667776410000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000026211232113445754356301112464126667776676675320000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003333332334574321367952112126631113357666630000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000124347745421123578555355321366424555431100000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004124555144557763020145776666753210000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000021244663232677300322345740100000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000142554662113674003556667300000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000143477642345650005567665000000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000032046622666500005533473000000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000023135732356200003311056000000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014036720276000001433462000000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000014346543551000000133300000000000000000000000000000000',
+    '000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000',
+  ];
+  art.textContent = HAND_ART.map(function(row){
+    var line = '';
+    for (var c = 0; c < row.length; c++){ line += RAMP[+row[c]]; }
+    return line;
+  }).join('\n');
+
+  // Scale to span exactly 100% of the page width — same measure-then-solve
+  // approach as the wordmark below, so the left hand's wrist and the right
+  // hand's wrist always land flush against the two edges of the viewport.
+  var wrap = document.querySelector('.footer-sign');
+  function fit(){
+    art.style.width = 'auto';
+    art.style.fontSize = '100px';
+    var natural = art.scrollWidth;
+    var target = wrap.clientWidth;
+    art.style.width = '100%';
+    if (!natural || !target) return;
+    art.style.fontSize = (100 * target / natural) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+})();
+</script>
+
+<script>
+(function(){
+  // ---- footer wordmark: scale "PULIN" so it always spans exactly 100% of
+  // the page width, edge to edge, regardless of viewport size or the text's
+  // natural width in this font — a fixed font-size (even a vw-based clamp)
+  // can't guarantee that across arbitrary widths, so we measure and solve
+  // for it instead. Wrap height is then set to 70% of the resulting glyph
+  // height, so overflow:hidden crops the bottom 30% of the letters.
+  var wrap = document.querySelector('.footer-mark-wrap');
+  var mark = document.querySelector('.footer-mark');
+  if (!wrap || !mark) return;
+  var LINE_HEIGHT = 0.8;   // matches .footer-mark's CSS line-height
+  var VISIBLE_FRACTION = 0.7; // 70% visible, 30% cropped
+  function fit(){
+    // Measure at width:auto first — with width:100% still set, scrollWidth
+    // would report the box's own width instead of the text's natural width
+    // whenever the box happens to be wider than the text, breaking the fit.
+    mark.style.width = 'auto';
+    mark.style.fontSize = '100px';
+    var natural = mark.scrollWidth;
+    var target = wrap.clientWidth;
+    mark.style.width = '100%';
+    if (!natural || !target) return;
+    var fontPx = 100 * target / natural;
+    mark.style.fontSize = fontPx + 'px';
+    wrap.style.height = (fontPx * LINE_HEIGHT * VISIBLE_FRACTION) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
 })();
 </script>
 
