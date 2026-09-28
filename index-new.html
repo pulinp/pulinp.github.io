@@ -32,18 +32,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Caveat:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&family=Syne:wght@500;600;700;800&family=Unbounded:wght@800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   :root{
-    --paper:#F2F4EE;
-    --surface:#FFFFFF;
-    --surface-2:#E8EBE0;
-    --ink:#12181C;
-    --ink-soft:#4C5650;
-    --ink-faint:#7C867E;
-    --line:#D7DBCC;
-    --accent:#B4762A;
-    --accent-ink:#7A5119;
-    --accent-2:#3B7D6C;
-    --shadow:rgba(20,26,20,0.10);
-    --shadow-lift:rgba(20,26,20,.18);
+    --paper:#F5F3EE;
+    --surface:#FBF9F4;
+    --surface-2:#EBE8E0;
+    --ink:#1B1A17;
+    --ink-soft:#35332E;
+    --ink-faint:#6A665E;
+    --line:#DAD6CC;
+    --accent:oklch(0.5 0.15 35);
+    --accent-ink:oklch(0.4 0.13 35);
+    --accent-2:oklch(0.62 0.15 150);
+    --shadow:rgba(27,26,23,0.10);
+    --shadow-lift:rgba(27,26,23,.18);
+    --selection-bg:oklch(0.86 0.07 35);
+    --selection-ink:var(--ink);
     /* Derived "glass" tokens — self-adapt to whichever theme/skin is active
        since they're mixed from --surface/--ink rather than hardcoded, so a
        single definition here covers light mode, dark mode, and the bolder
@@ -57,33 +59,37 @@
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --paper:#0D1215;
-      --surface:#141B1E;
-      --surface-2:#1B2327;
-      --ink:#ECEEE7;
-      --ink-soft:#AAB3AA;
-      --ink-faint:#6E7871;
-      --line:#293230;
-      --accent:#E3A455;
-      --accent-ink:#F0C384;
-      --accent-2:#5FB89C;
+      --paper:#17140F;
+      --surface:#1E1A14;
+      --surface-2:#262019;
+      --ink:#F3EEE5;
+      --ink-soft:#C9C2B4;
+      --ink-faint:#8F887A;
+      --line:#35302A;
+      --accent:oklch(0.7 0.13 38);
+      --accent-ink:oklch(0.8 0.1 45);
+      --accent-2:oklch(0.75 0.15 150);
       --shadow:rgba(0,0,0,0.45);
       --shadow-lift:rgba(0,0,0,.5);
+      --selection-bg:var(--accent);
+      --selection-ink:#181410;
     }
   }
   :root[data-theme="dark"]{
-    --paper:#0D1215;
-    --surface:#141B1E;
-    --surface-2:#1B2327;
-    --ink:#ECEEE7;
-    --ink-soft:#AAB3AA;
-    --ink-faint:#6E7871;
-    --line:#293230;
-    --accent:#E3A455;
-    --accent-ink:#F0C384;
-    --accent-2:#5FB89C;
+    --paper:#17140F;
+    --surface:#1E1A14;
+    --surface-2:#262019;
+    --ink:#F3EEE5;
+    --ink-soft:#C9C2B4;
+    --ink-faint:#8F887A;
+    --line:#35302A;
+    --accent:oklch(0.7 0.13 38);
+    --accent-ink:oklch(0.8 0.1 45);
+    --accent-2:oklch(0.75 0.15 150);
     --shadow-lift:rgba(0,0,0,.5);
     --shadow:rgba(0,0,0,0.45);
+    --selection-bg:var(--accent);
+    --selection-ink:#181410;
   }
 
   *{box-sizing:border-box;}
@@ -97,7 +103,7 @@
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
-  ::selection{ background:var(--accent); color:#181410; }
+  ::selection{ background:var(--selection-bg); color:var(--selection-ink); }
 
   h1,h2,h3{
     font-family:"Fraunces","Iowan Old Style",Georgia,serif;
@@ -718,53 +724,53 @@
      keeps Human mode consistent with Machine/Chat instead of being hardcoded
      to one theme regardless of the visitor's OS setting or toggle choice. */
   body[data-mode="site"]{
-    --paper:#F6F7F1;
-    --surface:#FFFFFF;
-    --surface-2:#ECEFE3;
-    --ink:#12160F;
-    --ink-soft:#4A5240;
-    --ink-faint:#7C8571;
-    --line:#DDE1D2;
-    --accent:#3F7A1C;
-    --accent-ink:#2C5B12;
-    --accent-2:#0D7A8A;
-    --accent-hot:#C23E78;
-    --shadow:rgba(20,26,20,.14);
-    --shadow-lift:rgba(20,26,20,.18);
+    --paper:#F5F3EE;
+    --surface:#FBF9F4;
+    --surface-2:#EBE8E0;
+    --ink:#1B1A17;
+    --ink-soft:#35332E;
+    --ink-faint:#6A665E;
+    --line:#DAD6CC;
+    --accent:oklch(0.62 0.15 150);
+    --accent-ink:oklch(0.4 0.13 35);
+    --accent-2:oklch(0.5 0.15 35);
+    --accent-hot:oklch(0.68 0.14 15);
+    --shadow:rgba(27,26,23,.14);
+    --shadow-lift:rgba(27,26,23,.18);
     --glow:color-mix(in srgb, var(--accent) 20%, transparent);
     background:var(--paper) !important;
     color:var(--ink);
   }
   @media (prefers-color-scheme: dark){
     html:not([data-theme="light"]) body[data-mode="site"]{
-      --paper:#101010;
-      --surface:#141417;
-      --surface-2:#1e1d1c;
-      --ink:#f2f2f2;
-      --ink-soft:#979797;
-      --ink-faint:#6E6D68;
-      --line:#272727;
-      --accent:#B6FF6A;
-      --accent-ink:#DFFF9C;
-      --accent-2:#6AE7FF;
-      --accent-hot:#FF6FAE;
+      --paper:#17140F;
+      --surface:#1E1A14;
+      --surface-2:#262019;
+      --ink:#F3EEE5;
+      --ink-soft:#C9C2B4;
+      --ink-faint:#8F887A;
+      --line:#35302A;
+      --accent:oklch(0.75 0.15 150);
+      --accent-ink:oklch(0.8 0.1 45);
+      --accent-2:oklch(0.7 0.13 38);
+      --accent-hot:oklch(0.78 0.12 20);
       --shadow:rgba(0,0,0,.55);
       --shadow-lift:rgba(0,0,0,.5);
       --glow:color-mix(in srgb, var(--accent) 32%, transparent);
     }
   }
   html[data-theme="dark"] body[data-mode="site"]{
-    --paper:#101010;
-    --surface:#141417;
-    --surface-2:#1e1d1c;
-    --ink:#f2f2f2;
-    --ink-soft:#979797;
-    --ink-faint:#6E6D68;
-    --line:#272727;
-    --accent:#B6FF6A;
-    --accent-ink:#DFFF9C;
-    --accent-2:#6AE7FF;
-    --accent-hot:#FF6FAE;
+    --paper:#17140F;
+    --surface:#1E1A14;
+    --surface-2:#262019;
+    --ink:#F3EEE5;
+    --ink-soft:#C9C2B4;
+    --ink-faint:#8F887A;
+    --line:#35302A;
+    --accent:oklch(0.75 0.15 150);
+    --accent-ink:oklch(0.8 0.1 45);
+    --accent-2:oklch(0.7 0.13 38);
+    --accent-hot:oklch(0.78 0.12 20);
     --shadow:rgba(0,0,0,.55);
     --shadow-lift:rgba(0,0,0,.5);
     --glow:color-mix(in srgb, var(--accent) 32%, transparent);
